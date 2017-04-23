@@ -1,31 +1,26 @@
-<div class="contain-to-grid">
-  <nav class="top-bar" data-topbar role="navigation"> 
-    <section class="top-bar-section">
-      <ul class="left">
-        <!-- link to home -->
-        <li><%= link_to "Home", home_path %></li>
+<!-- <ul class="dropdown">
+  <li><%= link_to "Item List", items_path %></li>
+  <li><%= link_to "Reorder List", home_path %></li>
+  <li><%= link_to "Add an Item", new_item_path %></li>
+</ul> -->
 
-        <!-- options for items -->
-        <li class="has-dropdown">
-          <%= link_to "Items", items_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Item List", items_path %></li>
-            <li><%= link_to "Reorder List", home_path %></li>
-            <li><%= link_to "Add an Item", new_item_path %></li>
-          </ul>
-        </li>
+<!-- <h2 id="name">{{user.first_name}} {{user.last_name}}</h2>
+    <img class="img-rounded" src="{% url 'get-image' user.username %}"
+         alt="{{user.username}}'s profile img" width="60px" onerror="this.style.display='none'"><hr> -->
 
-        <!-- options for purchases -->
-        <li>
-          <%= link_to "Purchases", purchases_path %>
-        </li>
+<!-- <form method="post" action="{% url 'search' %}">
+    <input name="cid" type="text" class="form-control" placeholder="Search a course"><br>
+    <input class="btn btn-sm btn-success" type="submit" value="Search"><hr>
+    {% csrf_token %}
+</form> -->
 
-        <!-- options for prices -->
-        <li>
-          <%= link_to "Prices", item_prices_path %>
-        </li>
-      </ul>
-
-    </section>
-  </nav>
-</div>
+<%= link_to image_tag("icon.png", border: 0), {action: 'home', controller: 'home'}, {class: 'sidebar-logo'} %>
+<!-- <%= image_tag("icon.png", :alt => "rss feed") %> -->
+<!-- <img src="app/assets/images/icon.png" alt="rss feed" /> -->
+<ul class="nav nav-sidebar">
+  <li class="sidebar_item"><%= link_to "Home", home_path %></li>
+  <li class="sidebar_item"><%= link_to "Items", items_path %></li>
+  <li class="sidebar_item"><%= link_to "Purchases", purchases_path %></li>
+  <li class="sidebar_item"><%= link_to "Prices", item_prices_path %></li>
+</ul>
+<br><br>

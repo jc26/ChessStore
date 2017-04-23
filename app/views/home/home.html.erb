@@ -1,3 +1,15 @@
 
 <%# render :partial => 'general_home' %>
-<%= render :partial => 'reorder_list' %>
+<!-- <%= render :partial => 'reorder_list' %> -->
+<div id='welcome-text'>
+  <h1>Primary Chess Store</h1>
+  <h5>We sell quality chess materials at a high quality and a low price.</h5>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= link_to "Login", login_path, :class => "btn btn-large home-buttons inline" %>
+    </div>
+    <div class="col-sm-2">
+      <%= link_to "Sign Up", new_user_path, :class => "btn btn-large home-buttons inline" %>
+    </div>
+  </div>
+</div>
