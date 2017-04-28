@@ -17,6 +17,20 @@
 
 $(function() {
   // $('#welcome-text').css({display:'block'}).animate({marginTop:'80px', opacity:'1'},500);
+  var windowHeight = window.innerHeight;
+  var mainDiv = $('.main-signed-out');
+  var mdHeight = mainDiv.height();
+  console.log(windowHeight);
+  console.log(mdHeight);
+  if (windowHeight > mdHeight) {
+    mainDiv.css('height', '100%');
+  }
+  resizeBGImage();
+  window.onresize = resizeBGImage();
+  function resizeBGImage() {
+    var sidebar = $('.sidebar');
+    mainDiv.css('background-position', 'left ' + sidebar.width() + 'px bottom');
+  }
 });
 
 // window.onload = function loadStuff() {

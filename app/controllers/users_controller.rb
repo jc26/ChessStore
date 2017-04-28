@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'login', :only => [:new]
+
   def index
   end
 

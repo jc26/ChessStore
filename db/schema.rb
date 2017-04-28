@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109233426) do
+ActiveRecord::Schema.define(version: 20170424202026) do
 
   create_table "item_prices", force: :cascade do |t|
     t.integer "item_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170109233426) do
     t.integer "inventory_level"
     t.integer "reorder_level"
     t.boolean "active",          default: true
+    t.string  "picture"
   end
 
   create_table "order_items", force: :cascade do |t|

@@ -1,4 +1,29 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "item", 
-                                                         primary: "active_items", 
-                                                         secondary: nil,
-                                                         sidebar: "inactive_items"} %>
+<div class="row">
+  <div class="col-sm-1">
+
+  </div>
+  <div class="col-sm-10">
+    <table class="items">
+      <% @boards.each_slice(3) do |slice| %>
+        <tr>
+          <% slice.each do |item| %>
+            <td align="center">
+              <!-- <a href="#"> -->
+              <div class="img-content">
+                <div class="item-img">
+                  <%= image_tag(item.picture, :alt => item.name) %>
+                </div>
+                <p class="item-name"><strong><%= link_to item.name, item_path(item) %></strong></p>
+                <p class="item-price">$20.00</p>
+                <!-- <i class="material-icons add">add</i> -->
+              </div>
+
+              <!-- </a> -->
+            </td>
+          <% end %>
+        </tr>
+
+      <% end %>
+    </table>
+  </div>
+</div>
