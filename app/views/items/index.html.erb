@@ -4,21 +4,18 @@
   </div>
   <div class="col-sm-10">
     <table class="items">
-      <% @boards.each_slice(3) do |slice| %>
+      <% @active_items.each_slice(3) do |slice| %>
         <tr>
           <% slice.each do |item| %>
             <td align="center">
-              <!-- <a href="#"> -->
               <div class="img-content">
                 <div class="item-img">
-                  <%= image_tag(item.picture, :alt => item.name) %>
+                  <%= link_to image_tag(item.picture, :alt => item.name), item_path(item) %>
                 </div>
                 <p class="item-name"><strong><%= link_to item.name, item_path(item) %></strong></p>
-                <p class="item-price">$20.00</p>
+                <p class="item-price"><%= number_to_currency item.current_price %></p>
                 <!-- <i class="material-icons add">add</i> -->
               </div>
-
-              <!-- </a> -->
             </td>
           <% end %>
         </tr>

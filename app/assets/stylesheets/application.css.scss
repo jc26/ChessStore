@@ -96,7 +96,7 @@ table {
 }
 
 table th.centered, table td.centered {
-    text-align: center;
+  text-align: center;
 }
 
 .note {
@@ -149,6 +149,18 @@ label {
 .nav > li > a:hover, .nav > li > a:focus {
   background-color: #2442DC;
   text-decoration: none;
+}
+
+.search-btn {
+  padding-bottom: 7px;
+  // display: inline;
+  // float: right;
+}
+
+#search-form {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 85%;
 }
 
 .main-signed-out {
@@ -228,8 +240,8 @@ label {
 
 .sidebar-logo img {
   max-width: 50%;
-  margin-top: 75px;
-  margin-bottom: 200px;
+  margin-top: 40px;
+  margin-bottom: 250px;
 }
 
 #register body, #login body {

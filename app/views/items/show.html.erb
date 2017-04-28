@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="small-7 columns">
+  <div class="col-sm-7">
     <%= render :partial => "item_details" %>
   </div>
-  <div class="small-5 columns">
+  <div class="col-sm-5">
     <%= render :partial => "price_history" unless @price_history.empty?%>
     <%= render :partial => "similar_items" unless @similar_items.empty?%>
   </div>

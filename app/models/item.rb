@@ -2,7 +2,7 @@ class Item < ActiveRecord::Base
 
   # List of allowable categories
   CATEGORIES = [['Boards','boards'],['Pieces','pieces'],['Clocks','clocks'],['Supplies','supplies']]
-  
+
   # Relationships
   has_many :order_items
   has_many :item_prices
@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
   scope :for_category, ->(category) { where(category: category) }
   scope :for_color,    ->(color) { where("color like ?", "%#{color.downcase}%") }
   scope :need_reorder, ->{ where("reorder_level >= inventory_level") }
-  
+
   # Validations
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates_numericality_of :weight, greater_than: 0
@@ -32,7 +32,11 @@ class Item < ActiveRecord::Base
 
   # Other methods
   attr_reader :destroyable
-  
+
+  def self.search(query)
+    where("name LIKE ?", "%#{query}%") 
+  end
+
   def current_price
     curr = self.item_prices.wholesale.current.first
     if curr.nil?
@@ -77,7 +81,7 @@ class Item < ActiveRecord::Base
   def is_destroyable?
     @destroyable = self.order_items.shipped.empty?
   end
-  
+
   def remove_unshipped_and_convert_to_inactive
     if !destroyable.nil? && destroyable == false
       remove_unshipped_and_unpaid_order_items
