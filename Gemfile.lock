@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/doabit/semantic-ui-sass.git
+  revision: bd2e7f99bffc93709eae37a2882b4a235c411513
+  specs:
+    semantic-ui-sass (2.2.10.0)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -138,7 +145,7 @@ GEM
       launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.4)
+    mail (2.6.5)
       mime-types (>= 1.16, < 4)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
@@ -296,6 +303,7 @@ DEPENDENCIES
   rails (= 4.2.7)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  semantic-ui-sass!
   shoulda
   shoulda-matchers
   simple_form

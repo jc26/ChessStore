@@ -31,6 +31,9 @@ gem 'bcrypt', '3.1.11'
 # Bootstrap for Sass
 gem 'bootstrap-sass', '~> 3.3.6'
 
+# Semantic UI for Rails
+gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
+
 # Other gems used
 gem 'time_date_helpers'
 gem 'validates_timeliness'
