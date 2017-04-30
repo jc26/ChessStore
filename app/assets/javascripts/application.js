@@ -14,14 +14,13 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= require semantic-ui
 
 $(function() {
   // $('#welcome-text').css({display:'block'}).animate({marginTop:'80px', opacity:'1'},500);
   var windowHeight = window.innerHeight;
   var mainDiv = $('.main-signed-out');
   var mdHeight = mainDiv.height();
-  console.log(windowHeight);
-  console.log(mdHeight);
   if (windowHeight > mdHeight) {
     mainDiv.css('height', '100%');
   }
@@ -31,6 +30,9 @@ $(function() {
     var sidebar = $('.sidebar');
     mainDiv.css('background-position', 'left ' + sidebar.width() + 'px bottom');
   }
+  $("#cart").on("click", function() {
+    $(".shopping-cart").fadeToggle("fast");
+  });
 });
 
 // window.onload = function loadStuff() {

@@ -1,12 +1,14 @@
-<div class="row">
-  <div class="col-sm-7">
-    <%= render :partial => "item_details" %>
-  </div>
-  <div class="col-sm-5">
-    <%= render :partial => "price_history" unless @price_history.empty?%>
-    <%= render :partial => "similar_items" unless @similar_items.empty?%>
-  </div>
-</div>
+<div class="show-container">
+  <!-- <div class="row"> -->
+    <!-- <div class="col-sm-7"> -->
+  <%= render :partial => "item_details" %>
+    <!-- </div> -->
+    <!-- <div class="col-sm-5"> -->
+  <!-- <%= render :partial => "price_history" unless @price_history.empty?%> -->
+  <%= render :partial => "similar_items" unless @similar_items.empty?%>
+    <!-- </div> -->
+  <!-- </div> -->
 
-<!-- Add buttons to list all, edit project or destroy object -->
-<%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
+  <!-- Add buttons to list all, edit project or destroy object -->
+  <!-- <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %> -->
+</div>

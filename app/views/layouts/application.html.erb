@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <%= favicon_link_tag %>
     <title>Chess Warehouse - <%= controller.controller_name.capitalize %></title>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Josefin+Sans|Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,6 +22,7 @@
     			<div class="col-sm-10 col-sm-push-2 main-signed-in">
             <!-- <div class="background"></div> -->
             <%= render :partial => "partials/flash" %>
+            <%= render :partial => "partials/heading" %>
             <%= yield %>
     			</div>
     		</div>

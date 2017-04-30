@@ -1,40 +1,49 @@
-<div class="row">
-  <div class="col-sm-7">
+<!-- <div class="row"> -->
+  <!-- <div class="col-sm-2">
     <h3><%= @item.name %></h3>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-3">
     <%= image_tag 'img_not_available.png' %>
-  </div>
-</div>
+  </div> -->
 
-<p>
-  <b>Description</b>: <%= @item.description %>
-</p>
+<table class="item-show-body">
+  <tr>
+    <td class="item-show-img">
+      <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
+    </td>
+    <td class="item-show-info" valign="top">
+      <h3 class="item-show-name"><%= @item.name %></h3>
+      <p class="item-show-price">
+        <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
+      </p>
+      <p class="item-show-desc"><%= @item.description %></p>
+      <button class="btn btn-primary add-to-cart"><span>ADD TO CART</span></button>
 
-<p>
-  <b>Price</b>: <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
-</p>
+      <!-- <p>
+        <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
+      </p>
 
-<p>
-  <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
-</p>
+      <p>
+        <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
+      </p>
 
-<p>
-  <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
-</p>
+      <p>
+        <b>Category</b>: <%= @item.category.capitalize %>
+      </p>
 
-<p>
-  <b>Category</b>: <%= @item.category.capitalize %>
-</p>
+      <p>
+        <b>Color</b>: <%= @item.color.nil? ? 'N/A' : @item.color %>
+      </p>
 
-<p>
-  <b>Color</b>: <%= @item.color.nil? ? 'N/A' : @item.color %>
-</p>
+      <p>
+        <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
+      </p>
 
-<p>
-  <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
-</p>
+      <p>
+        <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
+      </p> -->
+    </td>
+  </tr>
+</table>
 
-<p>
-  <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
-</p>
+<!-- </div> -->
