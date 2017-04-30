@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include ChessStoreHelpers::Cart
+
   layout 'login', :only => [:new]
 
   def new
