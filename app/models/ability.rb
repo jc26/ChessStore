@@ -15,11 +15,11 @@ class Ability
       can :read, :all
       # can see create shippers and customers
       can :create, User do |u|
-        u.role? :manager ||  u.role? :shipper
+        u.role? :shipper
       end
       # can update information of shippers, customers, and themselves
       can :update, User do |u|
-        u.role? :manager || u.role? :shipper || u.id == user.id
+        u.role? :shipper || u.id == user.id
       end
       # can create, read, update, and destroy Item
       can :manage, Item
