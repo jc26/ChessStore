@@ -1,10 +1,20 @@
 <div class="show-container">
-  <!-- <div class="row"> -->
-    <!-- <div class="col-sm-7"> -->
   <%= render :partial => "item_details" %>
-    <!-- </div> -->
-    <!-- <div class="col-sm-5"> -->
-  <!-- <%= render :partial => "price_history" unless @price_history.empty?%> -->
+  <div class="history-container">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= render :partial => "manufacturer_price_history" unless @manufacturer_price_history.empty?%>
+      </div>
+      <div class="col-sm-4">
+        <%= render :partial => "wholesale_price_history" unless @wholesale_price_history.empty?%>
+      </div>
+      <div class="col-sm-4">
+        <%= render :partial => "purchase_history" unless @wholesale_price_history.empty?%>
+      </div>
+    </div>
+  </div>
+
+  <!-- render :partial => "purchase history" unless @ -->
   <%= render :partial => "similar_items" unless @similar_items.empty?%>
     <!-- </div> -->
   <!-- </div> -->

@@ -1,12 +1,25 @@
-<% unless @price_history.empty? %>
-  <div class="panel clearfix">
-    <h3>Price History</h3>
-    <ul>
-      <% @price_history.each do |change| %>
-        <%= number_to_currency change.price %>&nbsp;&nbsp;&nbsp;(<%= change.start_date.strftime('%m/%d/%y') %>)<br />
+<div class="card" id="manufacturer-list">
+  <h4 class="card-header">Manufacturer Price History</h4>
+  <% unless @manufacturer_price_history.empty? %>
+  <div class="card-block">
+    <table class="ph">
+      <tr class="ph-heading">
+        <th>Price</th>
+        <th>Start Date</th>
+      </tr>
+      <% @manufacturer_price_history.each do |change| %>
+        <tr>
+          <td><%= number_to_currency change.price %></td>
+          <td><%= change.start_date.strftime('%m/%d/%y') %></td>
+        </tr>
       <% end %>
-    </ul>
-
-    <%= link_to("Change Price", new_item_price_path(this_item_id: @item.id), class: 'button tiny radius') %>
+    </table>
+    <br />
   </div>
-<% end %>
+  <% else %>
+  <p style="color: #ABB0BE;">No Manufacturer Price History</p>
+  <% end %>
+  <%= link_to(new_item_price_path(item_id: @item.id, category: 'manufacturer', id: 'new_manu_ip_link'), id: 'new_manu_ip_link', class: 'btn btn-primary', remote: true) do %>
+    Add Manufacturer Price
+  <% end %>
+</div>

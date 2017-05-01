@@ -1,0 +1,15 @@
+<%= simple_form_for @item_price, html: { :class => 'ajax-show-new' }, remote: true do |f| %>
+  <div class="form-group">
+    <label style="width:inherit;">New Price</label>
+    <%= f.input :price, label: false, input_html: {:class => "form-control"} %>
+  </div>
+
+  <!-- Note in this case that can't use @town; use params[:town_id] -->
+  <%= f.input :category, as: :hidden, input_html: { value: params[:category] } %>
+  <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+
+  <div class="form-actions">
+    <%= f.submit "Add", class: 'btn btn-primary', style: 'margin-left: 0px;' %>
+    <%= link_to 'Cancel', item_path(params[:item_id]), class: 'btn btn-primary' %>
+  </div>
+<% end %>

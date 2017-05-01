@@ -13,6 +13,7 @@ class ItemPricesController < ApplicationController
     if @item_price.save
       @item = @item_price.item
       redirect_to item_path(@item), notice: "Changed the price of #{@item.name}."
+      format.js
     else
       render action: 'new'
     end
@@ -22,5 +23,5 @@ class ItemPricesController < ApplicationController
   def item_price_params
     params.require(:item_price).permit(:item_id, :price, :category)
   end
-  
+
 end

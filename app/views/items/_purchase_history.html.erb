@@ -1,0 +1,25 @@
+<div class="card" id="purchase-list">
+  <h4 class="card-header">Purchase History</h4>
+  <% unless @purchase_history.empty? %>
+  <div class="card-block">
+    <table class="ph">
+      <tr class="ph-heading">
+        <th>Quantity</th>
+        <th>Date</th>
+      </tr>
+      <% @purchase_history.each do |change| %>
+        <tr>
+          <td><%= change.quantity %></td>
+          <td><%= change.date.strftime('%m/%d/%y') %></td>
+        </tr>
+      <% end %>
+    </table>
+    <br />
+  </div>
+  <% else %>
+  <p style="color: #ABB0BE;">No Purchase History</p>
+  <% end %>
+  <%= link_to(new_purchase_path(item_id: @item.id), id: 'new_purchase_link', class: 'btn btn-primary', remote: true) do %>
+    Add Purchase
+  <% end %>
+</div>
