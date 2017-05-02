@@ -41,7 +41,8 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    
+    @title = "DASHBOARD"
+    @path_name = "/dashboard"
   end
 
 end

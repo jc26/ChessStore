@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_heading, except: [:cart, :checkout]
 
   def index
   end
@@ -31,6 +32,8 @@ class OrdersController < ApplicationController
     @shipping_cost = calculate_cart_shipping
     @total_cost = calculate_cart_items_cost
     @grand_total = calculate_cart_shipping + calculate_cart_items_cost
+    @title = "CART"
+    @path_name = "/cart"
   end
 
   def checkout
@@ -44,5 +47,10 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:school_id, :user_id, :date, :credit_card_number, :expiration_year, :expiration_month)
+  end
+
+  def set_heading
+    @title = "ORDERS"
+    @path_name = "/orders"
   end
 end

@@ -161,8 +161,8 @@ label {
 
 .sidebar-logo img {
   max-width: 90%;
-  margin-top: 40px;
-  margin-bottom: 250px;
+  margin-top: 15px;
+  margin-bottom: 280px;
 }
 
 .nav li a {
@@ -618,7 +618,7 @@ table.items {
 
 .show-container {
   width: 90%;
-  margin: 50px 5% 0 8%;
+  margin: 80px 5% 0 8%;
 }
 
 table.items td {
@@ -643,8 +643,6 @@ table.items td img {
   width: 100%;
   height: auto;
   backface-visibility: hidden;
-  // -webkit-filter: grayscale(0) blur(0);
-  // filter: grayscale(0) blur(0);
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
 }
@@ -766,7 +764,7 @@ a.add-to-cart-btn:focus .text {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: gray;
+  color: #f981b2;
   float:right;
   margin-left: 17px;
 }
@@ -787,11 +785,7 @@ a.add-to-cart-btn:focus .text {
 }
 
 .navbar-default {
-  // width: 83.4%;
-  // margin-left: 223px;
   background-color: lightgray;
-  // border-color: transparent;
-  // border-bottom: 3px solid #0B1443;
   border-radius: 0px;
   padding-top: 10px;
   padding-bottom: 7px;
@@ -806,6 +800,10 @@ a.add-to-cart-btn:focus .text {
 
 .navbar-default .navbar-brand:hover {
   color: #777;
+}
+
+.navbar-brand {
+  padding-top: 18px;
 }
 
 // Cart Dropdown
@@ -1131,7 +1129,6 @@ table.ph tr:hover:not(tr.ph-heading) {
 // Similar Items on Show Page
 
 .similar-items-container {
-  white-space: nowrap;
   width: 86%;
   margin-left: 20px;
   margin-bottom: 30px;
@@ -1143,14 +1140,30 @@ table.ph tr:hover:not(tr.ph-heading) {
 table.similar-items {
   border-spacing: 30px;
   border-collapse: separate;
+  table-layout: fixed;
+}
+
+table.similar-items td {
+  vertical-align: top;
+}
+
+.sim-img-content {
+  width: 150px;
 }
 
 .similar-items img {
   width: 100%;
 }
 
-.sim-img-content, .sim-img-name, .sim-img-price {
-  width: 150px;
+.sim-item-name a {
+  color: black;
+  width: 100%;
+  margin-top: 5px
+}
+
+.sim-item-price {
+  width: 100%;
+  margin-top: -5px;
 }
 
 .similar-items caption {

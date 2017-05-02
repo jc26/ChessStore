@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-12 topnav">
+    <nav class="navbar navbar-default heading">
+      <%= link_to @title, @path_name, class: "navbar-brand curr-title" %>
+      <a href="#" id="cart" class="navbar-right">
+        <i class="fa fa-shopping-cart"></i> Cart
+        <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
+      </a>
+      <%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Search Items", class: "form-control search-box" %>
+        </div>
+        <%= submit_tag "Go!", :name => nil, class: "btn btn-default search-btn" %>
+      <% end %>
+    </nav>
+  </div>
+</div>
+
+<%= render :partial => "partials/cart_dropdown" %>

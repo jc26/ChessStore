@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :check_login, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_heading
 
   def add_item
     add_item_to_cart(params[:id])
@@ -17,11 +18,6 @@ class ItemsController < ApplicationController
   # end
 
   def index
-    if logged_in?
-      @items_in_cart = get_list_of_items_in_cart
-      @total_cost = calculate_cart_items_cost
-      @size_of_cart = get_size_of_cart
-    end
     if params[:search]
       @active_items = Item.search(params[:search]).alphabetical
     else
@@ -80,6 +76,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :color, :category, :weight, :inventory_level, :reorder_level, :active)
+  end
+
+  def set_heading
+    @title = "ITEMS"
+    @path_name = "/items"
   end
 
 end
