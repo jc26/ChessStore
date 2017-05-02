@@ -33,6 +33,7 @@ $(function() {
   $("#cart").on("click", function() {
     $(".shopping-cart").fadeToggle("fast");
   });
+  $(".alert-box").fadeOut(5000);
 });
 
 // window.onload = function loadStuff() {

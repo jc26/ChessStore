@@ -1,8 +1,8 @@
 module ChessStoreHelpers
   module Cart
     # For this application, our cart is simply a hash consisting
-    # of item_ids as keys and quantities as values.  The hash is 
-    # saved as a session variable that the user should have  
+    # of item_ids as keys and quantities as values.  The hash is
+    # saved as a session variable that the user should have
     # available during the course of their interactions w/ system.
 
     def create_cart
@@ -52,7 +52,15 @@ module ChessStoreHelpers
         order_item = OrderItem.new(info)
         order_items << order_item
       end
-      order_items    
+      order_items
+    end
+
+    def get_size_of_cart
+      size = 0
+      get_list_of_items_in_cart.each do |i|
+        size += i.quantity
+      end
+      size
     end
 
     def save_each_item_in_cart(order)

@@ -27,10 +27,14 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    # @items_in_cart = get_list_of_items_in_cart
-    # @shipping_cost = calculate_cart_shipping
-    # @total_cost = calculate_cart_items_cost
-    # @grand_total = calculate_cart_shipping + calculate_cart_items_cost
+    @items_in_cart = get_list_of_items_in_cart
+    @shipping_cost = calculate_cart_shipping
+    @total_cost = calculate_cart_items_cost
+    @grand_total = calculate_cart_shipping + calculate_cart_items_cost
+  end
+
+  def checkout
+
   end
 
   private

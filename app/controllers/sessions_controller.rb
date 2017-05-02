@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      create_cart
       redirect_to home_path, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid"

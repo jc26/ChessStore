@@ -19,7 +19,9 @@
       <h3 class="item-show-name"><%= @item.name %></h3>
       <%= render :partial => "show_price" %>
       <p class="item-show-desc"><%= @item.description %></p>
-      <button class="btn btn-primary add-to-cart"><span>ADD TO CART</span></button>
+      <%= button_to add_item_path(:id => @item.id), method: :post, class: "btn btn-primary add-to-cart" do %>
+        <span>ADD TO CART</span>
+      <% end %>
 
       <!-- <p>
         <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>

@@ -2,7 +2,10 @@
   <div class="col-sm-12 topnav">
     <nav class="navbar navbar-default heading">
       <%= link_to "ITEMS", items_path, class: "navbar-brand curr-title" %>
-      <a href="#" id="cart" class="navbar-right"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a>
+      <a href="#" id="cart" class="navbar-right">
+        <i class="fa fa-shopping-cart"></i> Cart
+        <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
+      </a>
       <%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search], placeholder: "Search Items", class: "form-control search-box" %>

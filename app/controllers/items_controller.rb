@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   def add_item
     add_item_to_cart(params[:id])
     @item = Item.find(params[:id])
-    redirect_to item_path(@item), notice: "#{@item.name} was added to your cart."
+    redirect_to items_path, notice: "#{@item.name} was added to your cart."
   end
 
   # def remove_item
@@ -17,8 +17,11 @@ class ItemsController < ApplicationController
   # end
 
   def index
-    # @items_in_cart = get_list_of_items_in_cart
-    # @total_cost = calculate_cart_items_cost
+    if logged_in?
+      @items_in_cart = get_list_of_items_in_cart
+      @total_cost = calculate_cart_items_cost
+      @size_of_cart = get_size_of_cart
+    end
     if params[:search]
       @active_items = Item.search(params[:search]).alphabetical
     else

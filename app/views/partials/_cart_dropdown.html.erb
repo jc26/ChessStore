@@ -1,40 +1,54 @@
 <div class="sc-container">
   <div class="shopping-cart">
     <div class="shopping-cart-header">
-      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
       <div class="shopping-cart-total">
-        <span class="lighter-text">Total:</span>
-        <span class="main-color-text"><%= @total_cost %></span>
+        <span class="lighter-text">Total: </span>
+        <span class="main-color-text"><%= @total_cost ? (number_to_currency @total_cost) : "$0.00" %></span>
       </div>
     </div> <!--end shopping-cart-header -->
-
-    <h5 align="center" style="padding-top:10px; color:gray;">
-      It looks like you have no items in cart &#9785;
-    </h5>
-
-    <!-- <ul class="shopping-cart-items" style="list-style: none;"> -->
-
-      <!-- <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-        <span class="sc-item-name">KS Automatic Mechanic...</span>
-        <span class="sc-item-price">$1,249.99</span>
-        <span class="sc-item-quantity">Quantity: 01</span>
-      </li>
-
-      <li class="clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-        <span class="sc-item-name">Kindle, 6" Glare-Free To...</span>
-        <span class="sc-item-price">$129.99</span>
-        <span class="sc-item-quantity">Quantity: 01</span>
-      </li> -->
-    <!-- </ul> -->
-    <div class="row">
-      <div class="col-sm-6">
-        <a href="#" class="button" style="color:white;text-decoration:none;">View Cart</a>
+    <% if !logged_in? %>
+      <h5 align="center" style="padding-top:10px; color:gray;">
+        You must login to place orders.
+      </h5>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to "Login", login_path, :class => "button", :style => "color:white;text-decoration:none;" %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to "Sign Up", new_user_path, :class => "button", :style => "color:white;text-decoration:none;" %>
+        </div>
       </div>
-      <div class="col-sm-6">
-        <a href="#" class="button" style="color:white;text-decoration:none;">Checkout</a>
+    <% else %>
+      <% if @items_in_cart.empty? %>
+        <h5 align="center" style="padding-top:10px; color:gray;">
+          You have no items in your cart &#9785;
+        </h5>
+      <% else %>
+        <ul class="shopping-cart-items" style="list-style: none;">
+          <% @items_in_cart.each do |i| %>
+            <li class="clearfix">
+              <% unless i.item.picture %>
+                <%= link_to image_tag('placeholder.jpg', :alt => i.item.name, :width => 70, :height => 70), item_path(i.item) %>
+              <% else %>
+                <%= link_to image_tag(i.item.picture, :alt => i.item.name, :width => 70, :height => 70), item_path(i.item) %>
+              <% end %>
+              <span class="sc-item-name"><%= link_to i.item.name, item_path(i.item) %></span>
+              <span class="sc-item-price"><%= number_to_currency i.item.price_on_date(Date.current) %></span>
+              <span class="sc-item-quantity">Quantity: <%= i.quantity %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to "View Cart", cart_path, :class => "button", :style => "color:white;text-decoration:none;" %>
+        </div>
+        <div class="col-sm-6">
+          <a href="#" class="button" style="color:white;text-decoration:none;">Checkout</a>
+        </div>
       </div>
-    </div>
+    <% end %>
+
   </div> <!--end shopping-cart -->
 </div> <!--end container -->
