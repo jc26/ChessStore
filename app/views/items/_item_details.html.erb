@@ -13,9 +13,7 @@
     </td>
     <td class="item-show-info" valign="top">
       <h3 class="item-show-name"><%= @item.name %></h3>
-      <p class="item-show-price">
-        <%= @item.current_price.nil? ? 'N/A' : number_to_currency(@item.current_price) %>
-      </p>
+      <%= render :partial => "show_price" %>
       <p class="item-show-desc"><%= @item.description %></p>
       <button class="btn btn-primary add-to-cart"><span>ADD TO CART</span></button>
 

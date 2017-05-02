@@ -1,4 +1,6 @@
 $('#new_item_price').remove();
-$('#new_attraction_link').show();
-$('#attraction_list').replaceWith('<%= j render("towns/list_of_attractions") %>');
-$('#town_map').replaceWith('<%= j render("towns/town_map") %>');
+$('#new_manu_ip_link').show();
+$('#manufacturer-list').replaceWith('<%= j render("items/manufacturer_price_history") %>');
+$('#new_whole_ip_link').show();
+$('#item-show-price').replaceWith('<%= j render("items/show_price") %>');
+$('#wholesale-list').replaceWith('<%= j render("items/wholesale_price_history") %>');

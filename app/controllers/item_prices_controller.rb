@@ -10,12 +10,17 @@ class ItemPricesController < ApplicationController
   def create
     @item_price = ItemPrice.new(item_price_params)
     @item_price.start_date = Date.current
-    if @item_price.save
-      @item = @item_price.item
-      redirect_to item_path(@item), notice: "Changed the price of #{@item.name}."
-      format.js
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @item_price.save
+        @item = @item_price.item
+        format.html { redirect_to @item, notice: 'Changed the price of #{@item.name}.' }
+        format.json { render action: 'show', status: :created, location: @item }
+        @manufacturer_price_history = @item.item_prices.manufacturer.chronological.to_a
+        @wholesale_price_history = @item.item_prices.wholesale.chronological.to_a
+        format.js
+      else
+        render action: 'new'
+      end
     end
   end
 

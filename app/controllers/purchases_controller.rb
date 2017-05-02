@@ -10,11 +10,16 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.date = Date.current
-    
-    if @purchase.save
-      redirect_to purchases_path, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @purchase.save
+        @item = @purchase.item
+        format.html { redirect_to @item, notice: 'Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}.' }
+        format.json { render action: 'show', status: :created, location: @item }
+        @purchase_history = @item.purchases.chronological.to_a
+        format.js
+      else
+        render action: 'new'
+      end
     end
   end
 
@@ -22,5 +27,5 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:purchase).permit(:item_id, :quantity)
   end
-  
+
 end
