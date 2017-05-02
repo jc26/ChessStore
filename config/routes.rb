@@ -21,6 +21,13 @@ Rails.application.routes.draw do
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
 
+  # Routes for cart
+  post 'add_item/:id' => 'items#add_item', :as => :add_item
+  get 'cart' => 'orders#cart', :as => :cart
+
+  # Routes for user
+  get 'dashboard' => 'users#dashboard', as: :dashboard
+
   # Set the root url
   root :to => 'home#home'
 

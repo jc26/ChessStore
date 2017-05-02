@@ -1,4 +1,6 @@
 class PurchasesController < ApplicationController
+  before_action :check_login
+  
   def index
     @purchases = Purchase.chronological.to_a
   end

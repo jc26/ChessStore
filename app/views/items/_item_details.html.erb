@@ -9,7 +9,11 @@
 <table class="item-show-body">
   <tr>
     <td class="item-show-img">
-      <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
+      <% unless @item.picture %>
+        <%= link_to image_tag('placeholder.jpg', :alt => @item.name), item_path(@item) %>
+      <% else %>
+        <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
+      <% end %>
     </td>
     <td class="item-show-info" valign="top">
       <h3 class="item-show-name"><%= @item.name %></h3>

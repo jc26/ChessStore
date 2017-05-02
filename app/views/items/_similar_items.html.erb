@@ -7,7 +7,11 @@
         <td align="center">
           <div class="sim-img-content">
             <div class="sim-item-img">
-              <%= link_to image_tag(item.picture, :alt => item.name), item_path(item) %>
+              <% unless item.picture %>
+                <%= link_to image_tag('placeholder.jpg', :alt => item.name), item_path(item) %>
+              <% else %>
+                <%= link_to image_tag(item.picture, :alt => item.name), item_path(item) %>
+              <% end %>
             </div>
             <p class="sim-item-name"><strong><%= link_to item.name, item_path(item) %></strong></p>
             <p class="sim-item-price"><%= number_to_currency item.current_price %></p>

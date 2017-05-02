@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :username
       t.string :password_digest
-      t.string :role
+      t.string :role, default: 'customer'
       t.boolean :active, default: true
 
       t.timestamps null: false

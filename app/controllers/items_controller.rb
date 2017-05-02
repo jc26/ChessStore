@@ -1,7 +1,24 @@
 class ItemsController < ApplicationController
+  include ChessStoreHelpers::Cart
+
+  before_action :check_login, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+  def add_item
+    add_item_to_cart(params[:id])
+    @item = Item.find(params[:id])
+    redirect_to item_path(@item), notice: "#{@item.name} was added to your cart."
+  end
+
+  # def remove_item
+  #   remove_item_from_cart(params[:id])
+  #   @item = Item.find(params[:id])
+  #   redirect_to cart_path, notice: "The item was removed from your cart."
+  # end
+
   def index
+    # @items_in_cart = get_list_of_items_in_cart
+    # @total_cost = calculate_cart_items_cost
     if params[:search]
       @active_items = Item.search(params[:search]).alphabetical
     else
