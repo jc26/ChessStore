@@ -28,13 +28,13 @@
   width: 93%;
   margin: 0 auto;
   margin: 30px 0 0 20px;
-  top: 30px;
-  // bottom: 30px;
+  top: 80%;
   z-index: 1;
   padding-top: 10px;
   padding-bottom: 7px;
   border-radius: 3px;
-  background-color: lightgray;
+  color: white;
+  background-color: #f981b2;
   text-align: center;
 }
 
@@ -165,7 +165,7 @@ label {
   margin-bottom: 280px;
 }
 
-.nav li a {
+#main-sidebar .nav li a {
 	font-family: 'Open Sans', sans-serif;
 	color: white;
   font-size: 1.3em;
@@ -176,21 +176,21 @@ label {
   transition:.5s;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+#main-sidebar .nav > li > a:hover, #main-sidebar .nav > li > a:focus {
   background-color: #2442DC;
   text-decoration: none;
   padding-left: 40px;
 }
 
-.nav > li > a {
+#main-sidebar .nav > li > a {
   padding-left: 30px;
 }
 
-.nav li {
+#main-sidebar .nav li {
   width: 100%;
 }
 
-.nav a.logout-btn {
+#main-sidebar .nav a.logout-btn {
 	font-family: 'Open Sans', sans-serif;
 	width: 85%;
   margin-left: 20px;
@@ -205,7 +205,7 @@ label {
 	transition:.5s;
 }
 
-.nav a.logout-btn:hover {
+#main-sidebar .nav a.logout-btn:hover {
 	background-color: white;
 	border-color: white;
 	color: black;
@@ -608,25 +608,46 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 
 #login .btn:active:focus, #login .btn.active:focus { outline: 0; opacity: 0.6; background: #a1a3af; color: #fff; }
 
-table.items {
-    border-spacing: 0px 30px;
-    border-collapse: separate;
-    width: 90%;
-    margin: 50px 5% 0 8%;
-    // margin-top: 50px;
+// Items Index Page
+
+#items-table-container {
+  width: 93%;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 50px;
 }
 
-.show-container {
-  width: 90%;
-  margin: 80px 5% 0 8%;
+#items-table-container ul.nav.nav-pills.nav-fill {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#items-table-container ul.nav.nav-pills.nav-fill li.active a {
+  background-color: #f981b2;
+}
+
+#items-table-container ul.nav.nav-pills.nav-fill li:not(.active) a {
+  color: #f981b2;
+}
+
+#items-table-container ul.nav.nav-pills.nav-fill li {
+  width: 19.75%;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+table.items {
+  border-spacing: 0px 30px;
+  border-collapse: separate;
+  width: 100%;
+  margin-top: -10px;
 }
 
 table.items td {
-    width: 250px;
-    margin-top: 30px;
-    vertical-align: top;
-    text-align: left;
-    align-content: center;
+  width: 250px;
+  margin-top: 30px;
+  vertical-align: top;
+  align-content: center;
 }
 
 table.items td img, .img-content {
@@ -740,6 +761,7 @@ a.add-to-cart-btn:focus .text {
   font-size: 1.3em;
   width: 70%;
   float: left;
+  text-align: left;
   line-height: 1.2;
   -ms-transition:.5s;
   -moz-transition:.5s;
@@ -779,9 +801,6 @@ a.add-to-cart-btn:focus .text {
   border: none;
   position: absolute;
   width: 100%;
-  // position:fixed;
-  // top:0;
-  // z-index:100;
 }
 
 .navbar-default {
@@ -976,6 +995,11 @@ ul.shopping-cart-items {
 
 // Item Show Page
 
+.show-container {
+  width: 90%;
+  margin: 80px 5% 0 8%;
+}
+
 table.item-show-body {
   margin-left: -8px;
   border-spacing: 29px 30px;
@@ -1027,6 +1051,7 @@ h3.item-show-name {
 
 .item-show-desc {
   font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
 }
 
 button.add-to-cart {
@@ -1172,4 +1197,66 @@ table.similar-items td {
   margin-top: -30px;
   color: black;
   position: absolute;
+}
+
+// Cart
+
+table#show-cart {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 60px;
+  border-collapse: separate;
+}
+
+table#show-cart td {
+  vertical-align: middle;
+}
+
+table#show-cart .cart-item-img img {
+  width: 100px;
+  height: 100px;
+}
+
+table#show-cart .cart-rm-item-btn {
+  margin-top: -8px;
+  background-color: #656EA9;
+  border: 0px;
+}
+
+table#show-cart .cart-rm-item-btn:hover {
+  background-color: #656EA9;
+  opacity: 0.8;
+}
+
+table#cart-summary {
+  border-spacing: 10px 5px;
+  border-collapse: separate;
+  margin-left: 55.5%;
+}
+
+h4.empty-cart-msg {
+  margin: 0 auto;
+  margin-top: 60px;
+}
+
+.cart-actions {
+  margin-top: 15px;
+  margin-left: 14%;
+}
+
+.cart-actions input {
+  font-family: "Open Sans", sans-serif;
+  display: inline;
+  width: 100%;
+  background-color: #f981b2;
+  border: 0px;
+}
+
+.cart-actions input:hover {
+  background-color: #f981b2;
+  opacity: 0.8;
+}
+
+.cart-actions input:focus, table#show-cart .cart-rm-item-btn:focus {
+  background-color: #707070;
 }

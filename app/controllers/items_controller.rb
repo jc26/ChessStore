@@ -11,11 +11,11 @@ class ItemsController < ApplicationController
     redirect_to items_path, notice: "#{@item.name} was added to your cart."
   end
 
-  # def remove_item
-  #   remove_item_from_cart(params[:id])
-  #   @item = Item.find(params[:id])
-  #   redirect_to cart_path, notice: "The item was removed from your cart."
-  # end
+  def remove_item
+    remove_item_from_cart(params[:id])
+    @item = Item.find(params[:id])
+    redirect_to cart_path, notice: "#{@item.name} was removed from your cart."
+  end
 
   def index
     if params[:search]

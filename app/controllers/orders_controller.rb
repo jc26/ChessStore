@@ -36,6 +36,11 @@ class OrdersController < ApplicationController
     @path_name = "/cart"
   end
 
+  def empty_cart
+    clear_cart
+    redirect_to cart_path, notice: "Your cart was emptied."
+  end
+
   def checkout
 
   end

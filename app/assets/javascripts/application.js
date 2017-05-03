@@ -33,7 +33,9 @@ $(function() {
   $("#cart").on("click", function() {
     $(".shopping-cart").fadeToggle("fast");
   });
-  $(".alert-box").fadeOut(5000);
+  $('.alert-box').delay(500).fadeIn('normal', function() {
+      $(this).delay(3000).fadeOut();
+   });
 });
 
 // window.onload = function loadStuff() {

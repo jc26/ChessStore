@@ -3,16 +3,20 @@
   <% unless @purchase_history.empty? %>
   <div class="card-block">
     <table class="ph table-hover">
-      <tr class="ph-heading">
-        <th>Quantity</th>
-        <th>Date</th>
-      </tr>
-      <% @purchase_history.each do |change| %>
-        <tr>
-          <td><%= change.quantity %></td>
-          <td><%= change.date.strftime('%m/%d/%y') %></td>
+      <thead>
+        <tr class="ph-heading">
+          <th>Quantity</th>
+          <th>Date</th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% @purchase_history.each do |change| %>
+          <tr>
+            <td><%= change.quantity %></td>
+            <td><%= change.date.strftime('%m/%d/%y') %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
     <br />
   </div>

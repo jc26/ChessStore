@@ -1,28 +1,27 @@
-<div class="row">
-  <div class="col-sm-12">
-    <table class="items" id="effect-6">
-      <% @active_items.each_slice(3) do |slice| %>
-        <tr>
-          <% slice.each do |item| %>
-            <td align="center">
-              <div class="img-content">
-                <div class="item-img">
-                  <% unless item.picture %>
-                    <%= link_to image_tag('placeholder.jpg', :alt => item.name), item_path(item) %>
-                  <% else %>
-                    <%= link_to image_tag(item.picture, :alt => item.name), item_path(item) %>
-                  <% end %>
-                  <%= link_to add_item_path(:id => item.id), method: :post, class: "add-to-cart-btn" do %>
-                    <div class="text">ADD TO CART</div>
-                  <% end %>
-                </div>
-                <p class="item-name"><strong><%= link_to item.name, item_path(item) %></strong></p>
-                <p class="item-price"><%= number_to_currency item.current_price %></p>
-              </div>
-            </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
+<div id="items-table-container">
+  <ul class="nav nav-pills nav-fill">
+    <li class="active"><a data-toggle="pill" href="#boards">Boards</a></li>
+    <li><a data-toggle="pill" href="#pieces">Pieces</a></li>
+    <li><a data-toggle="pill" href="#clocks">Clocks</a></li>
+    <li><a data-toggle="pill" href="#supplies">Supplies</a></li>
+    <li><a data-toggle="pill" href="#supplies">Inactive Items</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="boards" class="tab-pane fade in active">
+      <%= render partial: "items_table", locals: {items: @boards} %>
+    </div>
+    <div id="pieces" class="tab-pane fade">
+      <%= render partial: "items_table", locals: {items: @pieces} %>
+    </div>
+    <div id="clocks" class="tab-pane fade">
+      <%= render partial: "items_table", locals: {items: @clocks} %>
+    </div>
+    <div id="supplies" class="tab-pane fade">
+      <%= render partial: "items_table", locals: {items: @supplies} %>
+    </div>
+    <div id="supplies" class="tab-pane fade">
+      <%= render partial: "items_table", locals: {items: @inactive_items} %>
+    </div>
   </div>
 </div>
