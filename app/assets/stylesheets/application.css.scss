@@ -795,7 +795,7 @@ a.add-to-cart-btn:focus .text {
 
 .add-item-btn {
   margin-bottom: 10px;
-  margin-left: 87%;
+  margin-left: 87.5%;
   background-color: #656EA9;
   border: 0px;
 }
@@ -1285,12 +1285,17 @@ form.new-item-form {
   font-family: "Open Sans", sans-serif;
 }
 
-form.new-item-form.desc.form-control {
-  width: 97%;
+form.new-item-form textarea.form-control.desc {
+  width: 96.5%;
 }
 
 form.new-item-form .form-actions {
-  margin-left: -8px;
+  width: 100%;
+  text-align: center;
+}
+
+form.new-item-form .form-actions.simple_form input[type='submit'] {
+  margin: 0 auto;
 }
 
 form.new-item-form .form-actions input, form.new-item-form .form-actions a {
