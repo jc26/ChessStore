@@ -36,6 +36,11 @@ $(function() {
   $('.alert-box').delay(500).fadeIn('normal', function() {
       $(this).delay(3000).fadeOut();
    });
+  window.onload = function() {
+    $('div.input.select.optional.school_state.error').css('margin-left', '0px');
+    $('.simple_form.error').css('margin-left', '0px');
+    $('small.error').css('margin-left', '0px');
+  }
 });
 
 // window.onload = function loadStuff() {
