@@ -1,22 +1,59 @@
-<%= simple_form_for @item, html: { class: 'form-horizontal', multipart: true } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Item</legend>
-
-    <%= f.input :name, input_html: {class: "avg"} %>
-    <%= f.input :description, input_html: { :rows => 4, class: "avg" } %>
-    <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :color, input_html: {class: "avg"} %>
-    <%= f.input :weight, input_html: {class: "avg"} %>
-    <% if controller.action_name == "new" %>
-      <%= f.input :inventory_level, input_html: {class: "avg"} %>
-    <% end %>
-    <%= f.input :reorder_level, input_html: {class: "avg"} %>
-    <%= f.input :active %>
-
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', items_path, :class => 'button alert radius' %>
+<%= simple_form_for @item, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
+  <h3 align="center">New Item Form</h3>
+  <br />
+  <div class="form-group">
+    <%= f.label :name, "Name", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-  </fieldset>
+    <%= f.label :category, "Category", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "form-control"}, label: false %>
+    </div>
+  </div>
+
+  <div class="row form-group desc">
+    <%= f.label :description, "Description", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+  <br />
+  <div class="row form-group">
+    <%= f.label :color, "Color", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :color, class: "form-control" %>
+    </div>
+    <%= f.label :weight, "Weight", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :weight, class: "form-control" %>
+    </div>
+  </div>
+  <br />
+  <% if controller.action_name == "new" %>
+    <div class="row form-group">
+      <%= f.label :inventory_level, "Inventory Level", class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :inventory_level, class: "form-control" %>
+      </div>
+      <%= f.label :reorder_level, "Reorder Level", class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :reorder_level, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label "Picture", class: "col-sm-2 col-form-label" %>
+    <%= f.file_field :picture %>
+  </div>
+  <div class="form-group" style="margin-left: 17%;">
+    <div class="checkbox">
+      <%= f.check_box :active, class: "form-check-input" %> Active
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', items_path, :class => 'btn btn-primary' %>
+  </div>
 <% end %>

@@ -22,7 +22,9 @@
     			<div class="col-sm-10 col-sm-push-2 main-signed-in">
             <%= render :partial => "partials/flash" %>
             <%= render :partial => "partials/heading" %>
-            <%= yield %>
+            <div id="under-heading-content">
+              <%= yield %>
+            </div>
     			</div>
     		</div>
     </div>
