@@ -25,6 +25,10 @@
    margin-top: 80px;
  }
 
+ a {
+   color: #656EA9;
+ }
+
  // Alert Box
 
 .alert-box {
@@ -794,10 +798,12 @@ a.add-to-cart-btn:focus .text {
 }
 
 .add-item-btn {
+  font-family: 'Open Sans', sans-serif;
   margin-bottom: 10px;
-  margin-left: 87.5%;
+  margin-left: 83%;
   background-color: #656EA9;
   border: 0px;
+  width: 12.8%;
 }
 
 .add-item-btn:hover {
@@ -848,8 +854,6 @@ a.add-to-cart-btn:focus .text {
 #cart {
   margin-right: 20px;
   margin-top: 9px;
-  // border: 3px solid black;
-  // border-radius: 7px;
   padding: 6px 10px 6px 10px;
   text-decoration: none;
   color: black;
@@ -1311,3 +1315,63 @@ form.new-item-form .form-actions input:hover, form.new-item-form .form-actions a
 form.new-item-form .form-actions input:focus, form.new-item-form .form-actions a:focus {
   background-color: #707070;
 }
+
+// Orders Index
+
+div.pagination {
+  display: inline;
+  position: absolute;
+  margin-left: 14%;
+  margin-top: 20px;
+}
+
+#orders-table-container {
+  width: 93%;
+  margin: 0 auto;
+}
+
+#orders-table-container ul.nav.nav-pills.nav-fill {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#orders-table-container ul.nav.nav-pills.nav-fill li.active a {
+  background-color: #f981b2;
+}
+
+#orders-table-container ul.nav.nav-pills.nav-fill li:not(.active) a {
+  color: #f981b2;
+}
+
+#orders-table-container ul.nav.nav-pills.nav-fill li {
+  width: 49.5%;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// Schools Index
+
+.add-school-btn {
+  display: inline;
+  position: absolute;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 10px;
+  margin-left: 64%;
+  margin-top: 15px;
+  background-color: #656EA9;
+  border: 0px;
+  width: 12.8%;
+
+}
+
+.add-school-btn:hover {
+  background-color: #656EA9;
+  opacity: 0.8;
+}
+
+.add-school-btn:focus {
+  background-color: #707070;
+}
+
+// Users Index

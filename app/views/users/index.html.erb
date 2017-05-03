@@ -1,2 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div id="orders-table-container">
+  <ul class="nav nav-pills nav-fill">
+    <li class="active"><a data-toggle="pill" href="#customers">Customers</a></li>
+    <li><a data-toggle="pill" href="#employees">Employees</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="customers" class="tab-pane fade in active">
+      <% unless @customers.empty? %>
+        <%= render partial: "users_table", locals: {users: @customers, role: false} %>
+      <% else %>
+        <h4 style="color:gray;margin-left: 15%;">There are no customers.</h4>
+      <% end %>
+    </div>
+    <div id="employees" class="tab-pane fade">
+      <% unless @employees.empty? %>
+        <%= render partial: "users_table", locals: {users: @employees, role: true} %>
+      <% else %>
+        <h4 style="color:gray;margin-left: 15%;">There are no employees.</h4>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Add User", new_user_path, class: "btn btn-primary add-school-btn" %>
+</div>

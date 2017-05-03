@@ -1,0 +1,34 @@
+<table id="show-cart" class="table table-hover">
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>Name</th>
+      <% if role %>
+        <th>Role</th>
+      <% end %>
+      <th>Email</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |u| %>
+      <tr>
+        <div class="cart-img-content">
+          <td align="center"><div class="cart-item-img"><%= link_to u.id, user_path(u) %></div></td>
+          <td><div class="cart-item-name"><strong><%= link_to u.username, user_path(u) %></strong></div></td>
+          <td><div class="cart-item-quantity"><%= u.proper_name %></div></td>
+          <% if role %>
+            <td><div class="cart-item-quantity"><%= u.role %></div></td>
+          <% end %>
+          <td><div class="cart-item-price"><%= u.email %></div></td>
+          <td><div class="cart-item-price"><%= u.phone %></div></td>
+        </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span class="orders smtext">
+  <%= will_paginate users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+</span>

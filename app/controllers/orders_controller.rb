@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
   before_action :set_heading, except: [:cart, :checkout]
 
   def index
+    @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+    @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
   end
 
   def show

@@ -1,0 +1,29 @@
+<table id="show-cart" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th>School</th>
+      <th>User</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |o| %>
+      <tr>
+        <div class="cart-img-content">
+          <td align="center"><div class="cart-item-img"><%= link_to o.id, order_path(o) %></div></td>
+          <td><div class="cart-item-name"><strong><%= o.date.strftime("%m/%d/%y") %></strong></div></td>
+          <td><div class="cart-item-quantity"><%= link_to o.school.name, school_path(o.school) %></div></td>
+          <td><div class="cart-item-price"><%= link_to o.user.proper_name, user_path(o.user) %></div></td>
+          <td><div class="cart-item-price"><%= number_to_currency o.grand_total %></div></td>
+        </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span class="orders smtext">
+  <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+</span>

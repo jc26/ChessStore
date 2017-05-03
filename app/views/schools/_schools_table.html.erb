@@ -1,0 +1,30 @@
+<table id="show-cart" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Minimum Grade</th>
+      <th>Max Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% schools.each do |s| %>
+      <tr>
+        <div class="cart-img-content">
+          <td><div class="cart-item-name"><%= link_to s.name, school_path(s) %></div></td>
+          <td>
+            <div class="cart-item-name">
+              <strong><%= s.street_1 + ", " + (s.street_2.nil? ? "" : s.street_2 + ", ") + s.city + ", " + s.state + " " + s.zip %></strong>
+            </div>
+          </td>
+          <td><div class="cart-item-price"><%= s.min_grade %></div></td>
+          <td><div class="cart-item-price"><%= s.max_grade %></div></td>
+        </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span class="orders smtext">
+  <%= will_paginate schools, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+</span>

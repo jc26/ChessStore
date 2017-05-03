@@ -1,2 +1,23 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<div id="orders-table-container">
+  <ul class="nav nav-pills nav-fill">
+    <li class="active"><a data-toggle="pill" href="#pending-orders">Pending Orders</a></li>
+    <li><a data-toggle="pill" href="#completed-orders">All Orders</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="pending-orders" class="tab-pane fade in active">
+      <% unless @pending_orders.empty? %>
+        <%= render partial: "orders_table", locals: {orders: @pending_orders} %>
+      <% else %>
+        <h4 style="color:gray;margin-left: 15%;">There are no pending orders.</h4>
+      <% end %>
+    </div>
+    <div id="completed-orders" class="tab-pane fade">
+      <% unless @all_orders.empty? %>
+        <%= render partial: "orders_table", locals: {orders: @all_orders} %>
+      <% else %>
+        <h4 style="color:gray;margin-left: 15%;">There are no orders.</h4>
+      <% end %>
+    </div>
+  </div>
+</div>

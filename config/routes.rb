@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'order_items/edit'
+
   # Routes for main resources
   resources :items
   resources :purchases
