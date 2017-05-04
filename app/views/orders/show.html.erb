@@ -1,2 +1,59 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="show-container">
+  <div class="row">
+    <div class="col-sm-2">
+      <h1>Order <%= @order.id %></h1>
+      <h4><strong>Date</strong></h4>
+      <h5 style="color:gray;"><%= @order.date %></h5>
+      <h4><strong>Grand Total</strong></h4>
+      <h5 style="color:gray;"><%= number_to_currency @order.grand_total %></h5>
+      <h4><strong>User</strong></h4>
+      <h5><%= link_to @order.user.proper_name, user_path(@order.user) %></h5>
+      <h4><strong>School</strong></h4>
+      <h5><%= link_to @order.school.name, school_path(@order.school) %></h5>
+      <br />
+      <%= link_to "Delete", order_path(@order), method: :delete, class: "btn btn-primary delete-order-btn" %>
+    </div>
+    <div class="col-sm-10">
+      <table id="show-cart" class="table table-hover" style="width:90%;margin-left:0px;margin-top:15px;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th>Shipped On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |i| %>
+            <tr>
+              <div class="cart-img-content">
+                <td align="center">
+                  <div class="cart-item-img">
+                    <% unless i.item.picture %>
+                      <%= link_to image_tag('placeholder.jpg', :alt => i.item.name), item_path(i.item) %>
+                    <% else %>
+                      <%= link_to image_tag(i.item.picture, :alt => i.item.name), item_path(i.item) %>
+                    <% end %>
+                  </div>
+                </td>
+                <td><p class="cart-item-name"><strong><%= link_to i.item.name, item_path(i.item) %></strong></p></td>
+                <td><p class="cart-item-quantity"><%= i.quantity %></p></td>
+                <td><p class="cart-item-price"><%= number_to_currency i.item.current_price %></p></td>
+                <td><p class="cart-item-price"><%= number_to_currency i.subtotal(Date.current) %></p></td>
+                <td align="center">
+                  <% if i.shipped_on.nil? %>
+                    <%= button_to "Ship", remove_item_path(i.item), class: "btn btn-primary cart-rm-item-btn" %>
+                  <% else %>
+                    <p class="cart-item-price"><%= i.shipped_on.strftime('%m/%d/%y') %>
+                  <% end %>
+                </td>
+              </div>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

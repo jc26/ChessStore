@@ -1,2 +1,44 @@
-<h1>Schools#show</h1>
-<p>Find me in app/views/schools/show.html.erb</p>
+<div class="show-container">
+  <h1><%= @school.name %></h1>
+  <div class="row">
+    <div class="col-sm-2">
+      <h4><strong>Address</strong></h4>
+      <h5 style="color:gray;"><%= render partial: "address_format", locals: {school: @school} %></h5>
+      <h4><strong>Min Grade</strong></h4>
+      <h5 style="color:gray;"><%= @school.min_grade %></h5>
+      <h4><strong>Max Grade</strong></h4>
+      <h5 style="color:gray;"><%= @school.max_grade %></h5>
+      <br />
+      <%= link_to "Edit", edit_school_path(@school), class: "btn btn-primary edit-school-btn" %>
+      <%= link_to "Delete", school_path(@school), method: :delete, class: "btn btn-primary delete-order-btn" %>
+    </div>
+    <div class="col-sm-10">
+      <% if @school.orders.empty? %>
+        <h4>No orders have been sent to this school.</h4>
+      <% else %>
+        <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>User</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @school.orders.each do |o| %>
+              <tr>
+                <div class="cart-img-content">
+                  <td><div class="cart-item-name"><%= link_to o.id, order_path(o) %></div></td>
+                  <td><div class="cart-item-name"><strong><%= o.date.strftime("%m/%d/%y") %></strong></div></td>
+                  <td><div class="cart-item-price"><%= link_to o.user.proper_name, user_path(o.user) %></div></td>
+                  <td><div class="cart-item-price"><%= number_to_currency o.grand_total %></div></td>
+                </div>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

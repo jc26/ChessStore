@@ -33,6 +33,17 @@ a {
  color: #656EA9;
 }
 
+.table-hover tr {
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+
+#show-container {
+  font-family: "Open Sans", sans-serif;
+}
+
 // Alert Box
 
 .alert-box {
@@ -1366,7 +1377,6 @@ div.pagination {
   background-color: #656EA9;
   border: 0px;
   width: 12.8%;
-
 }
 
 .add-school-btn:hover {
@@ -1378,4 +1388,45 @@ div.pagination {
   background-color: #707070;
 }
 
+.edit-school-btn {
+  font-family: 'Open Sans', sans-serif;
+  background-color: transparent;
+  border: 1px solid #f981b2;
+  width: 100%;
+  color: #f981b2;
+  margin-bottom: 10px;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+
+.edit-school-btn:hover {
+  background-color: #f981b2;
+  color: white;
+  border: 1px solid #f981b2;
+}
+
+.edit-school-btn:focus {
+  background-color: #f981b2;
+  border: 1px solid #f981b2;
+  opacity: 0.8;
+}
+
 // Users Index
+
+.delete-order-btn {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f981b2;
+  border: 0px;
+  width: 100%;
+}
+
+.delete-order-btn:hover {
+  background-color: #f981b2;
+  opacity: 0.8;
+}
+
+.delete-order-btn:focus {
+  background-color: #707070;
+}

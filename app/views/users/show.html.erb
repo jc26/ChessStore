@@ -1,2 +1,43 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="show-container">
+  <h1><%= @user.proper_name %> <span style="font-size: 0.6em; color: gray;"><%= @user.username %></span></h1>
+  <div class="row">
+    <div class="col-sm-2">
+      <h4><strong>Role</strong></h4>
+      <h5 style="color:gray;"><%= @user.role %></h5>
+      <h4><strong>Email</strong></h4>
+      <h5 style="color:gray; word-wrap: break-word;"><%= @user.email %></h5>
+      <h4><strong>Phone</strong></h4>
+      <h5 style="color:gray;"><%= @user.phone %></h5>
+      <br />
+      <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary delete-order-btn" %>
+    </div>
+    <div class="col-sm-10">
+      <% if @user.orders.empty? %>
+        <h4>User has not made any orders.</h4>
+      <% else %>
+        <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>School</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.orders.each do |o| %>
+              <tr>
+                <div class="cart-img-content">
+                  <td><div class="cart-item-name"><%= link_to o.id, order_path(o) %></div></td>
+                  <td><div class="cart-item-name"><strong><%= o.date.strftime("%m/%d/%y") %></strong></div></td>
+                  <td><div class="cart-item-price"><%= link_to o.school.name, school_path(o.school) %></div></td>
+                  <td><div class="cart-item-price"><%= number_to_currency o.grand_total %></div></td>
+                </div>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@
           <td><div class="cart-item-name"><%= link_to s.name, school_path(s) %></div></td>
           <td>
             <div class="cart-item-name">
-              <strong><%= s.street_1 + ", " + (s.street_2.nil? ? "" : s.street_2 + ", ") + s.city + ", " + s.state + " " + s.zip %></strong>
+              <strong><%= render partial: "address_format", locals: {school: s} %></strong>
             </div>
           </td>
           <td><div class="cart-item-price"><%= s.min_grade %></div></td>
