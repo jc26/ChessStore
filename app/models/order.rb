@@ -26,6 +26,10 @@ class Order < ActiveRecord::Base
     joins(:order_items).where("order_items.shipped_on IS NULL").uniq!
   end
 
+  def self.search(query)
+    where("orders.id == ?", "#{query}")
+  end
+
   # Validations
   # validates_date :date  # not essential, but permittable
   validates_numericality_of :grand_total, greater_than_or_equal_to: 0, allow_blank: true
@@ -60,7 +64,7 @@ class Order < ActiveRecord::Base
   # after_destroy :remove_unshipped_order_items
   # after_rollback :remove_remaining_unshipped_order_items
   after_rollback :remove_unshipped_order_items
-  
+
   private
   def user_is_active_in_system
     is_active_in_system(:user)
@@ -69,7 +73,7 @@ class Order < ActiveRecord::Base
   def school_is_active_in_system
     is_active_in_system(:school)
   end
-  
+
   def set_date_if_not_given
     unless self.date && self.date.is_a?(Date)
       self.date = Date.current
@@ -94,7 +98,7 @@ class Order < ActiveRecord::Base
   end
 
   def expiration_date_is_valid
-    return false if self.credit_card_number.nil? 
+    return false if self.credit_card_number.nil?
     if self.expiration_year.nil? || self.expiration_month.nil? || credit_card.expired?
       errors.add(:expiration_year, "is expired")
       return false
@@ -111,7 +115,7 @@ class Order < ActiveRecord::Base
   def remove_unshipped_order_items
     self.order_items.unshipped.each{ |oi| oi.destroy } unless destroyable.nil?
   end
-  
+
   # def remove_remaining_unshipped_order_items
   #   if !destroyable.nil? && destroyable == false
   #     remove_unshipped_order_items

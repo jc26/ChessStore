@@ -11,7 +11,7 @@ class School < ActiveRecord::Base
   scope :alphabetical,  -> { order(:name) }
   scope :active,        -> { where(active: true) }
   scope :inactive,      -> { where(active: false) }
-  
+
   # Validations
   validates_presence_of :name, :street_1
   validates_format_of :zip, with: /\A\d{5}\z/, message: "should be five digits long"
@@ -25,18 +25,22 @@ class School < ActiveRecord::Base
     School.where(name: self.name, zip: self.zip).size == 1
   end
 
+  def self.search(query)
+    where("name LIKE ?", "%#{query}%")
+  end
+
   # Callbacks
   before_destroy :is_destroyable?
   after_rollback :make_inactive_if_trying_to_destroy
 
   # Other methods
   attr_reader :destroyable
-  
+
   private
   def is_destroyable?
     @destroyable = self.orders.empty?
   end
-  
+
   def make_inactive_if_trying_to_destroy
     if !@destroyable.nil? && @destroyable == false
       self.update_attribute(:active, false)

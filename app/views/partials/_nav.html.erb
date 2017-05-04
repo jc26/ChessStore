@@ -1,14 +1,4 @@
 <%= link_to image_tag("chess_store_logo.png", border: 0), {action: 'home', controller: 'home'}, {class: 'sidebar-logo'} %>
-<!-- <%= image_tag("icon.png", :alt => "rss feed") %> -->
-<!-- <img src="app/assets/images/icon.png" alt="rss feed" /> -->
-<!-- <%= form_tag(items_path, :method => "get", id: "search-form") do %>
-    <div class="input-group">
-      <%= text_field_tag :search, params[:search], placeholder: "Search Items", class: "form-control search-box" %>
-      <span class="input-group-btn">
-        <%= submit_tag "Go!", :name => nil, class: "btn btn-secondary search-btn" %>
-      </span>
-    </div>
-<% end %> -->
 <div id='main-sidebar'>
   <ul class="nav nav-sidebar">
     <% if !logged_in? %>

@@ -33,8 +33,8 @@ $(function() {
   $("#cart").on("click", function() {
     $(".shopping-cart").fadeToggle("fast");
   });
-  $('.alert-box').delay(500).fadeIn('normal', function() {
-      $(this).delay(3000).fadeOut();
+  $('.alert-box').fadeIn('normal', function() {
+      $(this).delay(5000).fadeOut();
   });
   $('a.close').on('click', function() {
     $(this).parent().remove();

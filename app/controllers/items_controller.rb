@@ -19,15 +19,20 @@ class ItemsController < ApplicationController
 
   def index
     if params[:search]
-      @active_items = Item.search(params[:search]).alphabetical
+      @active_items = Item.active.search(params[:search]).alphabetical
+      @inactive_items = Item.inactive.search(params[:search]).alphabetical.paginate(:page => params[:page]).per_page(10)
+      if @active_items.empty? && @inactive_items.empty?
+        redirect_to items_path, notice: "Sorry, there are no items with name similar to '#{params[:search]}.'"
+      end
     else
       @active_items = Item.active.all.alphabetical
-      @boards = Item.active.for_category('boards').alphabetical.paginate(:page => params[:page]).per_page(10)
-      @pieces = Item.active.for_category('pieces').alphabetical.paginate(:page => params[:page]).per_page(10)
-      @clocks = Item.active.for_category('clocks').alphabetical.paginate(:page => params[:page]).per_page(10)
-      @supplies = Item.active.for_category('supplies').alphabetical.paginate(:page => params[:page]).per_page(10)
-      @inactive_items = Item.inactive.alphabetical.to_a
+      @inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
     end
+    @boards = @active_items.for_category('boards').paginate(:page => params[:page]).per_page(10)
+    @pieces = @active_items.for_category('pieces').paginate(:page => params[:page]).per_page(10)
+    @clocks = @active_items.for_category('clocks').paginate(:page => params[:page]).per_page(10)
+    @supplies = @active_items.for_category('supplies').paginate(:page => params[:page]).per_page(10)
+
   end
 
   def show

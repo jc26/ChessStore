@@ -6,7 +6,14 @@ class UsersController < ApplicationController
   before_action :set_heading, except: [:dashboard]
 
   def index
-    @users = User.all.alphabetical
+    if params[:search]
+      @users = User.all.alphabetical.search(params[:search])
+      if @users.empty?
+        redirect_to users_path, notice: "Sorry, there are no users with name similar to '#{params[:search]}.'"
+      end
+    else
+      @users = User.all.alphabetical
+    end
     @customers = @users.customers.paginate(:page => params[:page]).per_page(10)
     @employees = @users.employees.paginate(:page => params[:page]).per_page(10)
   end

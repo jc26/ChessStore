@@ -6,9 +6,9 @@
         <i class="fa fa-shopping-cart"></i> Cart
         <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
       </a>
-      <%= form_tag(items_path, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
+      <%= form_tag(@path_name, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
         <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "Search Items", class: "form-control search-box" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search #{@title.capitalize}", class: "form-control search-box" %>
         </div>
         <%= submit_tag "Go!", :name => nil, class: "btn btn-default search-btn" %>
       <% end %>

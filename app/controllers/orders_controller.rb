@@ -7,8 +7,16 @@ class OrdersController < ApplicationController
   before_action :set_heading, except: [:cart, :checkout]
 
   def index
-    @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-    @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    if params[:search]
+      @pending_orders = Order.search(params[:search]).chronological.paginate(:page => params[:page]).per_page(10)
+      @all_orders = Order.search(params[:search]).chronological.paginate(:page => params[:page]).per_page(10)
+      if @pending_orders.empty? && @all_orders.empty?
+        redirect_to orders_path, notice: "Sorry, there were no orders with id '#{params[:search]}.'"
+      end
+    else
+      @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   def show
