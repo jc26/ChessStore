@@ -7,7 +7,13 @@
       <h4><strong>Email</strong></h4>
       <h5 style="color:gray; word-wrap: break-word;"><%= @user.email %></h5>
       <h4><strong>Phone</strong></h4>
-      <h5 style="color:gray;"><%= @user.phone %></h5>
+      <h5 style="color:gray;"><%= number_to_phone @user.phone %></h5>
+      <% if @user.active %>
+        <strong>Active</strong> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <% else %>
+        <strong>Inactive</strong> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <% end %>
+      <br />
       <br />
       <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary delete-order-btn" %>
     </div>
@@ -16,6 +22,7 @@
         <h4>User has not made any orders.</h4>
       <% else %>
         <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
+          <caption style="padding:0px;color:black;"><h4><strong>Orders</strong></h4></caption>
           <thead>
             <tr>
               <th>Order ID</th>

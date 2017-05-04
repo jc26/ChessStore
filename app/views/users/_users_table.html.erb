@@ -22,7 +22,7 @@
             <td><div class="cart-item-quantity"><%= u.role %></div></td>
           <% end %>
           <td><div class="cart-item-price"><%= u.email %></div></td>
-          <td><div class="cart-item-price"><%= u.phone %></div></td>
+          <td><div class="cart-item-price"><%= number_to_phone u.phone %></div></td>
         </div>
       </tr>
     <% end %>

@@ -1,20 +1,16 @@
 <div class="show-container">
+  <h1>Order <%= @order.id %> by <%= link_to @order.user.proper_name, user_path(@order.user) %> sent to <%= link_to @order.school.name, school_path(@order.school) %></h1>
   <div class="row">
     <div class="col-sm-2">
-      <h1>Order <%= @order.id %></h1>
       <h4><strong>Date</strong></h4>
       <h5 style="color:gray;"><%= @order.date %></h5>
       <h4><strong>Grand Total</strong></h4>
       <h5 style="color:gray;"><%= number_to_currency @order.grand_total %></h5>
-      <h4><strong>User</strong></h4>
-      <h5><%= link_to @order.user.proper_name, user_path(@order.user) %></h5>
-      <h4><strong>School</strong></h4>
-      <h5><%= link_to @order.school.name, school_path(@order.school) %></h5>
       <br />
       <%= link_to "Delete", order_path(@order), method: :delete, class: "btn btn-primary delete-order-btn" %>
     </div>
     <div class="col-sm-10">
-      <table id="show-cart" class="table table-hover" style="width:90%;margin-left:0px;margin-top:15px;">
+      <table id="show-cart" class="table table-hover" style="width:90%;margin-left:0px;">
         <thead>
           <tr>
             <th></th>

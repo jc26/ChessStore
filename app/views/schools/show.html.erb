@@ -8,6 +8,12 @@
       <h5 style="color:gray;"><%= @school.min_grade %></h5>
       <h4><strong>Max Grade</strong></h4>
       <h5 style="color:gray;"><%= @school.max_grade %></h5>
+      <% if @school.active %>
+        <strong>Active</strong> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <% else %>
+        <strong>Inactive</strong> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <% end %>
+      <br />
       <br />
       <%= link_to "Edit", edit_school_path(@school), class: "btn btn-primary edit-school-btn" %>
       <%= link_to "Delete", school_path(@school), method: :delete, class: "btn btn-primary delete-order-btn" %>
@@ -17,6 +23,7 @@
         <h4>No orders have been sent to this school.</h4>
       <% else %>
         <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
+          <caption style="padding:0px;color:black;"><h4><strong>Orders</strong></h4></caption>
           <thead>
             <tr>
               <th>Order ID</th>
