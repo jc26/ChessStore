@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   # Routes for user
   get 'dashboard' => 'users#dashboard', as: :dashboard
 
+  # Routes for OrderItems
+  patch 'toggle_order_item/:id' => 'order_items#toggle', as: :toggle
+
   # Set the root url
   root :to => 'home#home'
 

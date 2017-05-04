@@ -35,7 +35,10 @@ $(function() {
   });
   $('.alert-box').delay(500).fadeIn('normal', function() {
       $(this).delay(3000).fadeOut();
-   });
+  });
+  $('a.close').on('click', function() {
+    $(this).parent().remove();
+  });
   window.onload = function() {
     $('div.input.select.optional.school_state.error').css('margin-left', '0px');
     $('.simple_form.error').css('margin-left', '0px');

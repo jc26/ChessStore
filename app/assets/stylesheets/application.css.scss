@@ -47,23 +47,25 @@ a {
 // Alert Box
 
 .alert-box {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.8em;
   position: absolute;
-  width: 93%;
-  margin: 0 auto;
-  margin: 30px 0 0 20px;
-  top: 77%;
+  width: 86%;
+  margin-top: -13%;
   z-index: 1;
-  padding-top: 10px;
-  padding-bottom: 7px;
+  padding: 10px 25px 10px 10px;
   border-radius: 3px;
   color: white;
   background-color: #f981b2;
-  text-align: center;
+  text-align: left;
 }
 
 a.close {
-  padding-bottom: 5px;
-  padding-right: 10px;
+  position: absolute;
+  padding-right: 8px;
+  padding-top: 5px;
+  right: 0;
+  top: 0;
 }
 
 // Code from P5 Starter
