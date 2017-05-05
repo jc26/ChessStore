@@ -62,6 +62,10 @@ class UsersController < ApplicationController
     end
     @last_6_months.reverse!.to_a
     @revenue_from_last_6_months = Order.revenue_from_last_6_months.to_a
+    @total_customers = User.all.customers.count
+    @orders_placed_today = Order.all.select{ |o| o.date == Date.current }.count
+    @items_need_reorders = Item.all.need_reorder.count
+    @orders_need_shipped = Order.all.not_shipped.count
     @title = "DASHBOARD"
     @path_name = "/dashboard"
   end

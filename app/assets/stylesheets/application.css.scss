@@ -1169,6 +1169,7 @@ button.add-to-cart:hover span:after {
 }
 
 .card {
+  font-family: "Open Sans", sans-serif;
   background: #fff;
   border-radius: 2px;
   display: inline-block;
@@ -1511,6 +1512,28 @@ div.pagination {
 // Dashboard
 
 .best-customers-card {
-  width: 50%;
   height: 240px;
+}
+
+.card-focus {
+  text-align: center;
+  font-size: 2.5em;
+  margin: 0 auto;
+}
+
+.card-focus a {
+  font-size: 30px;
+  position: absolute;
+  padding-top: 3px;
+  padding-left: 15px;
+}
+
+a.bc-email {
+  background-color: #656EA9;
+  border: 0px;
+}
+
+a.bc-email:hover {
+  background-color: #656EA9;
+  opacity: 0.8;
 }

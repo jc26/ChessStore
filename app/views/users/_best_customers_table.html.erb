@@ -1,5 +1,5 @@
 <div class="card best-customers-card" id="wholesale-list">
-  <h4 class="card-header">Your Best Customers</h4>
+  <h4 class="card-header" style="text-align: center;">Your Best Customers</h4>
   <% unless @best_customers.empty? %>
   <div class="card-block">
     <table class="ph table-hover">
@@ -15,7 +15,7 @@
           <tr>
             <td><%= link_to customer.proper_name, user_path(customer) %></td>
             <td><%= number_to_currency customer.money_spent %></td>
-            <td><a href="mailto:<%= customer.email %>?Subject=Thanks%20from%20Primary%20Chess%20Store!" target="_top">Send Mail</a></td>
+            <td><a class="btn btn-primary bc-email" href="mailto:<%= customer.email %>?Subject=Thanks%20from%20Primary%20Chess%20Store!" target="_top">Send Mail</a></td>
           </tr>
         <% end %>
       </tbody>
