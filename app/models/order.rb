@@ -20,6 +20,7 @@ class Order < ActiveRecord::Base
   scope :chronological, -> { order(date: :desc) }
   scope :paid,          -> { where.not(payment_receipt: nil) }
   scope :for_school,    ->(school_id) { where(school_id: school_id) }
+  scope :shipped,       -> { joins(:order_items).where("order_items.shipped_on IS NOT NULL").uniq! }
 
   # Class methods
   def self.not_shipped

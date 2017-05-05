@@ -187,7 +187,7 @@ label {
 .sidebar-logo img {
   max-width: 90%;
   margin-top: 15px;
-  margin-bottom: 280px;
+  margin-bottom: 235px;
 }
 
 #main-sidebar .nav li a {
@@ -1281,20 +1281,23 @@ h4.empty-cart-msg {
   margin-left: 14%;
 }
 
-.cart-actions input {
+.cart-actions a {
   font-family: "Open Sans", sans-serif;
-  display: inline;
   width: 100%;
   background-color: #f981b2;
   border: 0px;
 }
 
-.cart-actions input:hover {
+.cart-actions a.btn {
+  width: 100%;
+}
+
+.cart-actions a:hover {
   background-color: #f981b2;
   opacity: 0.8;
 }
 
-.cart-actions input:focus, table#show-cart .cart-rm-item-btn:focus {
+.cart-actions a:focus, table#show-cart .cart-rm-item-btn:focus {
   background-color: #707070;
 }
 

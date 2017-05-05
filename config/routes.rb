@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'order_items/edit'
-
   # Routes for main resources
   resources :items
   resources :purchases
@@ -9,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :schools
   resources :orders
+  resources :order_items
   resources :sessions
 
   # Authentication routes

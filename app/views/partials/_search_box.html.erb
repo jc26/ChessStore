@@ -1,0 +1,6 @@
+<%= form_tag(path_name, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search], placeholder: "Search #{title.capitalize}", class: "form-control search-box" %>
+  </div>
+  <%= submit_tag "Go!", :name => nil, class: "btn btn-default search-btn" %>
+<% end %>

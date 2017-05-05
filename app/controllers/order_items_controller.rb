@@ -1,16 +1,22 @@
 class OrderItemsController < ApplicationController
 
   before_action :check_login
-  before_action :set_order_item, only: [:edit, :toggle]
+  before_action :set_order_item, only: [:edit, :update, :toggle]
 
   def edit
-    # unless params[:status].nil?
-    #   if params[:status].match(/shipped/)
-    #     @order_item.update_attribute(:shipped_on, Date.today)
-    #     flash[:notice] = "The order item has been shipped on #{@order_item.shipped_on.strftime('%m/%d/%y')}"
-    #   end
-    #   redirect_to orders_path
-    # end
+  end
+
+  def update
+    respond_to do |format|
+      unless params[:quantity].nil?
+        @order_item.update_attribute(:quantity, params[:quantity])
+        if params[:quantity].match(/shipped/)
+          @order_item.update_attribute(:shipped_on, Date.today)
+          flash[:notice] = "The order item has been shipped on #{@order_item.shipped_on.strftime('%m/%d/%y')}"
+        end
+        redirect_to orders_path
+      end
+    end
   end
 
   def toggle

@@ -5,17 +5,18 @@ class OrdersController < ApplicationController
   before_action :check_login
   before_action :set_order, only: [:show, :update, :destroy]
   before_action :set_heading, except: [:cart, :checkout]
+  before_action :set_total_cart_vars, only: [:cart, :checkout]
 
   def index
     if params[:search]
-      @pending_orders = Order.search(params[:search]).chronological.paginate(:page => params[:page]).per_page(10)
-      @all_orders = Order.search(params[:search]).chronological.paginate(:page => params[:page]).per_page(10)
-      if @pending_orders.empty? && @all_orders.empty?
+      @pending_orders = Order.search(params[:search]).unshipped.chronological.paginate(:page => params[:page]).per_page(10)
+      @completed_orders = Order.search(params[:search]).shipped.chronological.paginate(:page => params[:page]).per_page(10)
+      if @pending_orders.empty? && @completed_orders.empty?
         redirect_to orders_path, notice: "Sorry, there were no orders with id '#{params[:search]}.'"
       end
     else
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+      @completed_orders = Order.shipped.chronological.paginate(:page => params[:page]).per_page(10)
     end
   end
 
@@ -26,6 +27,17 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(order_params)
+    @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
+    if @order.save
+      @order.pay
+      @order.save
+      save_each_item_in_cart(@order)
+      clear_cart
+      redirect_to @order, notice: "Thanks for ordering from the Chess Store! Your order will arrive very soon!"
+    else
+      redirect_to checkout_path
+    end
   end
 
   def edit
@@ -35,13 +47,11 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    @order.destroy
+    redirect_to orders_url, notice: "The order has been removed from the system."
   end
 
   def cart
-    @items_in_cart = get_list_of_items_in_cart
-    @shipping_cost = calculate_cart_shipping
-    @total_cost = calculate_cart_items_cost
-    @grand_total = calculate_cart_shipping + calculate_cart_items_cost
     @title = "CART"
     @path_name = "/cart"
   end
@@ -52,7 +62,17 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-
+    @order = Order.new
+    @user_orders = current_user.orders
+    @all_schools = School.all.active.alphabetical
+    unless @user_orders.blank?
+      @most_recent_school = @user_orders.chronological.first.school
+      @schools_dropdown = @most_recent_school + (@schools_dropdown - @most_recent_school)
+    else
+      @schools_dropdown = School.all.active.alphabetical.map { |s| "#{s.name} : #{s.street_1}" }
+    end
+    @title = "CHECKOUT"
+    @path_name = "/checkout"
   end
 
   private
@@ -67,5 +87,10 @@ class OrdersController < ApplicationController
   def set_heading
     @title = "ORDERS"
     @path_name = "/orders"
+  end
+
+  def set_total_cart_vars
+    @shipping_cost = calculate_cart_shipping
+    @grand_total = calculate_cart_shipping + calculate_cart_items_cost
   end
 end

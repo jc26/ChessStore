@@ -6,11 +6,10 @@
         <i class="fa fa-shopping-cart"></i> Cart
         <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
       </a>
-      <%= form_tag(@path_name, :method => "get", id: "search-form", class: "navbar-form navbar-right") do %>
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], placeholder: "Search #{@title.capitalize}", class: "form-control search-box" %>
-        </div>
-        <%= submit_tag "Go!", :name => nil, class: "btn btn-default search-btn" %>
+      <% if @title == "ITEMS" || @title == "USERS" || @title == "SCHOOLS" || @title == "USERS" %>
+        <%= render partial: "partials/search_box", locals: {title: @title, path_name: @path_name} %>
+      <% else %>
+        <%= render partial: "partials/search_box", locals: {title: "ITEMS", path_name: "/items"} %>
       <% end %>
     </nav>
   </div>

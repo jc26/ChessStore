@@ -1,0 +1,9 @@
+<%= simple_form_for @order_item, html: { :class => '' }, remote: true do |f| %>
+  <div class="input-group">
+    <%= f.input :quantity, input_html: { value: params[:quantity], class: "form-control" } %>
+  </div>
+  <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+  <%= f.input :price, as: :hidden, input_html: { value: params[:price] } %>
+
+  <%= submit_tag "Change", :name => nil, class: "btn btn-default" %>
+<% end %>

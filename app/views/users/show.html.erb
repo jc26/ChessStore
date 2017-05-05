@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-10">
       <% if @user.orders.empty? %>
-        <h4>User has not made any orders.</h4>
+        <h4><%= (@user.id == current_user.id) ? ("You have") : (@user.first_name + " has") %> not made any orders.</h4>
       <% else %>
         <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
           <caption style="padding:0px;color:black;"><h4><strong>Orders</strong></h4></caption>
