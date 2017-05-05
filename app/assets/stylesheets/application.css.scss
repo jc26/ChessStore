@@ -12,14 +12,12 @@
  *
  *= require_self
  *= require normalize
- *= require font-awesome.min
  *= require simple_form
  */
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome";
- // @import "semantic-ui";
 
 small.error {
  margin-left: 0px;
@@ -1101,7 +1099,7 @@ span.item-show-name {
 
 .item-show-price {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 2.5em;
+  font-size: 1.3em;
   font-weight: 700;
   color: gray;
   margin-bottom: 0px;

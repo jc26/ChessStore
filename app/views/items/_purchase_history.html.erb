@@ -25,7 +25,7 @@
   <% else %>
   <p style="color: #ABB0BE;">No Purchase History</p>
   <% end %>
-  <%= link_to(new_purchase_path(item_id: @item.id), id: 'new_purchase_link', class: 'btn btn-primary', remote: true) do %>
+  <%= link_to(new_purchase_path(item_id: @item.id), id: 'new_purchase_link', class: 'btn btn-primary', style: 'margin-top: 0px;', remote: true) do %>
     Add Purchase
   <% end %>
 </div>

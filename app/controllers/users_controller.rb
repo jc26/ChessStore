@@ -56,6 +56,12 @@ class UsersController < ApplicationController
     @clocks_revenue = OrderItem.all.select { |oi| oi.item.category == 'clocks' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
     @supplies_revenue = OrderItem.all.select { |oi| oi.item.category == 'supplies' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
     @best_customers = User.all.sort_by { |u| u.money_spent }.reverse.first(3)
+    @last_6_months = []
+    for n in 0..5
+      @last_6_months.push("#{n.months.ago.to_date.strftime('%b')} #{n.months.ago.to_date.year}")
+    end
+    @last_6_months.reverse!.to_a
+    @revenue_from_last_6_months = Order.revenue_from_last_6_months.to_a
     @title = "DASHBOARD"
     @path_name = "/dashboard"
   end

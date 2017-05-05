@@ -19,5 +19,5 @@
 
 <div class="item-actions">
   <%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary edit-item-btn" %>
-  <%= link_to "Delete", item_path(@item), method: :delete, class: "btn btn-primary delete-item-btn" %>
+  <%= link_to "Delete", item_path(@item), data: {confirm: "Are you sure you want to delete #{@item.name}?"}, method: :delete, class: "btn btn-primary delete-item-btn" %>
 </div>

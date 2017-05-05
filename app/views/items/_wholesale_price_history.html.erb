@@ -24,7 +24,7 @@
   <% else %>
   <p style="color: #ABB0BE;">No Wholesale Price History</p>
   <% end %>
-  <%= link_to(new_item_price_path(item_id: @item.id, category: 'wholesale', id: 'new_whole_ip_link'), id: 'new_whole_ip_link', class: 'btn btn-primary', remote: true) do %>
+  <%= link_to(new_item_price_path(item_id: @item.id, category: 'wholesale', id: 'new_whole_ip_link'), id: 'new_whole_ip_link', class: 'btn btn-primary', style: 'margin-top: 0px;', remote: true) do %>
     Add Wholesale Price
   <% end %>
 </div>

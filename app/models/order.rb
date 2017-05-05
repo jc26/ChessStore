@@ -31,6 +31,16 @@ class Order < ActiveRecord::Base
     where("orders.id == ?", "#{query}")
   end
 
+  def self.revenue_from_last_6_months
+    result = []
+    for n in 0..5
+      result.push(Order.all.select { |o| o.date.month == n.months.ago.to_date.month }
+                           .map { |o| o.grand_total }
+                           .inject(0){|sum, n| sum + n }.round(2) )
+    end
+    result.reverse
+  end
+
   # Validations
   # validates_date :date  # not essential, but permittable
   validates_numericality_of :grand_total, greater_than_or_equal_to: 0, allow_blank: true

@@ -1,0 +1,44 @@
+<div class="card" style="width: 50%; height: 400px;">
+  <div id="revenue-line-container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
+
+<% data = { last_6_months: @last_6_months } %>
+<%= javascript_tag do %>
+  var data = <%= data.to_json.html_safe %>
+
+Highcharts.chart('revenue-line-container', {
+
+    title: {
+      text: 'Revenue in the Last 6 Months'
+    },
+
+    subtitle: {
+      text: '(including shipping costs)'
+    },
+
+    tooltip: {
+        pointFormat: '{series.name}: <b>${point.y}</b>'
+    },
+
+    yAxis: {
+      title: {
+        text: 'Revenue in Dollars ($)'
+      },
+      labels: {
+          formatter: function () {
+              return '$' + this.axis.defaultLabelFormatter.call(this);
+          }
+      }
+    },
+    xAxis: {
+      categories: data.last_6_months
+    },
+
+    series: [{
+      name: 'Total Revenue',
+      data: <%= @revenue_from_last_6_months %>
+    }]
+
+});
+
+<% end %>
