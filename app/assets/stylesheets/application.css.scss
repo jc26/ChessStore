@@ -1046,8 +1046,8 @@ ul.shopping-cart-items {
 .item-actions {
   float:right;
   display: inline-block;
-  margin-top: 60px;
-  margin-right: 30px;
+  margin-top: 48px;
+  margin-right: 20px;
 }
 
 table.item-show-body {
@@ -1386,6 +1386,10 @@ form.new-item-form textarea.form-control.desc {
 
 form.new-item-form .form-actions {
   width: 100%;
+  text-align: center;
+}
+
+form.new-item-form .form-actions input {
   text-align: center;
 }
 

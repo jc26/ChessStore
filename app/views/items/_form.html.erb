@@ -1,59 +1,37 @@
-<%= simple_form_for @item, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
+<%= simple_nested_form_for @item, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
   <h3 align="center">New Item Form</h3>
   <br />
-  <div class="form-group">
-    <%= f.label :name, "Name", class: "col-sm-2 col-form-label" %>
-    <div class="col-sm-4">
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-    <%= f.label :category, "Category", class: "col-sm-2 col-form-label" %>
-    <div class="col-sm-4">
-      <%= f.input :category, collection: Item::CATEGORIES, include_blank: true, input_html: {class: "form-control"}, label: false %>
-    </div>
-  </div>
+  
+  <%= render partial: "main_item_form", locals: {f: f} %>
 
-  <div class="row form-group">
-    <%= f.label :description, "Description", class: "col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :description, class: "form-control desc" %>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Item Prices for this Item</h4>
+      <%= f.simple_fields_for :item_prices do |ip_form| %>
+        <%= render :partial => "item_price_fields", :locals => { :f => ip_form } %>
+      <% end %>
+      <p><%= f.link_to_add("Add Item Price", :item_prices, :class => 'btn btn-default') %></p>
+    </div>
+    <div class="col-sm-6">
+      <h4 style="text-align: right; margin-right: 40px;">Purchases for this Item</h4>
+      <div id="item-item-prices">
+        <%= f.simple_fields_for :purchases do |p_form| %>
+          <%= render :partial => "purchase_fields", :locals => { :f => p_form } %>
+        <% end %>
+        <p><%= f.link_to_add("Add Purchase", :purchases, :class => 'btn btn-default', style: "margin-left: 56%;") %></p>
+      </div>
     </div>
   </div>
   <br />
-  <div class="row form-group">
-    <%= f.label :color, "Color", class: "col-sm-2 col-form-label" %>
-    <div class="col-sm-4">
-      <%= f.text_field :color, class: "form-control" %>
+
+  <div class="row form-actions" style="width: 73%; margin: 0 auto;">
+    <div class="col-sm-6">
+      <%= f.submit nil, :class => 'btn btn-primary', :style => "margin-left: 0px;width: 100%;" %>
     </div>
-    <%= f.label :weight, "Weight", class: "col-sm-2 col-form-label" %>
-    <div class="col-sm-4">
-      <%= f.text_field :weight, class: "form-control" %>
+    <div class="col-sm-6">
+      <%= link_to 'Cancel', items_path, :class => 'btn btn-primary', :style => "width: 100%;" %>
     </div>
   </div>
   <br />
-  <% if controller.action_name == "new" %>
-    <div class="row form-group">
-      <%= f.label :inventory_level, "Inventory Level", class: "col-sm-2 col-form-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :inventory_level, class: "form-control" %>
-      </div>
-      <%= f.label :reorder_level, "Reorder Level", class: "col-sm-2 col-form-label" %>
-      <div class="col-sm-4">
-        <%= f.text_field :reorder_level, class: "form-control" %>
-      </div>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= f.label "Picture", class: "col-sm-2 col-form-label" %>
-    <%= f.file_field :picture %>
-  </div>
-  <div class="form-group" style="margin-left: 17%;">
-    <div class="checkbox">
-      <%= f.check_box :active, class: "form-check-input" %> Active
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary', :style => "margin: 0 auto; width: 20%;" %>
-    <%= link_to 'Cancel', items_path, :class => 'btn btn-primary', :style => "width: 20%;" %>
-  </div>
+  <br />
 <% end %>

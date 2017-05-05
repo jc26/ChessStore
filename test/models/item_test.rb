@@ -7,6 +7,10 @@ class ItemTest < ActiveSupport::TestCase
   should have_many(:purchases)
   should have_many(:orders).through(:order_items)
 
+  # test nested attributes
+  should accept_nested_attributes_for(:item_prices).allow_destroy(true)
+  should accept_nested_attributes_for(:purchases).allow_destroy(true)
+
   # test validations with matchers
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name).case_insensitive
@@ -32,10 +36,10 @@ class ItemTest < ActiveSupport::TestCase
 
   # set up context
   context "Within context" do
-    setup do 
+    setup do
       create_pieces
     end
-    
+
     teardown do
       destroy_pieces
     end
@@ -114,7 +118,7 @@ class ItemTest < ActiveSupport::TestCase
       assert_nil @basic_pieces.manufacturer_price_on_date(36.months.ago.to_date)
       assert_nil @weighted_pieces.price_on_date(36.months.ago.to_date)
       destroy_piece_prices_wholesale
-      destroy_piece_prices_manufacturer      
+      destroy_piece_prices_manufacturer
     end
 
     should "show that an item that has been shipped cannot be destroyed" do
@@ -200,7 +204,7 @@ class ItemTest < ActiveSupport::TestCase
       @basic_pieces.destroy
       # check that it is now inactive
       deny @basic_pieces.active
-      # check that we have removed the item from unshipped orders 
+      # check that we have removed the item from unshipped orders
       assert_equal 1, @basic_pieces.order_items.count
       destroy_boards
       destroy_clocks
@@ -211,7 +215,7 @@ class ItemTest < ActiveSupport::TestCase
       destroy_orders
       destroy_order_items
     end
-    
+
     should "not make an item inactive because of an improper edit" do
       assert @basic_pieces.active
       @basic_pieces.name = nil

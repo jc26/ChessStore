@@ -1,0 +1,47 @@
+<table id="show-cart" class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items_in_cart.each do |i| %>
+      <tr>
+        <div class="cart-img-content">
+          <td align="center">
+            <div class="cart-item-img">
+              <% unless i.item.picture %>
+                <%= link_to image_tag('placeholder.jpg', :alt => i.item.name), item_path(i.item) %>
+              <% else %>
+                <%= link_to image_tag(i.item.picture, :alt => i.item.name), item_path(i.item) %>
+              <% end %>
+            </div>
+          </td>
+          <td><p class="cart-item-name"><strong><%= link_to i.item.name, item_path(i.item) %></strong></p></td>
+          <td><p class="cart-item-quantity"><%= i.quantity %></p></td>
+          <td><p class="cart-item-price"><%= number_to_currency i.item.current_price %></p></td>
+          <td><p class="cart-item-price"><%= number_to_currency i.subtotal(Date.current) %></p></td>
+        </div>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td><strong>Shipping Costs</strong></td>
+      <td></td>
+      <td></td>
+      <td><%= number_to_currency @shipping_cost %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td></td>
+      <td><%= number_to_currency @grand_total %></td>
+    </tr>
+  </tbody>
+</table>

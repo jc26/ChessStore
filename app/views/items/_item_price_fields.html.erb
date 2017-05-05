@@ -1,0 +1,12 @@
+<div class="fields">
+  <div class="min_attraction">
+    <%= f.link_to_remove("x") %>
+    <br />
+    <%= f.label :price, "Price", class: "col-form-label", style: "width: auto;" %>
+    <%= f.input :price, input_html: {class: "form-control"}, label: false %>
+    <%= f.label :category, "Category", class: "col-form-label", style: "width: auto;" %>
+    <%= f.input :category, input_html: {class: "form-control"}, label: false %>
+    <%= f.label :start_date, "Start Date", class: "col-form-label", style: "width: auto; display: inline;" %>
+    <%= f.input :start_date, input_html: {class: "form-control", style: "display: inline-block;"}, label: false %>
+  </div>
+</div>
