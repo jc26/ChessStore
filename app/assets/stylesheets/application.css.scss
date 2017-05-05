@@ -1039,17 +1039,33 @@ ul.shopping-cart-items {
   margin: 0 5% 0 8%;
 }
 
+.item-show-container {
+  width: 80%;
+  float: left;
+  display: inline-block;
+}
+
+.item-actions {
+  float:right;
+  display: inline-block;
+  margin-top: 60px;
+  margin-right: 30px;
+}
+
 table.item-show-body {
-  margin-left: -8px;
-  border-spacing: 29px 30px;
+  margin-top: -20px;
+  border-spacing: 20px 30px;
   border-collapse: separate;
-  width: 91.5%;
+  width: 100%;
 }
 
 td.item-show-img {
-  width: 31.7%;
+  width: 29%;
+}
+
+td.item-show-img div.img-container {
+  width: 100%;
   position: relative;
-  margin: 2%;
   overflow: hidden;
 }
 
@@ -1060,7 +1076,7 @@ td.item-show-img img {
   transition: all 0.3s;
 }
 
-td.item-show-img:hover img {
+td.item-show-img img:hover {
   -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
@@ -1070,10 +1086,17 @@ td.item-show-info {
   position: relative;
 }
 
-h3.item-show-name {
+span.item-show-name {
   margin-top: 0px;
   font-family: 'EB Garamond', serif;
   font-weight: 700;
+  color: black;
+  font-size: 24px;
+  display: inline-block;
+}
+
+.info-block {
+  display: inline-block;
 }
 
 .item-show-price {
@@ -1081,6 +1104,8 @@ h3.item-show-name {
   font-size: 2.5em;
   font-weight: 700;
   color: gray;
+  margin-bottom: 0px;
+  display: inline;
 }
 
 .item-show-info button {
@@ -1090,15 +1115,16 @@ h3.item-show-name {
 
 .item-show-desc {
   font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  color: gray;
 }
 
 button.add-to-cart {
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1em;
   background-color: #f981b2;
   color: white;
   border: 0px;
+  margin-top: 10px;
   transition: all 0.5s;
 }
 
@@ -1116,7 +1142,7 @@ button.add-to-cart span {
   display: inline-block;
   position: relative;
   transition: 0.5s;
-  padding: 8px 0 8px 0;
+  padding: 5px 0 5px 0;
 }
 
 button.add-to-cart span:after {
@@ -1124,7 +1150,7 @@ button.add-to-cart span:after {
   color: white;
   position: absolute;
   opacity: 0;
-  top: 4px;
+  top: 1px;
   font-size: 1.2em;
   right: -15px;
   transition: 0.5s;
@@ -1141,7 +1167,7 @@ button.add-to-cart:hover span:after {
 
 .history-container {
   margin-left: 20px;
-  width: 85.5%;
+  width: 100%;
 }
 
 .card {
@@ -1160,6 +1186,52 @@ button.add-to-cart:hover span:after {
 
 .card:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.edit-item-btn {
+  font-family: 'Open Sans', sans-serif;
+  background-color: transparent;
+  border: 1px solid #656EA9;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 0px;
+  color: #656EA9;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+
+.edit-item-btn:hover {
+  background-color: #656EA9;
+  color: white;
+  border: 1px solid #656EA9;
+}
+
+.edit-item-btn:focus {
+  background-color: #656EA9;
+  border: 1px solid #656EA9;
+  opacity: 0.8;
+}
+
+.delete-item-btn {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #656EA9;
+  border: 0px;
+  width: 100%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.delete-item-btn:hover {
+  background-color: #656EA9;
+  opacity: 0.8;
+}
+
+.delete-item-btn:focus {
+  background-color: #707070;
 }
 
 table.ph {
@@ -1193,7 +1265,7 @@ table.ph tr:hover:not(tr.ph-heading) {
 // Similar Items on Show Page
 
 .similar-items-container {
-  width: 86%;
+  width: 100%;
   margin-left: 20px;
   margin-bottom: 30px;
   overflow-x: scroll;
@@ -1425,6 +1497,8 @@ div.pagination {
   background-color: #f981b2;
   border: 0px;
   width: 100%;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .delete-order-btn:hover {

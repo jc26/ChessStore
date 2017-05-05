@@ -1,5 +1,7 @@
 <div class="card" id="purchase-list">
-  <h4 class="card-header">Purchase History</h4>
+  <h4 class="card-header" style="text-decoration:underline;">Purchases</h4>
+  <h5><strong>Inventory Level </strong><%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %></h5>
+  <h5><strong>Reorder Level </strong><%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %></h5>
   <% unless @purchase_history.empty? %>
   <div class="card-block">
     <table class="ph table-hover">

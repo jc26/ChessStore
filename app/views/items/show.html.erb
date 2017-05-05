@@ -1,21 +1,23 @@
-<div class="show-container">
-  <%= render :partial => "item_details" %>
-  <div class="history-container">
-    <div class="row">
-      <div class="col-sm-4">
-        <%= render :partial => "manufacturer_price_history" unless @manufacturer_price_history.empty?%>
-      </div>
-      <div class="col-sm-4">
-        <%= render :partial => "wholesale_price_history" unless @wholesale_price_history.empty?%>
-      </div>
-      <div class="col-sm-4">
-        <%= render :partial => "purchase_history" unless @wholesale_price_history.empty?%>
+<div class="item-show-container">
+    <%= render :partial => "item_details" %>
+    <div class="history-container">
+      <div class="row">
+        <div class="col-sm-4">
+          <%= render :partial => "manufacturer_price_history" unless @manufacturer_price_history.empty?%>
+        </div>
+        <div class="col-sm-4">
+          <%= render :partial => "wholesale_price_history" unless @wholesale_price_history.empty?%>
+        </div>
+        <div class="col-sm-4">
+          <%= render :partial => "purchase_history" unless @wholesale_price_history.empty?%>
+        </div>
       </div>
     </div>
-  </div>
 
-  <%= render :partial => "similar_items" unless @similar_items.empty?%>
+    <%= render :partial => "similar_items" unless @similar_items.empty?%>
+</div>
 
-  <!-- Add buttons to list all, edit project or destroy object -->
-  <!-- <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %> -->
+<div class="item-actions">
+  <%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary edit-item-btn" %>
+  <%= link_to "Delete", item_path(@item), method: :delete, class: "btn btn-primary delete-item-btn" %>
 </div>

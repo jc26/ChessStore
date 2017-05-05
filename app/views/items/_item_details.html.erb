@@ -5,47 +5,52 @@
   <div class="col-sm-3">
     <%= image_tag 'img_not_available.png' %>
   </div> -->
-
+<div style="margin-left: 20px;">
+  <span>
+    <span class="item-show-name" style="margin-right: 20px;"><%= @item.name %></span>
+    <%= render :partial => "show_price" %>
+  </span>
+</div>
 <table class="item-show-body">
   <tr>
     <td class="item-show-img">
-      <% unless @item.picture %>
-        <%= link_to image_tag('placeholder.jpg', :alt => @item.name), item_path(@item) %>
-      <% else %>
-        <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
-      <% end %>
-    </td>
-    <td class="item-show-info" valign="top">
-      <h3 class="item-show-name"><%= @item.name %></h3>
-      <%= render :partial => "show_price" %>
-      <p class="item-show-desc"><%= @item.description %></p>
+      <div class="img-container">
+        <% unless @item.picture %>
+          <%= link_to image_tag('placeholder.jpg', :alt => @item.name), item_path(@item) %>
+        <% else %>
+          <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
+        <% end %>
+      </div>
+
       <%= button_to add_item_path(:id => @item.id), method: :post, class: "btn btn-primary add-to-cart" do %>
         <span>ADD TO CART</span>
       <% end %>
+    </td>
+    <td class="item-show-info" valign="top">
+      <% if @item.active %>
+        <strong>Active</strong> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      <% else %>
+        <strong>Inactive</strong> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      <% end %>
+      <h4><strong>Description</strong></h4>
+      <p class="item-show-desc"><%= @item.description %></p>
+      <div style="width: 100%;">
+        <div class="info-block" style="width: 32%;">
+          <h4><strong>Category</strong></h4>
+          <h5 style="color:gray;"><%= @item.category.capitalize %></h5>
+        </div>
+        <div class="info-block" style="width: 32%;">
+          <h4><strong>Color</strong></h4>
+          <h5 style="color:gray;"><%= @item.color %></h5>
+        </div>
+        <div class="info-block" style="width: 32%;">
+          <h4><strong>Weight</strong></h4>
+          <h5 style="color:gray;"><%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.</h5>
+        </div>
+      </div>
+    </td>
+    <td>
 
-      <!-- <p>
-        <b>Inventory Level</b>: <%= @item.inventory_level.nil? ? 'N/A' : @item.inventory_level %>
-      </p>
-
-      <p>
-        <b>Reorder Level</b>: <%= @item.reorder_level.nil? ? 'N/A' : @item.reorder_level %>
-      </p>
-
-      <p>
-        <b>Category</b>: <%= @item.category.capitalize %>
-      </p>
-
-      <p>
-        <b>Color</b>: <%= @item.color.nil? ? 'N/A' : @item.color %>
-      </p>
-
-      <p>
-        <b>Total weight</b>: <%= @item.weight.nil? ? 'N/A' : @item.weight %> lbs.
-      </p>
-
-      <p>
-        <b>Active</b>: <%= @item.active ? 'Yes' : 'No' %>
-      </p> -->
     </td>
   </tr>
 </table>
