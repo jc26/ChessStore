@@ -5,14 +5,14 @@ class SchoolsController < ApplicationController
 
   def index
     if params[:search]
-      @active_schools = School.active.search(params[:search]).alphabetical.paginate(:page => params[:page]).per_page(10)
-      @inactive_schools = School.inactive.search(params[:search]).alphabetical.paginate(:page => params[:page]).per_page(10)
+      @active_schools = School.active.search(params[:search]).alphabetical.paginate(:page => params[:active_page]).per_page(10)
+      @inactive_schools = School.inactive.search(params[:search]).alphabetical.paginate(:page => params[:inactive_page]).per_page(10)
       if @active_schools.empty? && @inactive_schools.empty?
         redirect_to schools_path, notice: "Sorry, there are no schools with name similar to '#{params[:search]}.'"
       end
     else
-      @active_schools = School.active.alphabetical.paginate(:page => params[:page]).per_page(10)
-      @inactive_schools = School.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+      @active_schools = School.active.alphabetical.paginate(:page => params[:active_page]).per_page(10)
+      @inactive_schools = School.inactive.alphabetical.paginate(:page => params[:inactive_page]).per_page(10)
     end
   end
 

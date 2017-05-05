@@ -14,8 +14,8 @@ class UsersController < ApplicationController
     else
       @users = User.all.alphabetical
     end
-    @customers = @users.customers.paginate(:page => params[:page]).per_page(10)
-    @employees = @users.employees.paginate(:page => params[:page]).per_page(10)
+    @customers = @users.customers.paginate(:page => params[:customers_page]).per_page(10)
+    @employees = @users.employees.paginate(:page => params[:employees_page]).per_page(10)
   end
 
   def show
@@ -51,6 +51,11 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    @boards_revenue = OrderItem.all.select { |oi| oi.item.category == 'boards' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
+    @pieces_revenue = OrderItem.all.select { |oi| oi.item.category == 'pieces' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
+    @clocks_revenue = OrderItem.all.select { |oi| oi.item.category == 'clocks' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
+    @supplies_revenue = OrderItem.all.select { |oi| oi.item.category == 'supplies' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
+    @best_customers = User.all.sort_by { |u| u.money_spent }.reverse.first(3)
     @title = "DASHBOARD"
     @path_name = "/dashboard"
   end

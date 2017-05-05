@@ -1214,7 +1214,7 @@ button.add-to-cart:hover span:after {
   opacity: 0.8;
 }
 
-.delete-item-btn {
+.delete-item-btn, #new_manu_ip_link, #new_purchase_link, #new_whole_ip_link {
   font-family: 'Open Sans', sans-serif;
   background-color: #656EA9;
   border: 0px;
@@ -1225,12 +1225,12 @@ button.add-to-cart:hover span:after {
   margin-top: 10px;
 }
 
-.delete-item-btn:hover {
+.delete-item-btn:hover, #new_manu_ip_link:hover, #new_purchase_link:hover, #new_whole_ip_link:hover {
   background-color: #656EA9;
   opacity: 0.8;
 }
 
-.delete-item-btn:focus {
+.delete-item-btn:focus, #new_manu_ip_link:focus, #new_purchase_link:focus, #new_whole_ip_link:focus {
   background-color: #707070;
 }
 
@@ -1508,4 +1508,11 @@ div.pagination {
 
 .delete-order-btn:focus {
   background-color: #707070;
+}
+
+// Dashboard
+
+.best-customers-card {
+  width: 50%;
+  height: 240px;
 }

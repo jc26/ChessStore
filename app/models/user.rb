@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def money_spent
+    self.orders.map { |o| o.grand_total }.inject(0){|sum, n| sum + n }
+  end
+
   # Callbacks
   before_destroy :is_never_destroyable
   before_save :reformat_phone

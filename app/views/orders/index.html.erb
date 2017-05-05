@@ -1,22 +1,22 @@
 <div id="orders-table-container">
-  <ul class="nav nav-pills nav-fill">
-    <li class="active"><a data-toggle="pill" href="#pending-orders">Pending Orders</a></li>
-    <li><a data-toggle="pill" href="#completed-orders">Completed Orders</a></li>
+  <ul class="nav nav-pills nav-fill" id="tab-pills">
+    <li class="active"><a data-toggle="pill" href="#completed-orders">Completed Orders</a></li>
+    <li><a data-toggle="pill" href="#pending-orders">Pending Orders</a></li>
   </ul>
 
   <div class="tab-content">
-    <div id="pending-orders" class="tab-pane fade in active">
-      <% unless @pending_orders.empty? %>
-        <%= render partial: "orders_table", locals: {orders: @pending_orders} %>
-      <% else %>
-        <h4 style="color:gray;margin-left: 15%;">There are no pending orders.</h4>
-      <% end %>
-    </div>
-    <div id="completed-orders" class="tab-pane fade">
+    <div id="completed-orders" class="tab-pane fade in active">
       <% unless @completed_orders.empty? %>
-        <%= render partial: "orders_table", locals: {orders: @completed_orders} %>
+        <%= render partial: "orders_table", locals: {orders: @completed_orders, page: :completed_page} %>
       <% else %>
         <h4 style="color:gray;margin-left: 15%;">There are no orders.</h4>
+      <% end %>
+    </div>
+    <div id="pending-orders" class="tab-pane fade">
+      <% unless @pending_orders.empty? %>
+        <%= render partial: "orders_table", locals: {orders: @pending_orders, page: :pending_page} %>
+      <% else %>
+        <h4 style="color:gray;margin-left: 15%;">There are no pending orders.</h4>
       <% end %>
     </div>
   </div>

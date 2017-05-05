@@ -7,14 +7,14 @@
   <div class="tab-content">
     <div id="customers" class="tab-pane fade in active">
       <% unless @customers.empty? %>
-        <%= render partial: "users_table", locals: {users: @customers, role: false} %>
+        <%= render partial: "users_table", locals: {users: @customers, role: false, page: :customers_page} %>
       <% else %>
         <h4 style="color:gray;margin-left: 15%;">There are no customers.</h4>
       <% end %>
     </div>
     <div id="employees" class="tab-pane fade">
       <% unless @employees.empty? %>
-        <%= render partial: "users_table", locals: {users: @employees, role: true} %>
+        <%= render partial: "users_table", locals: {users: @employees, role: true, page: :employees_page} %>
       <% else %>
         <h4 style="color:gray;margin-left: 15%;">There are no employees.</h4>
       <% end %>

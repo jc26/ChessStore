@@ -1,0 +1,28 @@
+<div class="card best-customers-card" id="wholesale-list">
+  <h4 class="card-header">Your Best Customers</h4>
+  <% unless @best_customers.empty? %>
+  <div class="card-block">
+    <table class="ph table-hover">
+      <thead>
+        <tr class="ph-heading">
+          <th>Name</th>
+          <th>Money Spent</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @best_customers.each do |customer| %>
+          <tr>
+            <td><%= link_to customer.proper_name, user_path(customer) %></td>
+            <td><%= number_to_currency customer.money_spent %></td>
+            <td><a href="mailto:<%= customer.email %>?Subject=Thanks%20from%20Primary%20Chess%20Store!" target="_top">Send Mail</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br />
+  </div>
+  <% else %>
+    <p style="color: #ABB0BE;">No customers yest.</p>
+  <% end %>
+</div>
