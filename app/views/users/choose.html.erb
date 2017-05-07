@@ -1,0 +1,70 @@
+<h1 align="center"><strong>What school do you belong to?</strong></h1>
+<%= simple_form_for @school, html: { class: "new-user-school-form form-horizontal center", multipart: true } do |f| %>
+  <h3 align="center">New School Form</h3>
+  <div class="form-group">
+    <div class="col-sm-12">
+    <%= f.label :name, "Name", class: "col-sm-2 col-form-label", style: "padding-left:0px;text-align:left;" %>
+    <%= f.text_field :name, class: "form-control", style: "width: 100%;" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.label :street_1, "Street 1", class: "col-sm-2 col-form-label fix-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.text_field :street_1, class: "form-control" %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :street_2, "Street 2", class: "col-sm-2 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.text_field :street_2, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <%= f.label :city, "City", class: "col-sm-1 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.text_field :city, class: "form-control" %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :state, "State", class: "col-sm-1 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.input :state, collection: School::STATES_LIST, include_blank: true, input_html: {class: "form-control"}, label: false %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :zip, "Zip", class: "col-sm-1 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.text_field :zip, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.label :min_grade, "Minimum Grade", class: "col-sm-2 col-form-label", style: "padding-left:0px;text-align:left;width:100%;" %>
+      <%= f.text_field :min_grade, class: "form-control" %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :max_grade, "Maximum Grade", class: "col-sm-2 col-form-label", style: "padding-left:0px;text-align:left;width:100%;" %>
+      <%= f.text_field :max_grade, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-actions" style="margin-left:-15px;">
+    <div class="col-sm-12">
+      <%= f.hidden_field :from_register, value: true %>
+      <%= f.submit nil, :class => 'btn btn-primary', :style => "margin: 0 auto;width:103%;", name: :from_register %>
+    </div>
+  </div>
+<% end %>
+
+<div class="new-user-or">
+  <h1><strong>OR</strong></h1>
+</div>
+
+<div class="new-user-choose-school form-group">
+  <h3 align="center" style="margin-bottom: 32px;">Pick a School</h3>
+  <div class="row">
+    <div class="col-sm-10">
+      <select class="form-control" name="order[school_id]" id="order_school_id">
+        <% for school in @schools %>
+          <option value="<%= school.name %> : <%= school.street_1 %>"><%= school.name %> : <%= school.street_1 %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="col-sm-2">
+      <%= link_to "Choose", new_user_path, class: "btn btn-primary", style: "margin-left: -10px;" %>
+    </div>
+  </div>
+</div>

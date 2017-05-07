@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_login, except: [:new, :create]
+  before_action :check_login, except: [:new, :create, :choose]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_heading, except: [:dashboard, :new, :create]
 
@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @school = School.new
-    @title = "ITEMS"
-    @path_name = "/items"
+    @title = "REGISTER"
+    @path_name = "/users/new"
   end
 
   def create
@@ -79,6 +79,11 @@ class UsersController < ApplicationController
     end
     @title = "DASHBOARD"
     @path_name = "/dashboard"
+  end
+
+  def choose
+    @schools = School.all.active.alphabetical.to_a
+    @school = School.new
   end
 
   private

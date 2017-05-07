@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   # Routes for user
   get 'dashboard' => 'users#dashboard', as: :dashboard
+  get 'choose' => 'users#choose', as: :choose
 
   # Routes for OrderItems
   patch 'toggle_order_item/:id' => 'order_items#toggle', as: :toggle

@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :check_login
+  before_action :check_login, except: [:create]
   before_action :set_school, only: [:show, :edit, :update, :destroy]
   before_action :set_heading
 
@@ -27,7 +27,11 @@ class SchoolsController < ApplicationController
   def create
     @school = School.new(school_params)
     if @school.save
-      redirect_to school_path, notice: "#{@school.name} has been saved!"
+      if params[:school][:from_register]
+        redirect_to new_user_path, notice: "#{@school.name} has been saved!"
+      else
+        redirect_to school_path, notice: "#{@school.name} has been saved!"
+      end
     else
       flash[:error] = "The school could not be created."
       render "new"

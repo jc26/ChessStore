@@ -1574,3 +1574,39 @@ table#orders-dashboard {
   margin: 0 auto;
   border-collapse: separate;
 }
+
+// New User Page
+
+.new-user-school-form {
+  float:left;
+}
+
+.new-user-school-form, .new-user-or, .new-user-choose-school {
+  display: inline-block;
+}
+
+.new-user-school-form {
+  width: 45%;
+}
+
+.new-user-or {
+  width: 8%;
+  text-align: center;
+  color: gray;
+  // position: absolute;
+  // padding-bottom: 20px;
+}
+
+.new-user-or h1 {
+  margin-top: -50px;
+  font-size: 36px;
+
+}
+
+.new-user-choose-school {
+  width: 45%;
+}
+
+label.fix-label {
+
+}
