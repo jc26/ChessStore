@@ -3,17 +3,16 @@
     <div class="history-container">
       <div class="row">
         <div class="col-sm-4">
-          <%= render :partial => "manufacturer_price_history" unless @manufacturer_price_history.empty?%>
+          <%= render :partial => "manufacturer_price_history" %>
         </div>
         <div class="col-sm-4">
-          <%= render :partial => "wholesale_price_history" unless @wholesale_price_history.empty?%>
+          <%= render :partial => "wholesale_price_history" %>
         </div>
         <div class="col-sm-4">
-          <%= render :partial => "purchase_history" unless @wholesale_price_history.empty?%>
+          <%= render :partial => "purchase_history" %>
         </div>
       </div>
     </div>
-
     <%= render :partial => "similar_items" unless @similar_items.empty?%>
 </div>
 

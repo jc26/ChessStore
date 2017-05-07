@@ -1,10 +1,5 @@
-<div class="fields">
-  <div class="min_attraction">
-    <%= f.link_to_remove("x") %>
-    <br />
-    <%= f.label :quantity, "Quantity", class: "col-form-label", style: "width: auto;" %>
-    <%= f.input :quantity, input_html: {class: "form-control"}, label: false %>
-    <%= f.label :date, "Date", class: "col-form-label", style: "width: auto; display: inline;" %>
-    <%= f.input :date, input_html: {class: "form-control", style: "display: inline-block;"}, label: false %>
-  </div>
-</div>
+<%= f.link_to_remove("x") %>
+<br />
+<%= f.label :quantity, "Quantity", class: "col-form-label", style: "width: auto;" %>
+<%= f.input :quantity, input_html: {class: "form-control"}, label: false %>
+<%= f.input :date, as: :hidden, input_html: { value: Date.current } %>

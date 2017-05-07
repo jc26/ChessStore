@@ -7,14 +7,14 @@
   <div class="tab-content">
     <div id="completed-orders" class="tab-pane fade in active">
       <% unless @completed_orders.empty? %>
-        <%= render partial: "orders_table", locals: {orders: @completed_orders, page: :completed_page} %>
+        <%= render partial: "orders_table", locals: {orders: @completed_orders, page: :completed_page, width: "" } %>
       <% else %>
         <h4 style="color:gray;margin-left: 15%;">There are no orders.</h4>
       <% end %>
     </div>
     <div id="pending-orders" class="tab-pane fade">
       <% unless @pending_orders.empty? %>
-        <%= render partial: "orders_table", locals: {orders: @pending_orders, page: :pending_page} %>
+        <%= render partial: "orders_table", locals: {orders: @pending_orders, page: :pending_page, width: "" } %>
       <% else %>
         <h4 style="color:gray;margin-left: 15%;">There are no pending orders.</h4>
       <% end %>

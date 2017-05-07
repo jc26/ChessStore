@@ -1,5 +1,5 @@
 <%= simple_form_for @school, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
-  <h3 align="center">New School Form</h3>
+  <h3 align="center"><%= action_name.capitalize %> School Form</h3>
   <br />
   <div class="form-group">
     <%= f.label :name, "Name", class: "col-sm-2 col-form-label" %>

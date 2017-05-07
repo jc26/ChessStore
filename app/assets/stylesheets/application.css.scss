@@ -42,6 +42,11 @@ a {
   font-family: "Open Sans", sans-serif;
 }
 
+.table-empty-msg {
+  color: #ABB0BE;
+  text-align: center;
+}
+
 // Alert Box
 
 .alert-box {
@@ -1268,11 +1273,12 @@ table.ph tr:hover:not(tr.ph-heading) {
   margin-left: 20px;
   margin-bottom: 30px;
   overflow-x: scroll;
-  border: 4px solid gray;
-  border-radius: 10px;
+  overflow-y: hidden;
+  height: 300px;
 }
 
 table.similar-items {
+  margin-left: -30px;
   border-spacing: 30px;
   border-collapse: separate;
   table-layout: fixed;
@@ -1290,15 +1296,36 @@ table.similar-items td {
   width: 100%;
 }
 
+.sim-item-img {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.sim-item-img img {
+  width: 100%;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.sim-item-img img:hover {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 .sim-item-name a {
   color: black;
   width: 100%;
-  margin-top: 5px
+  padding-top: 5px
 }
 
 .sim-item-price {
   width: 100%;
-  margin-top: -5px;
+  margin-top: -7px;
 }
 
 .similar-items caption {
@@ -1317,7 +1344,7 @@ table#show-cart {
   border-collapse: separate;
 }
 
-table#show-cart td {
+table#show-cart td, table#orders-dashboard {
   vertical-align: middle;
 }
 
@@ -1540,4 +1567,10 @@ a.bc-email {
 a.bc-email:hover {
   background-color: #656EA9;
   opacity: 0.8;
+}
+
+table#orders-dashboard {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: separate;
 }

@@ -9,8 +9,7 @@ class Item < ActiveRecord::Base
   has_many :purchases
   has_many :orders, through: :order_items
 
-  accepts_nested_attributes_for :item_prices, reject_if: lambda { |ip| ip[:price].blank? || ip[:start_date].blank? || ip[:start_date].blank? }, allow_destroy: true
-  accepts_nested_attributes_for :purchases, reject_if: lambda { |purchase| purchase[:quantity].blank? || purchase[:date].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :item_prices, reject_if: lambda { |ip| ip[:price].blank? || ip[:category].blank? || ip[:start_date].blank? }, allow_destroy: true
 
   # Scopes
   scope :alphabetical, -> { order(:name) }

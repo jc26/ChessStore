@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-  layout 'login', :only => [:new]
-
   before_action :check_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_heading, except: [:dashboard]
+  before_action :set_heading, except: [:dashboard, :new, :create]
 
   def index
     if params[:search]
@@ -23,10 +21,15 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @school = School.new
+    @title = "ITEMS"
+    @path_name = "/items"
   end
 
   def create
     @user = User.new(user_params)
+    @title = "ITEMS"
+    @path_name = "/items"
     if @user.save
       session[:user_id] = @user.id
       redirect_to login_path, notice: "Thank you for signing up!"
@@ -51,21 +54,29 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @boards_revenue = OrderItem.all.select { |oi| oi.item.category == 'boards' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
-    @pieces_revenue = OrderItem.all.select { |oi| oi.item.category == 'pieces' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
-    @clocks_revenue = OrderItem.all.select { |oi| oi.item.category == 'clocks' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
-    @supplies_revenue = OrderItem.all.select { |oi| oi.item.category == 'supplies' }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2)
-    @best_customers = User.all.sort_by { |u| u.money_spent }.reverse.first(3)
-    @last_6_months = []
-    for n in 0..5
-      @last_6_months.push("#{n.months.ago.to_date.strftime('%b')} #{n.months.ago.to_date.year}")
+    if current_user.role?(:admin)
+      @boards_revenue = OrderItem.revenue_by_category('boards')
+      @pieces_revenue = OrderItem.revenue_by_category('pieces')
+      @clocks_revenue = OrderItem.revenue_by_category('clocks')
+      @supplies_revenue = OrderItem.revenue_by_category('supplies')
+      @best_customers = User.all.sort_by { |u| u.money_spent }.reverse.first(3)
+      @last_6_months = []
+      for n in 0..5
+        @last_6_months.push("#{n.months.ago.to_date.strftime('%b')} #{n.months.ago.to_date.year}")
+      end
+      @last_6_months.reverse!.to_a
+      @revenue_from_last_6_months = Order.revenue_from_last_6_months.to_a
+      @total_customers = User.all.customers.count
+      @orders_placed_today = Order.all.select{ |o| o.date == Date.current }.count
+      @items_need_reorder = Item.all.active.need_reorder.count
+      @orders_need_shipped = Order.all.not_shipped.count
+    elsif current_user.role?(:manager)
+      @items_need_reorder = Item.all.active.need_reorder.alphabetical.to_a
+    elsif current_user.role?(:shipper)
+      @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
+    elsif current_user.role?(:customer)
+      @pending_orders = current_user.orders.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
     end
-    @last_6_months.reverse!.to_a
-    @revenue_from_last_6_months = Order.revenue_from_last_6_months.to_a
-    @total_customers = User.all.customers.count
-    @orders_placed_today = Order.all.select{ |o| o.date == Date.current }.count
-    @items_need_reorders = Item.all.need_reorder.count
-    @orders_need_shipped = Order.all.not_shipped.count
     @title = "DASHBOARD"
     @path_name = "/dashboard"
   end

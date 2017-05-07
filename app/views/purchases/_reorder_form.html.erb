@@ -1,0 +1,9 @@
+<%= simple_form_for @purchase, html: { :class => 'ajax-show-new' }, remote: true do |f| %>
+  <div class="input-group", style="width: 150px">
+    <%= f.input :quantity, label: false, input_html: {:class => "form-control" } %>
+    <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+    <span class="input-group-btn">
+      <%= f.submit "Add", name: "reorder", class: 'btn btn-secondary', style: 'margin-left: 0px;' %>
+    </span>
+  </div>
+<% end %>

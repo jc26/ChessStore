@@ -1,0 +1,48 @@
+<table id="show-cart" class="table table-hover" style="width:90%;margin-left:0px;">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
+      <th>Shipped</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |o| %>
+      <tr>
+        <div class="cart-img-content">
+          <td align="center">
+            <div class="cart-item-img">
+              <% unless o.item.picture %>
+                <%= link_to image_tag('placeholder.jpg', :alt => o.item.name), item_path(o.item) %>
+              <% else %>
+                <%= link_to image_tag(o.item.picture, :alt => o.item.name), item_path(o.item) %>
+              <% end %>
+            </div>
+          </td>
+          <td><p class="cart-item-name"><strong><%= link_to o.item.name, item_path(o.item) %></strong></p></td>
+          <td><p class="cart-item-quantity"><%= o.quantity %></p></td>
+          <td><p class="cart-item-price"><%= number_to_currency o.item.current_price %></p></td>
+          <td><p class="cart-item-price"><%= number_to_currency o.subtotal(Date.current) %></p></td>
+          <td>
+            <% if o.shipped_on.nil? %>
+              <p class="cart-item-price">Not shipped
+            <% else %>
+              <p class="cart-item-price"><%= o.shipped_on.strftime('%m/%d/%y') %>
+            <% end %>
+          </td>
+          <td align="center">
+            <% if o.shipped_on.nil? %>
+              <%= button_to "Ship", toggle_path(o, order_id: @order.id, status: "shipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+            <% else %>
+              <%= button_to "Unship", toggle_path(o, order_id: @order.id, status: "unshipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+            <% end %>
+          </td>
+        </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

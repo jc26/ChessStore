@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   before_action :check_login
-  before_action :set_school, only: [:show, :update, :destroy]
+  before_action :set_school, only: [:show, :edit, :update, :destroy]
   before_action :set_heading
 
   def index
@@ -17,6 +17,7 @@ class SchoolsController < ApplicationController
   end
 
   def show
+    @orders_for_school = Order.for_school(@school).chronological
   end
 
   def new

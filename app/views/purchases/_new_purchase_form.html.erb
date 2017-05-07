@@ -3,10 +3,7 @@
     <label style="width:inherit;">New Purchase</label>
     <%= f.input :quantity, label: false, input_html: {:class => "form-control"} %>
   </div>
-
-  <!-- Note in this case that can't use @town; use params[:town_id] -->
   <%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
-
   <div class="form-actions">
     <%= f.submit "Add", class: 'btn btn-primary', style: 'margin-left: 0px;' %>
     <%= link_to 'Cancel', item_path(params[:item_id]), class: 'btn btn-primary' %>

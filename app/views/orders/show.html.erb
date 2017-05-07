@@ -7,10 +7,10 @@
       <h4><strong>Grand Total</strong></h4>
       <h5 style="color:gray;"><%= number_to_currency @order.grand_total %></h5>
       <br />
-      <%= link_to "Delete", order_path(@order), method: :delete, class: "btn btn-primary delete-order-btn" %>
+      <%= link_to "Cancel", order_path(@order), method: :delete, class: "btn btn-primary delete-order-btn" %>
     </div>
     <div class="col-sm-10">
-      <%= render partial: "order_items/list_table" %>
+      <%= render partial: "order_items_table" %>
     </div>
   </div>
 </div>

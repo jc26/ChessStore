@@ -1,1 +1,5 @@
-$('#new_purchase_link').hide().after('<%= j render("new_purchase_form") %>');
+<% if params[:reorder] %>
+  $('#<%= params[:div_id] %>').hide().after('<%= j render("reorder_form") %>');
+<% else %>
+  $('#new_purchase_link').hide().after('<%= j render("new_purchase_form") %>');
+<% end %>

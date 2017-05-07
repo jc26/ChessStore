@@ -5,7 +5,6 @@
     <%= f.input :item_id, collection: Item.active.to_a, include_blank: true, input_html: {class: "avg"} %>
     <%= f.input :quantity, input_html: {class: "avg"} %>
 
-
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>
       <%= link_to 'Cancel', purchases_path, :class => 'button alert radius' %>

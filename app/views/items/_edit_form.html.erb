@@ -1,17 +1,8 @@
-<%= simple_nested_form_for @item, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
-  <h3 align="center">New Item Form</h3>
+<%= simple_form_for @item, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
+  <h3 align="center">Edit Item Form</h3>
   <br />
 
   <%= render partial: "main_item_form", locals: {f: f} %>
-
-  <div class="row">
-    <div class="col-sm-9">
-      <h4>Item Prices for this Item</h4>
-      <%= f.simple_fields_for :item_prices do |ip_form| %>
-        <%= render :partial => "item_price_fields", :locals => { :f => ip_form } %>
-      <% end %>
-    </div>
-  </div>
   <br />
 
   <div class="row form-actions" style="width: 73%; margin: 0 auto;">

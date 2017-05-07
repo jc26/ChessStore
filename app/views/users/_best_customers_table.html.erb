@@ -1,4 +1,4 @@
-<div class="card best-customers-card" id="wholesale-list">
+<div class="card best-customers-card">
   <h4 class="card-header" style="text-align: center;">Your Best Customers</h4>
   <% unless @best_customers.empty? %>
   <div class="card-block">
@@ -23,6 +23,6 @@
     <br />
   </div>
   <% else %>
-    <p style="color: #ABB0BE;">No customers yest.</p>
+    <p class="table-empty-msg">No customers yet.</p>
   <% end %>
 </div>

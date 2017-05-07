@@ -7,8 +7,9 @@ class OrderItem < ActiveRecord::Base
   belongs_to :item
 
   # Scopes
-  scope :shipped,   -> { where.not(shipped_on: nil) }
-  scope :unshipped, -> { where(shipped_on: nil) }
+  scope :shipped,             -> { where.not(shipped_on: nil) }
+  scope :unshipped,           -> { where(shipped_on: nil) }
+  scope :revenue_by_category, -> (item_category) { select { |oi| oi.item.category == item_category }.map { |oi| oi.subtotal }.inject(0){|sum, n| sum + n }.round(2) }
 
   # Validations
   validates_numericality_of :quantity, only_integer: true, greater_than: 0

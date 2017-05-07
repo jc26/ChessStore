@@ -1,7 +1,7 @@
 <div class="card" id="manufacturer-list">
   <h4 class="card-header" style="text-decoration:underline;">Manufacturer Price</h4>
-  <h5><strong>Current </strong><%= number_to_currency @item.current_manufacturer_price %></h5>
   <% unless @manufacturer_price_history.empty? %>
+  <h5><strong>Current </strong><%= number_to_currency @item.current_manufacturer_price %></h5>
   <div class="card-block">
     <table class="ph table-hover">
       <thead>
