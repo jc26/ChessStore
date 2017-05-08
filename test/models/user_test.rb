@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_uniqueness_of(:username).case_insensitive
   should validate_uniqueness_of(:email).case_insensitive
   should validate_inclusion_of(:role).in_array(%w[admin manager shipper customer])
-  
+
   # additional tests for role (not essential)
   should allow_value("admin").for(:role)
   should allow_value("manager").for(:role)
@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
   should_not allow_value(10).for(:role)
   should_not allow_value("leader").for(:role)
   should_not allow_value(nil).for(:role)
-  
+
   # tests for phone
   should allow_value("4122683259").for(:phone)
   should allow_value("412-268-3259").for(:phone)
@@ -34,22 +34,22 @@ class UserTest < ActiveSupport::TestCase
   should_not allow_value("800-EAT-FOOD").for(:phone)
   should_not allow_value("412/268/3259").for(:phone)
   should_not allow_value("412-2683-259").for(:phone)
-  
-  
+
+
   # context
   context "Within context" do
     setup do
       create_employee_users
     end
-    
+
     teardown do
       destroy_employee_users
     end
-    
+
     should "have a name method for last, first name listing" do
       assert_equal "Heimann, Mark", @mark.name
     end
-    
+
     should "have a proper_name method for first & last name listing" do
       assert_equal "Mark Heimann", @mark.proper_name
     end
@@ -65,14 +65,14 @@ class UserTest < ActiveSupport::TestCase
       bad_user = FactoryGirl.build(:user, username: "wheezy", password: nil)
       deny bad_user.valid?
     end
-    
+
     should "require passwords to be confirmed and matching" do
       bad_user_1 = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: nil)
       deny bad_user_1.valid?
       bad_user_2 = FactoryGirl.build(:user, username: "wheezy", password: "secret", password_confirmation: "sauce")
       deny bad_user_2.valid?
     end
-    
+
     should "require passwords to be at least four characters" do
       bad_user = FactoryGirl.build(:user, username: "wheezy", password: "no", password_confirmation: "no")
       deny bad_user.valid?
@@ -99,7 +99,7 @@ class UserTest < ActiveSupport::TestCase
       assert_equal ["inventory","mark","old_shipper","shipper","tank"], User.employees.all.map(&:username).sort
       destroy_customer_users
     end
-    
+
     should "have a working scope called customers" do
       create_customer_users
       assert @mark .active
@@ -110,7 +110,23 @@ class UserTest < ActiveSupport::TestCase
     should "have a working scope called alphabetical" do
       assert_equal ["Heimann, Alex", "Heimann, Mark", "Manager, Inventory", "Shipper, Old", "Shipper, Young"], User.alphabetical.all.map(&:name)
     end
-    
+
+    should "have a working scope called search" do
+      create_customer_users
+      assert_equal ["Heimann, Mark", "Vella, Mark"], User.search("mark").alphabetical.map { |u| u.name }
+      destroy_customer_users
+    end
+
+    should "have a working instance method called money_spent" do
+      create_customer_users
+      create_schools
+      create_orders
+      assert_equal 76.4, @markv.money_spent
+      destroy_customer_users
+      destroy_schools
+      destroy_orders
+    end
+
     should "shows that Mark's phone is stripped of non-digits" do
       assert_equal "4122688211", @mark.phone
     end

@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
   def index
     if params[:search]
-      @pending_orders = Order.search(params[:search]).unshipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
+      @pending_orders = Order.search(params[:search]).not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
       @completed_orders = Order.search(params[:search]).shipped.chronological.paginate(:page => params[:completed_page]).per_page(10)
       if @pending_orders.empty? && @completed_orders.empty?
         redirect_to orders_path, notice: "Sorry, there were no orders with id '#{params[:search]}.'"

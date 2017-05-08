@@ -6,7 +6,7 @@
         <i class="fa fa-shopping-cart"></i> Cart
         <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
       </a>
-      <% if @title == "ITEMS" || @title == "USERS" || @title == "SCHOOLS" || @title == "USERS" %>
+      <% if @title == "ITEMS" || @title == "USERS" || @title == "SCHOOLS" || @title == "ORDERS" %>
         <%= render partial: "partials/search_box", locals: {title: @title, path_name: @path_name} %>
       <% else %>
         <%= render partial: "partials/search_box", locals: {title: "ITEMS", path_name: "/items"} %>

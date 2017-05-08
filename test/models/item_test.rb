@@ -9,7 +9,6 @@ class ItemTest < ActiveSupport::TestCase
 
   # test nested attributes
   should accept_nested_attributes_for(:item_prices).allow_destroy(true)
-  should accept_nested_attributes_for(:purchases).allow_destroy(true)
 
   # test validations with matchers
   should validate_presence_of(:name)
@@ -72,6 +71,13 @@ class ItemTest < ActiveSupport::TestCase
       @weighted_pieces.inventory_level = 20 # factories set reorder_level at 25
       @weighted_pieces.save
       assert_equal ["Weighted Chess Pieces"], Item.need_reorder.all.map(&:name).sort
+    end
+
+    should "show that the class method search is working" do
+      create_boards
+      assert_equal ["Vinyl Chess Board - Black & White", "Vinyl Chess Board - Blue & White", "Vinyl Chess Board - Green & White", "Vinyl Chess Board - Red & White"],
+                    Item.search("vinyl").alphabetical.map { |i| i.name }
+      destroy_boards
     end
 
     should "have an instance method reorder? for items where inventory too low" do

@@ -22,14 +22,14 @@ class SchoolTest < ActiveSupport::TestCase
   should allow_value(nil).for(:max_grade)
 
   context "Within context" do
-    setup do 
+    setup do
       create_schools
     end
-    
+
     teardown do
       destroy_schools
     end
-    
+
     should "have a max grade greater than or equal to min grade" do
       assert_equal 6, @ingomar.min_grade
       @ingomar.max_grade = 6
@@ -54,7 +54,12 @@ class SchoolTest < ActiveSupport::TestCase
       bad_school = FactoryGirl.build(:school, name: "Fairview Elementary School", street_1: "738 Dorseyville Rd", zip: "15238", min_grade: 2, max_grade: 6)
       # assert bad_school.already_exists?
       deny bad_school.valid?
-    end 
+    end
+
+    should "show that the class method search is working" do
+      assert_equal ["Fairview Elementary School", "Peebles Elementary School"],
+                    School.search("elementary").active.alphabetical.map { |s| s.name }
+    end
 
     should "allow an existing school to be edited" do
       @cent_cath.street_1 = "5005 Forbes Avenue"
@@ -70,7 +75,7 @@ class SchoolTest < ActiveSupport::TestCase
       # verify that the rollback did not make the school inactive
       assert @cent_cath.active
     end
-    
+
     should "be able to make a proper edit" do
       # really testing that school not dup only on create
       assert @cent_cath.active
@@ -101,6 +106,6 @@ class SchoolTest < ActiveSupport::TestCase
       destroy_customer_users
       destroy_orders
     end
-    
+
   end
 end
