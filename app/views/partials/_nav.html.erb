@@ -9,13 +9,13 @@
       <li class="sidebar_item"><%= link_to "Home", home_path %></li>
       <li class="sidebar_item"><%= link_to "Browse Items", items_path %></li>
     <% else %>
-      <li class="sidebar_item"><%= link_to "Dashboard", dashboard_path %></li>
-      <li class="sidebar_item"><%= link_to "My Profile", user_path(current_user) %></li>
-      <li class="sidebar_item"><%= link_to "Browse Items", items_path %></li>
+      <li class="sidebar_item"><%= link_to "DASHBOARD", dashboard_path %></li>
+      <li class="sidebar_item"><%= link_to "MY PROFILE", user_path(current_user) %></li>
+      <li class="sidebar_item"><%= link_to "BROWSE ITEMS", items_path %></li>
       <% if current_user.role?(:admin) || current_user.role?(:manager) %>
-        <li class="sidebar_item"><%= link_to "Orders", orders_path %></li>
-        <li class="sidebar_item"><%= link_to "Schools", schools_path %></li>
-        <li class="sidebar_item"><%= link_to "Users", users_path %></li>
+        <li class="sidebar_item"><%= link_to "ORDERS", orders_path %></li>
+        <li class="sidebar_item"><%= link_to "SCHOOLS", schools_path %></li>
+        <li class="sidebar_item"><%= link_to "USERS", users_path %></li>
       <% elsif current_user.role?(:shipper) %>
         <li class="sidebar_item"><%= link_to "Orders", orders_path %></li>
       <% end %>

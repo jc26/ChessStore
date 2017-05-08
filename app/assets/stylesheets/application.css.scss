@@ -194,9 +194,9 @@ label {
 }
 
 #main-sidebar .nav li a {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 	color: white;
-  font-size: 1.3em;
+  font-size: 1.1em;
   padding-left: 30px;
   -ms-transition:.5s;
   -moz-transition:.5s;
@@ -212,6 +212,7 @@ label {
 
 #main-sidebar .nav > li > a {
   padding-left: 30px;
+  padding-top: 13px;
 }
 
 #main-sidebar .nav li {
@@ -222,7 +223,6 @@ label {
 	font-family: 'Open Sans', sans-serif;
 	width: 85%;
   margin-left: 20px;
-  // margin-top: 20px;
   position: absolute;
   bottom: 2%;
 	background-color: transparent;

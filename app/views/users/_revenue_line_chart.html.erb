@@ -34,6 +34,12 @@ Highcharts.chart('revenue-line-container', {
       categories: data.last_6_months
     },
 
+    plotOptions: {
+        series: {
+            color: '#f981b2'
+        }
+    },
+
     series: [{
       name: 'Total Revenue',
       data: <%= @revenue_from_last_6_months %>
