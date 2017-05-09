@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @school = School.new
+    if params[:is_employee]
+      @is_employee = true
+    end
     @title = "REGISTER"
     @path_name = "/users/new"
   end
@@ -32,8 +35,15 @@ class UsersController < ApplicationController
     @path_name = "/items"
     if @user.save
       session[:user_id] = @user.id
-      redirect_to login_path, notice: "Thank you for signing up!"
+      if logged_in?
+        redirect_to user_path(@user), notice: "#{@user.role.capitalize}, #{@user.proper_name}, has been made."
+      else
+        redirect_to login_path, notice: "Thank you for signing up!"
+      end
     else
+      if logged_in?
+        @is_employee = true
+      end
       flash[:error] = "This user could not be created."
       render "new"
     end
@@ -92,7 +102,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :phone, :role, :password, :password_confirmation, :active)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :phone, :role, :password, :password_confirmation, :active)
   end
 
   def set_heading

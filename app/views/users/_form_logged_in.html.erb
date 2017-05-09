@@ -1,5 +1,5 @@
 <%= simple_form_for @user, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
-  <h3 align="center">Edit User Form</h3>
+  <h3 align="center">New User Form</h3>
   <br />
   <div class="form-group">
     <div class="col-sm-6">
@@ -21,14 +21,26 @@
       <%= f.input :phone, input_html: {class: "form-control"}, label: false %>
     </div>
   </div>
-  <% if current_user.role?(:admin) || current_user.role?(:manager) %>
+  <div class="form-group">
+    <div class="col-sm-4">
+      <%= f.label :username, "Username", class: "col-sm-1 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.input :username, input_html: {class: "form-control"}, label: false %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :password, "Password", class: "col-sm-1 col-form-label", style: "padding-left:0px;text-align:left;" %>
+      <%= f.input :password, input_html: {class: "form-control"}, label: false %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.label :password_confirmation, "Confirm Password", class: "col-sm-1 col-form-label", style: "text-align:left;width:100%;" %>
+      <%= f.input :password_confirmation, input_html: {class: "form-control"}, label: false %>
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-sm-4">
       <%= f.label :role, "Role", class: "col-sm-2 col-form-label", style: "padding-left:0px;text-align:left;width:100%;" %>
       <%= f.input :role, collection: User::ROLES, include_blank: true, input_html: {class: "form-control"}, label: false %>
     </div>
   </div>
-  <% end %>
   <br />
   <div class="form-actions" style="margin-left:-15px;">
     <div class="col-sm-12">
