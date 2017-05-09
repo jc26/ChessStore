@@ -8,6 +8,9 @@
     <% if !logged_in? %>
       <li class="sidebar_item"><%= link_to "HOME", home_path %></li>
       <li class="sidebar_item"><%= link_to "BROWSE ITEMS", items_path %></li>
+      <li class="sidebar_item"><%= link_to "ABOUT", about_path %></li>
+      <li class="sidebar_item"><%= link_to "CONTACT", contact_path %></li>
+      <li class="sidebar_item"><%= link_to "PRIVACY", privacy_path %></li>
     <% else %>
       <li class="sidebar_item"><%= link_to "DASHBOARD", dashboard_path %></li>
       <li class="sidebar_item"><%= link_to "MY PROFILE", user_path(current_user) %></li>
