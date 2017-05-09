@@ -1,1 +1,6 @@
-$('#show-cart').replaceWith('<%= j render("orders/order_items_table") %>');
+<% if params[:from_dashboard] %>
+  $('#show-cart').replaceWith('<%= j render("users/fast_orders_table") %>');
+<% else %>
+  $('#show-cart').replaceWith('<%= j render("orders/order_items_table") %>');
+<% end %>
+$('#flash').replaceWith('<%= j render("partials/flash") %>');

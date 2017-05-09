@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     elsif current_user.role?(:manager)
       @items_need_reorder = Item.all.active.need_reorder.alphabetical.to_a
     elsif current_user.role?(:shipper)
-      @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
+      @pending_orders = Order.not_shipped.chronological.to_a
     elsif current_user.role?(:customer)
       @pending_orders = current_user.orders.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
     end

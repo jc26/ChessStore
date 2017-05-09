@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-sm-9">
-    <div class="card" style="height: 300px;">
+  <div class="col-sm-12">
+    <div class="card" style="height: 100%;">
       <h4 class="card-header" style="text-align: center;">Pending Orders</h4>
       <% unless @pending_orders.empty? %>
-        <%= render partial: "orders/orders_table", locals: {orders: @pending_orders, page: :pending_page, width: "width:100%;"} %>
+        <%= render partial: "fast_orders_table" %>
       <% else %>
         <p class="table-empty-msg">Everything has been shipped &#9786;</p>
       <% end %>

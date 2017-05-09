@@ -1,5 +1,7 @@
 <div id="items-table-container">
-  <%= link_to "Add Item", new_item_path, class: "btn btn-primary add-item-btn" %>
+  <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+    <%= link_to "Add Item", new_item_path, class: "btn btn-primary add-item-btn" %>
+  <% end %>
   <ul class="nav nav-pills nav-fill">
     <li class="active"><a data-toggle="pill" href="#boards">Boards</a></li>
     <li><a data-toggle="pill" href="#pieces">Pieces</a></li>

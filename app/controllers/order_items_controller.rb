@@ -23,12 +23,16 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if params[:status] == 'shipped'
         @order_item.shipped
-        # flash[:notice] = "Order Item for #{@order_item.quantity} #{@order_item.item.name} was marked as shipped."
+        flash[:notice] = "#{@order_item.quantity} orders of #{@order_item.item.name} have been shipped."
       else
         @order_item.unshipped
+        flash[:notice] = "#{@order_item.quantity} orders of #{@order_item.item.name} have been unshipped."
       end
       @order_item.save!
       @order = Order.find(params[:order_id])
+      if params[:from_dashboard]
+        @pending_orders = Order.not_shipped.chronological.to_a
+      end
       format.js
     end
   end

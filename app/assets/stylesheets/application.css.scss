@@ -1447,6 +1447,10 @@ form.new-item-form .form-actions input:focus, form.new-item-form .form-actions a
   background-color: #707070;
 }
 
+form.new-item-form .ip-nested-form {
+  margin-left: -20px;
+}
+
 // Orders Index
 
 div.pagination {
@@ -1584,6 +1588,44 @@ table#orders-dashboard {
   border-collapse: separate;
 }
 
+.order-show-btn {
+  background-color: #656EA9;
+  border: 0px;
+}
+
+.order-show-btn:hover {
+  background-color: #656EA9;
+  opacity: 0.8;
+}
+
+.order-show-btn:focus {
+  background-color: #707070;
+  opacity: 0.8;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #fff;
+}
+
+.table-hover > tbody > tr:not(.no-hover):hover {
+  background-color: #f5f5f5;
+}
+
+table.fast-order-items-table {
+  width: 70%;
+  margin: 0 auto;
+  border-collapse: separate;
+}
+
+table.fast-order-items-table td, {
+  vertical-align: middle;
+}
+
+table.fast-order-items-table .cart-item-img img {
+  width: 100px;
+  height: 100px;
+}
+
 // New User Page
 
 .new-user-school-form {
@@ -1602,8 +1644,6 @@ table#orders-dashboard {
   width: 8%;
   text-align: center;
   color: gray;
-  // position: absolute;
-  // padding-bottom: 20px;
 }
 
 .new-user-or h1 {
