@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     if @order.destroy
       redirect_to orders_url, notice: "The order has been removed from the system."
     else
-      redirect_to order_path(@order), notice: "All unshipped order-items have been removed from the system."
+      redirect_to order_path(@order), notice: "All unshipped order-items of Order #{@order.id} have been removed from the system."
     end
   end
 
