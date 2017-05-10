@@ -44,7 +44,7 @@
   <div class="form-actions" style="margin-left:-15px;">
     <div class="col-sm-12">
       <%= f.hidden_field :from_register, value: true %>
-      <%= f.submit nil, :class => 'btn btn-primary', :style => "margin: 0 auto;width:103%;", name: :from_register %>
+      <%= f.submit nil, :class => 'btn btn-primary choose-btn', :style => "margin: 0 auto;width:103%;", name: :from_register %>
     </div>
   </div>
 <% end %>
@@ -64,7 +64,7 @@
       </select>
     </div>
     <div class="col-sm-2">
-      <%= link_to "Choose", new_user_path, class: "btn btn-primary", style: "margin-left: -10px;" %>
+      <%= link_to "Choose", new_user_path, class: "btn btn-primary choose-btn", style: "margin-left: -10px;" %>
     </div>
   </div>
 </div>

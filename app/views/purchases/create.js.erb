@@ -6,3 +6,8 @@ $('#new_purchase').remove();
   $('#new_purchase_link').show();
   $('#purchase-list').replaceWith('<%= j render("items/purchase_history") %>');
 <% end %>
+$('#flash').replaceWith('<%= j render("partials/flash") %>');
+$('.alert-box').fadeIn('normal', function() {
+    $(this).delay(5000).fadeOut();
+});
+$('.alert-box').delay(5000).fadeOut();

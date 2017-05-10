@@ -28,42 +28,13 @@ class Ability
       # can adjust the inventory levels for an item by adding purchases
       can :create, Purchase
 
+      can :read, School
+      can :dashboard, User
       # they can update their own profile
       can :update, User do |u|
-        u.id == user.id
+        u.id == user.id || u.role?(:shipper)
       end
-
-      # # they can read their own projects' data
-      # can :read, Project do |this_project|
-      #   my_projects = user.projects.map(&:id)
-      #   my_projects.include? this_project.id
-      # end
-      # # they can create new projects for themselves
-      # can :create, Project
-      #
-      # # they can update the project only if they are the manager (creator)
-      # can :update, Project do |this_project|
-      #   managed_projects = user.projects.map{|p| p.id if p.manager_id == user.id}
-      #   managed_projects.include? this_project.id
-      # end
-      #
-      # # they can read tasks in these projects
-      # can :read, Task do |this_task|
-      #   project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-      #   project_tasks.include? this_task.id
-      # end
-      #
-      # # they can update tasks in these projects
-      # can :update, Task do |this_task|
-      #   project_tasks = user.projects.map{|p| p.tasks.map(&:id)}.flatten
-      #   project_tasks.include? this_task.id
-      # end
-      #
-      # # they can create new tasks for these projects
-      # can :create, Task do |this_task|
-      #   my_projects = user.projects.map(&:id)
-      #   my_projects.include? this_task.project_id
-      # end
+      can :toggle, OrderItem
 
     elsif user.role? :shipper
       can [:read, :update], User do |u|
@@ -72,21 +43,35 @@ class Ability
       can :read, Order
       can [:read, :update], OrderItem
       can :read, Item
+      can :dashboard, User
+      can :toggle, OrderItem
+      can :read, School
+      can :read, User do |u|
+        u.role?(:customer)
+      end
 
     elsif user.role? :customer
       can [:read, :update], User do |u|
         u.id == user.id
       end
-      can :manage, Order do |this_order|
+      can [:show, :destroy], Order do |this_order|
         my_orders = user.orders.map(&:id)
         my_orders.include? this_order.id
       end
+      can :new, Order
+      can :create, Order
       can :read, Item
-      can :create, School
+      can [:read, :create], School
+      can :dashboard, User
+      can :add_item, Item
+      can :remove_item, Item
+      can :empty_cart, Order
+      can :checkout, Order
 
     else
-      # guests can only read domains covered (plus home pages)
+      can :create, User
       can :read, Domain
+      can :choose, User
     end
   end
 end

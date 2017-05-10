@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :update, :destroy]
   before_action :set_heading, except: [:cart, :checkout]
   before_action :set_total_cart_vars, only: [:cart, :checkout]
+  authorize_resource
 
   def index
     if params[:search]
@@ -48,8 +49,11 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order.destroy
-    redirect_to orders_url, notice: "The order has been removed from the system."
+    if @order.destroy
+      redirect_to orders_url, notice: "The order has been removed from the system."
+    else
+      redirect_to order_path(@order), notice: "All unshipped order-items have been removed from the system."
+    end
   end
 
   def cart
@@ -66,13 +70,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @user_orders = current_user.orders
     @all_schools = School.all.active.alphabetical
-    # unless @user_orders.blank?
-    #   @most_recent_school = @user_orders.chronological.first.school
-    #   @schools_dropdown = @most_recent_school + (@all_schools - @most_recent_school)
-    #   @schools_dropdown = @schools_dropdown.map { |s| "#{s.name} : #{s.street_1}" }
-    # else
-      @schools_dropdown = @all_schools.map { |s| "#{s.name} : #{s.street_1}" }
-    # end
+    @schools_dropdown = @all_schools.map { |s| "#{s.name} : #{s.street_1}" }
     @title = "CHECKOUT"
     @path_name = "/checkout"
   end

@@ -7,7 +7,9 @@
       <th>Price</th>
       <th>Subtotal</th>
       <th>Shipped</th>
-      <th></th>
+      <% unless current_user.role?(:customer) %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -34,13 +36,15 @@
               <p class="cart-item-price"><%= o.shipped_on.strftime('%m/%d/%y') %>
             <% end %>
           </td>
-          <td align="center">
-            <% if o.shipped_on.nil? %>
-              <%= button_to "Ship", toggle_path(o, order_id: @order.id, status: "shipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
-            <% else %>
-              <%= button_to "Unship", toggle_path(o, order_id: @order.id, status: "unshipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
-            <% end %>
-          </td>
+          <% unless current_user.role?(:customer) %>
+            <td align="center">
+              <% if o.shipped_on.nil? %>
+                <%= button_to "Ship", toggle_path(o, order_id: @order.id, status: "shipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+              <% else %>
+                <%= button_to "Unship", toggle_path(o, order_id: @order.id, status: "unshipped"), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+              <% end %>
+            </td>
+          <% end %>
         </div>
       </tr>
     <% end %>

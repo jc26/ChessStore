@@ -107,6 +107,15 @@ class UserTest < ActiveSupport::TestCase
       destroy_customer_users
     end
 
+    should "have a working scope called for_role" do
+      create_customer_users
+      assert_equal ["bjunker", "imadueme", "kirvine", "melfree", "mvella"], User.for_role("customer").all.map(&:username).sort
+      assert_equal ["mark","tank"], User.for_role("admin").all.map(&:username).sort
+      assert_equal ["inventory"], User.for_role("manager").all.map(&:username).sort
+      assert_equal ["old_shipper","shipper"], User.for_role("shipper").all.map(&:username).sort
+      destroy_customer_users
+    end
+
     should "have a working scope called alphabetical" do
       assert_equal ["Heimann, Alex", "Heimann, Mark", "Manager, Inventory", "Shipper, Old", "Shipper, Young"], User.alphabetical.all.map(&:name)
     end

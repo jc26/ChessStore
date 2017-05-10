@@ -1,5 +1,5 @@
 <div class="show-container">
-  <h1>Order <span style="text-decoration:underline"><%= @order.id %></span> by <%= link_to @order.user.proper_name, user_path(@order.user) %> sent to <%= link_to @order.school.name, school_path(@order.school) %></h1>
+  <h1>Order <span style="text-decoration:underline"><%= @order.id %></span> by <%= link_to @order.user.proper_name, user_path(@order.user) %> to <%= link_to @order.school.name, school_path(@order.school) %></h1>
   <div class="row">
     <div class="col-sm-2">
       <h4><strong>Date</strong></h4>

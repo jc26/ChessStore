@@ -1,10 +1,28 @@
 <div id="orders-table-container">
-  <ul class="nav nav-pills nav-fill">
-    <li class="active"><a data-toggle="pill" href="#pending-orders">Active Schools</a></li>
-    <li><a data-toggle="pill" href="#completed-orders">Inactive Schools</a></li>
-  </ul>
+  <% unless current_user.role?(:customer) %>
+    <ul class="nav nav-pills nav-fill">
+      <li class="active"><a data-toggle="pill" href="#active-schools">Active Schools</a></li>
+      <li><a data-toggle="pill" href="#inactive-schools">Inactive Schools</a></li>
+    </ul>
 
-  <div class="tab-content">
+    <div class="tab-content">
+      <div id="active-schools" class="tab-pane fade in active">
+        <% unless @active_schools.empty? %>
+          <%= render partial: "schools_table", locals: {schools: @active_schools, page: :active_page} %>
+        <% else %>
+          <h4 style="color:gray;margin-left: 15%;">There are no active schools.</h4>
+        <% end %>
+      </div>
+      <div id="inactive-schools" class="tab-pane fade">
+        <% unless @inactive_schools.empty? %>
+          <%= render partial: "schools_table", locals: {schools: @inactive_schools, page: :inactive_page} %>
+        <% else %>
+          <h4 style="color:gray;margin-left: 15%;">There are no inactive schools.</h4>
+        <% end %>
+      </div>
+    </div>
+    <%= link_to "Add School", new_school_path, class: "btn btn-primary add-school-btn" %>
+  <% else %>
     <div id="pending-orders" class="tab-pane fade in active">
       <% unless @active_schools.empty? %>
         <%= render partial: "schools_table", locals: {schools: @active_schools, page: :active_page} %>
@@ -12,13 +30,6 @@
         <h4 style="color:gray;margin-left: 15%;">There are no active schools.</h4>
       <% end %>
     </div>
-    <div id="completed-orders" class="tab-pane fade">
-      <% unless @inactive_schools.empty? %>
-        <%= render partial: "schools_table", locals: {schools: @inactive_schools, page: :inactive_page} %>
-      <% else %>
-        <h4 style="color:gray;margin-left: 15%;">There are no inactive schools.</h4>
-      <% end %>
-    </div>
-  </div>
-  <%= link_to "Add School", new_school_path, class: "btn btn-primary add-school-btn" %>
+  <% end %>
+
 </div>

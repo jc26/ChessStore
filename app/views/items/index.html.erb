@@ -2,12 +2,14 @@
   <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
     <%= link_to "Add Item", new_item_path, class: "btn btn-primary add-item-btn" %>
   <% end %>
-  <ul class="nav nav-pills nav-fill">
+  <ul class="nav nav-pills nav-fill items">
     <li class="active"><a data-toggle="pill" href="#boards">Boards</a></li>
     <li><a data-toggle="pill" href="#pieces">Pieces</a></li>
     <li><a data-toggle="pill" href="#clocks">Clocks</a></li>
     <li><a data-toggle="pill" href="#supplies">Supplies</a></li>
-    <li><a data-toggle="pill" href="#inactive">Inactive Items</a></li>
+    <% unless current_user.role?(:customer) %>
+      <li><a data-toggle="pill" href="#inactive">Inactive Items</a></li>
+    <% end %>
   </ul>
 
   <div class="tab-content">
@@ -23,8 +25,10 @@
     <div id="supplies" class="tab-pane fade">
       <%= render partial: "items_table", locals: {items: @supplies} %>
     </div>
-    <div id="inactive" class="tab-pane fade">
-      <%= render partial: "items_table", locals: {items: @inactive_items} %>
-    </div>
+    <% unless current_user.role?(:customer) %>
+      <div id="inactive" class="tab-pane fade">
+        <%= render partial: "items_table", locals: {items: @inactive_items} %>
+      </div>
+    <% end %>
   </div>
 </div>

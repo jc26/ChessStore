@@ -7,9 +7,6 @@ class ItemTest < ActiveSupport::TestCase
   should have_many(:purchases)
   should have_many(:orders).through(:order_items)
 
-  # test nested attributes
-  should accept_nested_attributes_for(:item_prices).allow_destroy(true)
-
   # test validations with matchers
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name).case_insensitive

@@ -21,6 +21,9 @@
         <li class="sidebar_item"><%= link_to "USERS", users_path %></li>
       <% elsif current_user.role?(:shipper) %>
         <li class="sidebar_item"><%= link_to "ORDERS", orders_path %></li>
+        <li class="sidebar_item"><%= link_to "SCHOOLS", schools_path %></li>
+      <% elsif current_user.role?(:customer) %>
+        <li class="sidebar_item"><%= link_to "SCHOOLS", schools_path %></li>
       <% end %>
       <%= link_to "Logout", logout_path, class: "btn btn-primary logout-btn" %>
     <% end %>

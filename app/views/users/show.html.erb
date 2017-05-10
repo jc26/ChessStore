@@ -15,10 +15,12 @@
       <% end %>
       <br />
       <br />
-      <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary delete-order-btn" %>
+      <% if (current_user.role?(:manager) && (@user.role?(:shipper) || current_user == @user)) || current_user.role?(:admin) %>
+        <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary delete-order-btn" %>
+      <% end %>
     </div>
     <div class="col-sm-10">
-      <% if @user.orders.empty? %>
+      <% if @orders.empty? %>
         <h4><%= (@user.id == current_user.id) ? ("You have") : (@user.first_name + " has") %> not made any orders.</h4>
       <% else %>
         <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
@@ -32,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user.orders.each do |o| %>
+            <% @orders.each do |o| %>
               <tr>
                 <div class="cart-img-content">
                   <td><div class="cart-item-name"><%= link_to o.id, order_path(o) %></div></td>

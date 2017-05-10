@@ -15,12 +15,18 @@
       <% end %>
       <br />
       <br />
-      <%= link_to "Edit", edit_school_path(@school), class: "btn btn-primary edit-school-btn" %>
-      <%= link_to "Delete", school_path(@school), confirm: "Are you sure you want to delete #{@school.name}?", method: :delete, class: "btn btn-primary delete-order-btn" %>
+      <% if current_user.role?(:admin) %>
+        <%= link_to "Edit", edit_school_path(@school), class: "btn btn-primary edit-school-btn" %>
+        <%= link_to "Delete", school_path(@school), confirm: "Are you sure you want to delete #{@school.name}?", method: :delete, class: "btn btn-primary delete-order-btn" %>
+      <% end %>
     </div>
     <div class="col-sm-10">
       <% if @orders_for_school.empty? %>
-        <h4>No orders have been sent to this school.</h4>
+        <% if current_user.role?(:customer) %>
+          <h4>You have not sent any orders to this school.</h4>
+        <% else %>
+          <h4>No orders have been sent to this school.</h4>
+        <% end %>
       <% else %>
         <table id="show-cart" class="table table-hover" style="width:80%;margin-left:0px;">
           <caption style="padding:0px;color:black;"><h4><strong>Orders</strong></h4></caption>

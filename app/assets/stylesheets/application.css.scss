@@ -15,6 +15,15 @@
  *= require simple_form
  */
 
+// Some code was written in reference to the urls below:
+// http://www.rymcmahon.com/articles/2
+// http://jsfiddle.net/davidThomas/PbvFr/1/
+// https://wrapbootstrap.com/themes/e-commerce
+// https://codepen.io/colewaldrip/pen/bdZVGd
+// http://bradsknutson.com/blog/css-sliding-underline/
+// http://codepen.io/drehimself/pen/VvYLmV
+// http://bashooka.com/coding/cool-css-card-ui-examples/
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome";
@@ -660,7 +669,14 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 
 #items-table-container ul.nav.nav-pills.nav-fill {
   width: 70%;
+}
+
+#items-table-container ul.nav.nav-pills.nav-fill:not(.items) {
   margin: 0 auto;
+}
+
+#items-table-container ul.nav.nav-pills.nav-fill.items {
+  margin-left: 35px;
 }
 
 #items-table-container ul.nav.nav-pills.nav-fill li.active a {
@@ -693,6 +709,7 @@ table.items td {
 
 table.items td img, .img-content {
   width: 250px;
+  height: 250px
 }
 
 .img-content {
@@ -734,7 +751,6 @@ table.items td img {
 }
 
 .item-img:hover {
-    // background-color: #FFC5DD;
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
@@ -743,7 +759,6 @@ table.items td img {
 
 .item-img img:hover,
 .item-img:hover .item-img img, img ~ .add-to-cart-btn:hover {
-    // opacity: 0.3;
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
@@ -1212,6 +1227,7 @@ button.add-to-cart:hover span:after {
   background-color: transparent;
   border: 1px solid #656EA9;
   width: 100%;
+  padding: 6px 12px 6px 12px;
   display: inline-block;
   margin-bottom: 0px;
   color: #656EA9;
@@ -1453,10 +1469,6 @@ form.new-item-form .form-actions input:focus, form.new-item-form .form-actions a
   background-color: #707070;
 }
 
-form.new-item-form .ip-nested-form {
-  margin-left: -20px;
-}
-
 // Orders Index
 
 div.pagination {
@@ -1609,6 +1621,21 @@ table#orders-dashboard {
   opacity: 0.8;
 }
 
+.choose-btn {
+  background-color: #f981b2;
+  border: 0px;
+}
+
+.choose-btn:hover {
+  background-color: #f981b2;
+  opacity: 0.8;
+}
+
+.choose-btn:focus {
+  background-color: #707070;
+  opacity: 0.8;
+}
+
 .table-hover > tbody > tr:hover {
   background-color: #fff;
 }
@@ -1660,8 +1687,4 @@ table.fast-order-items-table .cart-item-img img {
 
 .new-user-choose-school {
   width: 45%;
-}
-
-label.fix-label {
-
 }

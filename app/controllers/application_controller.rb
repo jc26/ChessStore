@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cart_vars
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "You are not authorized to take this action."
+    if logged_in?
+      redirect_to dashboard_path
+    else
+      redirect_to login_path
+    end
+  end
+
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

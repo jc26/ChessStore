@@ -19,7 +19,7 @@
           <td><div class="cart-item-name"><strong><%= link_to u.username, user_path(u) %></strong></div></td>
           <td><div class="cart-item-quantity"><%= u.proper_name %></div></td>
           <% if role %>
-            <td><div class="cart-item-quantity"><%= u.role %></div></td>
+            <td><div class="cart-item-quantity"><%= u.role.capitalize %></div></td>
           <% end %>
           <td><div class="cart-item-price"><%= u.email %></div></td>
           <td><div class="cart-item-price"><%= number_to_phone u.phone %></div></td>

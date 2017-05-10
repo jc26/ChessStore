@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :check_login
+  authorize_resource
 
   def index
     @purchases = Purchase.chronological.to_a
@@ -22,6 +23,7 @@ class PurchasesController < ApplicationController
         if @reorder
           @items_need_reorder = Item.all.active.need_reorder.alphabetical.to_a
         end
+        flash[:notice] = "#{@purchase.quantity} units of #{@purchase.item.name} have been reordered!"
         format.js
       else
         render action: 'new'

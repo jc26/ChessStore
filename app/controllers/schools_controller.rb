@@ -2,6 +2,7 @@ class SchoolsController < ApplicationController
   before_action :check_login, except: [:create]
   before_action :set_school, only: [:show, :edit, :update, :destroy]
   before_action :set_heading
+  authorize_resource
 
   def index
     if params[:search]
@@ -17,7 +18,11 @@ class SchoolsController < ApplicationController
   end
 
   def show
-    @orders_for_school = Order.for_school(@school).chronological
+    if current_user.role?(:customer)
+      @orders_for_school = current_user.orders.for_school(@school).chronological
+    else
+      @orders_for_school = Order.for_school(@school).chronological
+    end
   end
 
   def new
@@ -34,7 +39,11 @@ class SchoolsController < ApplicationController
       end
     else
       flash[:error] = "The school could not be created."
-      render "new"
+      if params[:school][:from_register]
+        redirect_to choose_path
+      else
+        render "new"
+      end
     end
   end
 

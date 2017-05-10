@@ -2,12 +2,14 @@
     <%= render :partial => "item_details" %>
     <div class="history-container">
       <div class="row">
+        <% if current_user.role?(:admin) || current_user.role?(:manager) %>
         <div class="col-sm-4">
           <%= render :partial => "manufacturer_price_history" %>
         </div>
         <div class="col-sm-4">
           <%= render :partial => "wholesale_price_history" %>
         </div>
+        <% end %>
         <div class="col-sm-4">
           <%= render :partial => "purchase_history" %>
         </div>
@@ -18,9 +20,7 @@
 
 <div class="item-actions">
   <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-      <%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary edit-item-btn" %>
-  <% end %>
-  <% if logged_in? && current_user.role?(:admin) %>
+    <%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary edit-item-btn" %>
     <%= link_to "Delete", item_path(@item), data: {confirm: "Are you sure you want to delete #{@item.name}?"}, method: :delete, class: "btn btn-primary delete-item-btn" %>
   <% end %>
 </div>

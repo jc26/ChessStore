@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :check_login, except: [:new, :create, :choose]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_heading, except: [:dashboard, :new, :create]
+  authorize_resource
 
   def index
     if params[:search]
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @orders = @user.orders.chronological.to_a
   end
 
   def new
@@ -50,7 +52,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
@@ -89,7 +90,7 @@ class UsersController < ApplicationController
       @pending_orders = Order.not_shipped.chronological.to_a
     elsif current_user.role?(:customer)
       @pending_orders = current_user.orders.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
-      @last_5_orders = current_user.orders.shipped.chronological.last(5).to_a
+      @last_3_orders = current_user.orders.shipped.chronological.first(3).to_a
     end
     @title = "DASHBOARD"
     @path_name = "/dashboard"

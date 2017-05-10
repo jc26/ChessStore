@@ -23,9 +23,15 @@
       </div>
     <% else %>
       <% if @items_in_cart.empty? %>
-        <h5 align="center" style="padding-top:10px; color:gray;">
-          You have no items in your cart &#9785;
-        </h5>
+        <% if current_user.role?(:admin) || current_user.role?(:customer) %>
+          <h5 align="center" style="padding-top:10px; color:gray;">
+            You have no items in your cart &#9785;
+          </h5>
+        <% else %>
+          <h5 align="center" style="padding-top:10px; color:gray;">
+            Please login with your customer account to make orders.
+          </h5>
+        <% end %>
       <% else %>
         <ul class="shopping-cart-items" style="list-style: none;">
           <% @items_in_cart.each do |i| %>
@@ -43,8 +49,13 @@
         </ul>
       <% end %>
       <div class="row cart-dropdown-actions">
+
         <div class="col-sm-6">
-          <%= link_to "View Cart", cart_path, :class => "button", :style => "color:white;text-decoration:none;" %>
+          <% if @items_in_cart.empty? %>
+            <%= link_to "View Cart", "#", :class =>"button disabled" %>
+          <% else %>
+            <%= link_to "View Cart", cart_path, :class => "button", :style => "color:white;text-decoration:none;" %>
+          <% end %>
         </div>
         <div class="col-sm-6">
           <% if @items_in_cart.empty? %>

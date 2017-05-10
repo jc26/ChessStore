@@ -2,6 +2,7 @@ class OrderItemsController < ApplicationController
 
   before_action :check_login
   before_action :set_order_item, only: [:edit, :update, :toggle]
+  authorize_resource
 
   def edit
   end
