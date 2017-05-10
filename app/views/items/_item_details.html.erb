@@ -14,7 +14,7 @@
           <%= link_to image_tag(@item.picture, :alt => @item.name), item_path(@item) %>
         <% end %>
       </div>
-      <% if @item.active && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+      <% if @item.active && logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
         <%= button_to add_item_path(:id => @item.id), method: :post, class: "btn btn-primary add-to-cart" do %>
           <span>ADD TO CART</span>
         <% end %>

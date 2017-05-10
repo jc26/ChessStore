@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-sm-6">
-    <div class="card" style="height: 350px;">
-      <h4 class="card-header" style="text-align: center;">Pending Orders</h4>
-      <% unless @pending_orders.empty? %>
-        <%= render partial: "fast_orders_table", locals: {orders: @pending_orders} %>
+    <div class="card" style="height: auto">
+      <h4 class="card-header" style="text-align: center;">Last 3 Orders</h4>
+      <% unless @last_3_orders.empty? %>
+        <%= render partial: "fast_orders_table", locals: {orders: @last_3_orders} %>
       <% else %>
         <p class="table-empty-msg">Everything has been shipped &#9786;</p>
       <% end %>
     </div>
   </div>
   <div class="col-sm-6">
-    <div class="card" style="height: 350px;">
-      <h4 class="card-header" style="text-align: center;">Last 3 Orders</h4>
-      <% unless @last_3_orders.empty? %>
-        <%= render partial: "fast_orders_table", locals: {orders: @last_3_orders} %>
+    <div class="card" style="height: auto;">
+      <h4 class="card-header" style="text-align: center;">Pending Orders</h4>
+      <% unless @pending_orders.empty? %>
+        <%= render partial: "fast_orders_table", locals: {orders: @pending_orders} %>
       <% else %>
         <p class="table-empty-msg">Everything has been shipped &#9786;</p>
       <% end %>

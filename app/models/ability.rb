@@ -69,6 +69,7 @@ class Ability
       can :create, User
       can :read, Domain
       can :choose, User
+      can :create, School
     end
   end
 end

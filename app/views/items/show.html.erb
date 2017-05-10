@@ -2,7 +2,7 @@
     <%= render :partial => "item_details" %>
     <div class="history-container">
       <div class="row">
-        <% if current_user.role?(:admin) || current_user.role?(:manager) %>
+        <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
         <div class="col-sm-4">
           <%= render :partial => "manufacturer_price_history" %>
         </div>
@@ -10,9 +10,11 @@
           <%= render :partial => "wholesale_price_history" %>
         </div>
         <% end %>
-        <div class="col-sm-4">
-          <%= render :partial => "purchase_history" %>
-        </div>
+        <% unless !logged_in? || (logged_in? && current_user.role?(:customer)) %>
+          <div class="col-sm-4">
+            <%= render :partial => "purchase_history" %>
+          </div>
+        <% end %>
       </div>
     </div>
     <%= render :partial => "similar_items" unless @similar_items.empty?%>

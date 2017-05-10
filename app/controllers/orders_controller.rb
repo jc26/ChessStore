@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include ChessStoreHelpers::Shipping
 
   before_action :check_login
-  before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:show, :destroy]
   before_action :set_heading, except: [:cart, :checkout]
   before_action :set_total_cart_vars, only: [:cart, :checkout]
   authorize_resource
@@ -24,9 +24,6 @@ class OrdersController < ApplicationController
   def show
   end
 
-  def new
-  end
-
   def create
     @order = Order.new(order_params)
     @order.user = current_user
@@ -40,12 +37,6 @@ class OrdersController < ApplicationController
     else
       redirect_to checkout_path
     end
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

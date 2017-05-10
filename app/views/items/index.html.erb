@@ -9,7 +9,7 @@
     <li><a data-toggle="pill" href="#pieces">Pieces</a></li>
     <li><a data-toggle="pill" href="#clocks">Clocks</a></li>
     <li><a data-toggle="pill" href="#supplies">Supplies</a></li>
-    <% unless current_user.role?(:customer) %>
+    <% unless !logged_in? || (logged_in? && current_user.role?(:customer)) %>
       <li><a data-toggle="pill" href="#inactive">Inactive Items</a></li>
     <% end %>
   </ul>
@@ -17,21 +17,41 @@
 
   <div class="tab-content">
     <div id="boards" class="tab-pane fade in active">
-      <%= render partial: "items_table", locals: {items: @boards} %>
+      <% unless @boards.empty? %>
+        <%= render partial: "items_table", locals: {items: @boards} %>
+      <% else %>
+        <h4 style="color:gray;">There are currently no items in the boards category.</h4>
+      <% end %>
     </div>
     <div id="pieces" class="tab-pane fade">
-      <%= render partial: "items_table", locals: {items: @pieces} %>
+      <% unless @pieces.empty? %>
+        <%= render partial: "items_table", locals: {items: @pieces} %>
+      <% else %>
+        <h4 style="color:gray;">There are currently no items in the pieces category.</h4>
+      <% end %>
     </div>
     <div id="clocks" class="tab-pane fade">
-      <%= render partial: "items_table", locals: {items: @clocks} %>
+      <% unless @clocks.empty? %>
+        <%= render partial: "items_table", locals: {items: @clocks} %>
+      <% else %>
+        <h4 style="color:gray;">There are currently no items in the clocks category.</h4>
+      <% end %>
     </div>
     <div id="supplies" class="tab-pane fade">
-      <%= render partial: "items_table", locals: {items: @supplies} %>
+      <% unless @supplies.empty? %>
+        <%= render partial: "items_table", locals: {items: @supplies} %>
+      <% else %>
+        <h4 style="color:gray;">There are currently no items in the supplies category.</h4>
+      <% end %>
     </div>
-    <% unless current_user.role?(:customer) %>
-      <div id="inactive" class="tab-pane fade">
-        <%= render partial: "items_table", locals: {items: @inactive_items} %>
-      </div>
+    <% unless logged_in? && current_user.role?(:customer) %>
+      <% unless @inactive_items.empty? %>
+        <div id="inactive" class="tab-pane fade">
+          <%= render partial: "items_table", locals: {items: @inactive_items} %>
+        </div>
+      <% else %>
+        <h4 style="color:gray;">There are currently no inactive items.</h4>
+      <% end %>
     <% end %>
   </div>
 </div>

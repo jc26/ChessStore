@@ -21,7 +21,6 @@
         <% end %>
       </div>
     </div>
-    <%= link_to "Add School", new_school_path, class: "btn btn-primary add-school-btn" %>
   <% else %>
     <div id="pending-orders" class="tab-pane fade in active">
       <% unless @active_schools.empty? %>
@@ -30,5 +29,8 @@
         <h4 style="color:gray;margin-left: 15%;">There are no active schools.</h4>
       <% end %>
     </div>
+  <% end %>
+  <% if current_user.role?(:admin) || current_user.role?(:customer) %>
+    <%= link_to "Add School", new_school_path, class: "btn btn-primary add-school-btn" %>
   <% end %>
 </div>
