@@ -2,25 +2,25 @@
 
 <%= simple_form_for @order, html: { class: 'new-item-form form-horizontal center', multipart: true } do |f| %>
   <br />
-  <div class="form-group">
-    <%= f.label :school_id, "School", class: "col-sm-2 col-form-label", style: "text-align: left;" %>
+  <div class="form-group" style="width: 100%;">
     <div class="col-sm-6">
-      <%= f.select :school_id, @schools_dropdown, {}, {class: "form-control"} %>
+      <%= f.label :school_id, "School", class: "col-sm-2 col-form-label", style: "text-align:left;padding-left:0px;" %>
+      <%= f.input :school_id, collection: @all_schools, :label_method => lambda { |school| "#{school.name} - #{school.street_1}" }, value_method: :id, label: false, include_blank: true, input_html: {class: "form-control"} %>
     </div>
   </div>
   <br />
   <div class="row form-group" style="width: 100%;">
     <div class="col-sm-6">
       <%= f.label :credit_card_number, "Credit Card Number", class: "col-form-label", style: "text-align:left;width:100%;" %>
-      <%= f.text_field :credit_card_number, class: "form-control" %>
+      <%= f.input :credit_card_number, input_html: {class: "form-control"}, label: false %>
     </div>
     <div class="col-sm-3">
       <%= f.label :expiration_month, "Month", class: "col-form-label", style: "text-align:left;width:100%;" %>
-      <%= f.select :expiration_month, 1..12, {}, {class: "form-control"} %>
+      <%= f.input :expiration_month, collection: 1..12, input_html: {class: "form-control"}, label: false %>
     </div>
     <div class="col-sm-3">
       <%= f.label :expiration_year, "Year", class: "col-form-label", style: "text-align:left;width:100%;" %>
-      <%= f.select :expiration_year, Date.current.year..8.years.from_now.year, {}, {class: "form-control", style: "padding: 5px;"} %>
+      <%= f.input :expiration_year, collection: Date.current.year..8.years.from_now.year, input_html: {class: "form-control", style: "padding: 5px;"}, label: false %>
     </div>
   </div>
   <br />
@@ -33,3 +33,7 @@
     </div>
   </div>
 <% end %>
+
+<br />
+<br />
+<br />

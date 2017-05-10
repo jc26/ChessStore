@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(user_params)
-      flash[:notice] = "#{@user.name} is updated."
+      flash[:notice] = "#{@user.proper_name} is updated."
       redirect_to @user
     else
       render :action => 'edit'
@@ -82,10 +82,14 @@ class UsersController < ApplicationController
       @orders_need_shipped = Order.all.not_shipped.count
     elsif current_user.role?(:manager)
       @items_need_reorder = Item.all.active.need_reorder.alphabetical.to_a
+      @admins = User.active.for_role("admin").alphabetical.to_a
+      @managers = User.active.for_role("manager").alphabetical.to_a - [current_user]
+      @shippers = User.active.for_role("shipper").alphabetical.to_a
     elsif current_user.role?(:shipper)
       @pending_orders = Order.not_shipped.chronological.to_a
     elsif current_user.role?(:customer)
       @pending_orders = current_user.orders.not_shipped.chronological.paginate(:page => params[:pending_page]).per_page(10)
+      @last_5_orders = current_user.orders.shipped.chronological.last(5).to_a
     end
     @title = "DASHBOARD"
     @path_name = "/dashboard"

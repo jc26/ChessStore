@@ -3,19 +3,23 @@
     <tr>
       <th>Date</th>
       <th>ID</th>
-      <th>User</th>
+      <% unless current_user.role?(:customer) %>
+        <th>User</th>
+      <% end %>
       <th>School</th>
       <th>Total</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @pending_orders.each do |order| %>
+    <% orders.each do |order| %>
       <tr>
         <div class="cart-img-content">
           <td><div class="cart-item-name"><strong><%= order.date.strftime("%m/%d/%y") %></strong></div></td>
           <td><div class="cart-item-img"><%= link_to order.id, order_path(order) %></div></td>
-          <td><div class="cart-item-price"><%= link_to order.user.proper_name, user_path(order.user) %></div></td>
+          <% unless current_user.role?(:customer) %>
+            <td><div class="cart-item-price"><%= link_to order.user.proper_name, user_path(order.user) %></div></td>
+          <% end %>
           <td><div class="cart-item-quantity"><%= link_to order.school.name, school_path(order.school) %></div></td>
           <td><div class="cart-item-price"><%= number_to_currency order.grand_total %></div></td>
           <td align="center">

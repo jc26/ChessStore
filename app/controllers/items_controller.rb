@@ -8,7 +8,11 @@ class ItemsController < ApplicationController
   def add_item
     add_item_to_cart(params[:id])
     @item = Item.find(params[:id])
-    redirect_to items_path, notice: "#{@item.name} was added to your cart."
+    if params[:from_dashboard]
+      redirect_to dashboard_path, notice: "#{@item.name} was added to your cart."
+    else
+      redirect_to items_path, notice: "#{@item.name} was added to your cart."
+    end
   end
 
   def remove_item
@@ -52,8 +56,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.active = false;
     if @item.save
-      redirect_to item_path(@item), notice: "Successfully created #{@item.name}."
+      redirect_to item_path(@item), notice: "Successfully created #{@item.name} (currently inactive)."
     else
       render action: 'new'
     end

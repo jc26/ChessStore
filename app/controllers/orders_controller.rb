@@ -28,8 +28,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.user = current_user
     @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
-    if @order.save
+    if @order.save!
       @order.pay
       @order.save
       save_each_item_in_cart(@order)
@@ -65,12 +66,13 @@ class OrdersController < ApplicationController
     @order = Order.new
     @user_orders = current_user.orders
     @all_schools = School.all.active.alphabetical
-    unless @user_orders.blank?
-      @most_recent_school = @user_orders.chronological.first.school
-      @schools_dropdown = @most_recent_school + (@schools_dropdown - @most_recent_school)
-    else
-      @schools_dropdown = School.all.active.alphabetical.map { |s| "#{s.name} : #{s.street_1}" }
-    end
+    # unless @user_orders.blank?
+    #   @most_recent_school = @user_orders.chronological.first.school
+    #   @schools_dropdown = @most_recent_school + (@all_schools - @most_recent_school)
+    #   @schools_dropdown = @schools_dropdown.map { |s| "#{s.name} : #{s.street_1}" }
+    # else
+      @schools_dropdown = @all_schools.map { |s| "#{s.name} : #{s.street_1}" }
+    # end
     @title = "CHECKOUT"
     @path_name = "/checkout"
   end

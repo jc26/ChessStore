@@ -3,7 +3,7 @@
     <div class="card" style="height: 100%;">
       <h4 class="card-header" style="text-align: center;">Pending Orders</h4>
       <% unless @pending_orders.empty? %>
-        <%= render partial: "fast_orders_table" %>
+        <%= render partial: "fast_orders_table", locals: {orders: @pending_orders} %>
       <% else %>
         <p class="table-empty-msg">Everything has been shipped &#9786;</p>
       <% end %>

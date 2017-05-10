@@ -1,8 +1,12 @@
 <div class="row">
+  <% unless current_user.role?(:customer) %>
   <div class="col-sm-2">
     <h5><strong>Ship To</strong><br /><br /><%= render partial: "schools/address_format", locals: {school: order.school} %></h5>
   </div>
   <div class="col-sm-10">
+  <% else %>
+  <div class="col-sm-12">
+  <% end %>
     <table class="table fast-order-items-table" style="width:100%;">
       <tbody>
         <% order.order_items.each do |o| %>
@@ -20,16 +24,24 @@
               <td><p class="cart-item-name"><strong>Quantity: <%= o.quantity %><br /><%= link_to o.item.name, item_path(o.item) %></strong></p></td>
               <td>
                 <% if o.shipped_on.nil? %>
-                  <p class="cart-item-price">Not shipped
+                  <p class="cart-item-price">Not Shipped
                 <% else %>
-                  <p class="cart-item-price"><%= o.shipped_on.strftime('%m/%d/%y') %>
+                  <p class="cart-item-price">Shipped on <%= o.shipped_on.strftime('%m/%d/%y') %>
                 <% end %>
               </td>
               <td align="center">
-                <% if o.shipped_on.nil? %>
-                  <%= button_to "Ship", toggle_path(o, order_id: order.id, status: "shipped", from_dashboard: true), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+                <% unless current_user.role?(:customer) %>
+                    <% if o.shipped_on.nil? %>
+                      <%= button_to "Ship", toggle_path(o, order_id: order.id, status: "shipped", from_dashboard: true), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+                    <% else %>
+                      <%= button_to "Unship", toggle_path(o, order_id: order.id, status: "unshipped", from_dashboard: true), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+                    <% end %>
                 <% else %>
-                  <%= button_to "Unship", toggle_path(o, order_id: order.id, status: "unshipped", from_dashboard: true), class: "btn btn-primary cart-rm-item-btn", remote: true, method: 'patch' %>
+                  <% if o.item.active %>
+                    <%= button_to add_item_path(id: o.item.id, from_dashboard: true), method: :post, class: "btn btn-primary order-show-btn" do %>
+                      <span>ADD TO CART</span>
+                    <% end %>
+                  <% end %>
                 <% end %>
               </td>
             </div>

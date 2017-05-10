@@ -48,7 +48,7 @@
         </div>
         <div class="col-sm-6">
           <% if @items_in_cart.empty? %>
-            <%= link_to "Checkout", "#", :class =>"button disabled", :style => "background-color:gray;color:white;text-decoration:none;" %>
+            <%= link_to "Checkout", "#", :class =>"button disabled" %>
           <% else %>
             <%= link_to "Checkout", checkout_path, :class =>"button", :style => "color:white;text-decoration:none;" %>
           <% end %>

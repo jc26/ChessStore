@@ -96,7 +96,7 @@ class Order < ActiveRecord::Base
   end
 
   def credit_card
-    CreditCard.new(self.credit_card_number, self.expiration_year, self.expiration_month)
+    CreditCard.new(self.credit_card_number.to_i, self.expiration_year.to_i, self.expiration_month.to_i)
   end
 
   def credit_card_number_is_valid

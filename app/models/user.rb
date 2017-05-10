@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   scope :inactive,      -> { where(active: false) }
   scope :employees,     -> { where.not(role: 'customer') }
   scope :customers,     -> { where(role: 'customer') }
+  scope :for_role,      -> (role) { where(role: role) }
   scope :search,        -> (query) { where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")}
 
   # Validations

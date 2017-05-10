@@ -7,7 +7,7 @@
     <li><a data-toggle="pill" href="#pieces">Pieces</a></li>
     <li><a data-toggle="pill" href="#clocks">Clocks</a></li>
     <li><a data-toggle="pill" href="#supplies">Supplies</a></li>
-    <li><a data-toggle="pill" href="#supplies">Inactive Items</a></li>
+    <li><a data-toggle="pill" href="#inactive">Inactive Items</a></li>
   </ul>
 
   <div class="tab-content">
@@ -23,7 +23,7 @@
     <div id="supplies" class="tab-pane fade">
       <%= render partial: "items_table", locals: {items: @supplies} %>
     </div>
-    <div id="supplies" class="tab-pane fade">
+    <div id="inactive" class="tab-pane fade">
       <%= render partial: "items_table", locals: {items: @inactive_items} %>
     </div>
   </div>

@@ -4,25 +4,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
-    
+  <div class="col-sm-4">
+    <%= render partial: "employee_contact_info", locals: {employees: @admins, title: "administrators"} %>
   </div>
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="col-sm-6">
-
-      </div>
-      <div class="col-sm-6">
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-
-      </div>
-      <div class="col-sm-6">
-
-      </div>
-    </div>
+  <div class="col-sm-4">
+    <%= render partial: "employee_contact_info", locals: {employees: @managers, title: "managers"} %>
+  </div>
+  <div class="col-sm-4">
+    <%= render partial: "employee_contact_info", locals: {employees: @shippers, title: "shippers"} %>
   </div>
 </div>

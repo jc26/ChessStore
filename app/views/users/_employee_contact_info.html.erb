@@ -1,0 +1,28 @@
+<div class="card best-customers-card" style="height: 300px;">
+  <h4 class="card-header" style="text-align: center;"><%= title.capitalize %></h4>
+  <% unless employees.empty? %>
+  <div class="card-block">
+    <table class="ph table-hover">
+      <thead>
+        <tr class="ph-heading">
+          <th>Name</th>
+          <th>Role</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.each do |employee| %>
+          <tr>
+            <td><%= link_to employee.proper_name, user_path(employee) %></td>
+            <td><%= employee.role.capitalize %></td>
+            <td><%= employee.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br />
+  </div>
+  <% else %>
+    <p class="table-empty-msg">No <%= title %> yet.</p>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-<div class="card" id="reorder-table" style="width: auto; height: auto;">
+<div class="card" id="reorder-table" style="width: auto; height: 350px;">
   <h4 class="card-header" style="text-align: center;">Reorder List</h4>
   <% unless @items_need_reorder.empty? %>
     <table id="show-cart" class="table table-hover" style="margin-left:0px; width: 100%;">
@@ -27,10 +27,10 @@
               </td>
               <td><p class="cart-item-name"><strong><%= link_to item.name, item_path(item) %></strong></p></td>
               <td><p class="cart-item-quantity"><%= number_to_currency item.current_manufacturer_price %></p></td>
-              <td><p class="cart-item-price" style="color: #f981b2"><strong><%= item.inventory_level %></strong></p></td>
+              <td><p class="cart-item-price"><strong><%= item.inventory_level %></strong></p></td>
               <td><p class="cart-item-price"><%= item.reorder_level %></p></td>
               <td align="center">
-                <%= link_to(new_purchase_path(item_id: item.id, div_id: "new_reorder_link#{item.id}", reorder: true), id: "new_reorder_link#{item.id}", class: 'btn btn-primary', style: 'margin-top: 0px; width: 150px;', remote: true) do %>
+                <%= link_to(new_purchase_path(item_id: item.id, div_id: "new_reorder_link#{item.id}", reorder: true), id: "new_reorder_link#{item.id}", class: 'btn btn-primary order-show-btn', style: 'margin-top: 0px; width: 150px;', remote: true) do %>
                   Reorder
                 <% end %>
               </td>

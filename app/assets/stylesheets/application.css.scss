@@ -47,6 +47,12 @@ a {
   text-align: center;
 }
 
+a.disabled {
+  background-color:gray;
+  color:white;
+  text-decoration:none;
+}
+
 // Alert Box
 
 .alert-box {

@@ -1,6 +1,11 @@
 <% if params[:from_dashboard] %>
-  $('#show-cart').replaceWith('<%= j render("users/fast_orders_table") %>');
+  $('#show-cart').replaceWith('<%= j render("users/fast_orders_table", orders: @pending_orders) %>');
 <% else %>
   $('#show-cart').replaceWith('<%= j render("orders/order_items_table") %>');
 <% end %>
 $('#flash').replaceWith('<%= j render("partials/flash") %>');
+$('.alert-box').fadeIn('normal', function() {
+    $(this).delay(5000).fadeOut();
+});
+
+$('.alert-box').delay(5000).fadeOut();
