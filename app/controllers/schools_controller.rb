@@ -51,9 +51,20 @@ class SchoolsController < ApplicationController
   end
 
   def update
+    if @school.update_attributes(school_params)
+      flash[:notice] = "#{@school.name} is updated."
+      redirect_to @school
+    else
+      render "edit"
+    end
   end
 
   def destroy
+    if @school.destroy
+      redirect_to schools_path, notice: "The school has been removed from the system."
+    else
+      redirect_to school_path(@school), notice: "The school can't be deleted because orders have been sent here, so it has been made inactive."
+    end
   end
 
   private

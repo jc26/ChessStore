@@ -74,8 +74,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
+    if @item.destroy
+      redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
+    else
+      redirect_to items_path(@item), notice: "This item has been made inactive. It cannot be destroyed. All unshipped and unpaid order items have been removed."
+    end
   end
 
   private

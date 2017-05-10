@@ -8,7 +8,7 @@
         <span class="lighter-text">Total: </span>
         <span class="main-color-text"><%= @total_cost ? (number_to_currency @total_cost) : "$0.00" %></span>
       </div>
-    </div> <!--end shopping-cart-header -->
+    </div>
     <% if !logged_in? %>
       <h5 align="center" style="padding-top:10px; color:gray;">
         You must login to place orders.
@@ -67,5 +67,5 @@
       </div>
     <% end %>
 
-  </div> <!--end shopping-cart -->
-</div> <!--end container -->
+  </div>
+</div>

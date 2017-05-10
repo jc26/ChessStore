@@ -19,17 +19,10 @@
     				<%= render :partial => "partials/nav" %>
     			</div>
     			<div class="col-sm-10 col-sm-push-2 main-signed-out">
-            <!-- <div class="background"></div> -->
-            <%= render :partial => "partials/flash" %>
             <%= yield %>
     			</div>
     		</div>
     </div>
-    <!-- <footer>
-      <div class="small-12 columns" id="footer">
-        <%= render partial: 'partials/footer' %>
-      </div>
-    </footer>  -->
     <%= javascript_include_tag "application" %>
   </body>
 </html>
