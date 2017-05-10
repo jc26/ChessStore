@@ -4,3 +4,8 @@ $('#manufacturer-list').replaceWith('<%= j render("items/manufacturer_price_hist
 $('#new_whole_ip_link').show();
 $('#item-show-price').replaceWith('<%= j render("items/show_price") %>');
 $('#wholesale-list').replaceWith('<%= j render("items/wholesale_price_history") %>');
+$('#flash').replaceWith('<%= j render("partials/flash") %>');
+$('.alert-box').fadeIn('normal', function() {
+    $(this).delay(5000).fadeOut();
+});
+$('.alert-box').delay(5000).fadeOut();

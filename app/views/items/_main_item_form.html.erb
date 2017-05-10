@@ -43,4 +43,10 @@
   <%= f.label "Picture", class: "col-sm-2 col-form-label" %>
   <%= f.file_field :picture %>
 </div>
-<%= f.input :active, as: :hidden, input_html: { value: true } %>
+<% if edit %>
+  <div class="form-group", style="margin-left: -45px;">
+    <%= f.input :active %>
+  </div>
+<% else %>
+  <%= f.input :active, as: :hidden, input_html: { value: true } %>
+<% end %>
