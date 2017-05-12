@@ -28,13 +28,10 @@ class Ability
       can :read, School
       can :dashboard, User
       # they can update their own profile
-      can :update, User do |u|
-        u.id == user.id || u.role?(:shipper)
-      end
       can :toggle, OrderItem
 
     elsif user.role? :shipper
-      can [:read, :update], User do |u|
+      can [:show, :update], User do |u|
         u.id == user.id
       end
       can :read, Order
@@ -43,9 +40,6 @@ class Ability
       can :dashboard, User
       can :toggle, OrderItem
       can :read, School
-      can :read, User do |u|
-        u.role?(:customer)
-      end
 
     elsif user.role? :customer
       can [:read, :update], User do |u|
@@ -64,6 +58,7 @@ class Ability
       can :remove_item, Item
       can :empty_cart, Order
       can :checkout, Order
+      can :cart, Order
 
     else
       can :create, User

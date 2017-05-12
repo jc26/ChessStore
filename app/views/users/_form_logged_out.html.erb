@@ -11,43 +11,43 @@
         </div>
       </div>
       <div class="form-bottom">
-        <%= form_tag users_path, :class => 'register-form', :role => 'form' do %>
+        <%= simple_form_for @user, html: { class: 'register-form', multipart: true } do |f| %>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <%= label_tag :first_name %>
-            <%= text_field_tag :first_name, params[:first_name], :class => 'form-control' %>
+            <%= f.label :first_name, "First Name", style: "padding-left:0px;text-align:left;" %>
+            <%= f.input :first_name, input_html: {class: "form-control", :style => 'padding: 0 20px 0 20px;'}, label: false %>
           </div>
           <div class="col-sm-6 form-group">
-            <%= label_tag :last_name %>
-            <%= text_field_tag :last_name, params[:last_name], :class => 'form-control' %>
+            <%= f.label :last_name, "Last Name", style: "padding-left:0px;text-align:left;" %>
+            <%= f.input :last_name, input_html: {class: "form-control", :style => 'padding: 0 20px 0 20px;'}, label: false %>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <%= label_tag :email %>
-            <%= text_field_tag :email, params[:email], :class => 'form-control' %>
+            <%= f.label :email, "Email", style: "padding-left:0px;text-align:left;" %>
+            <%= f.input :email, input_html: {class: "form-control", :style => 'padding: 0 20px 0 20px;'}, label: false %>
           </div>
           <div class="col-sm-6 form-group">
-            <%= label_tag :phone %>
-            <%= text_field_tag :phone, params[:phone], :class => 'form-control' %>
+            <%= f.label :phone, "Phone", style: "padding-left:0px;text-align:left;" %>
+            <%= f.input :phone, input_html: {class: "form-control", :style => 'padding: 0 20px 0 20px;'}, label: false %>
           </div>
         </div>
         <div class="form-group">
-          <%= label_tag :username %>
-          <%= text_field_tag :username, params[:username], :class => 'form-control' %>
+          <%= f.label :username, "Username", style: "padding-left:0px;text-align:left;" %>
+          <%= f.input :username, input_html: {class: "form-control", :style => 'padding: 0 20px 0 20px;'}, label: false %>
         </div>
         <div class="row">
           <div class="col-sm-6 form-group">
-            <%= label_tag :password %>
-            <%= password_field_tag :password, params[:password], :class => "form-control" %>
+            <%= f.label :password, "Password", style: "padding-left:0px;text-align:left;" %>
+            <%= f.input :password, input_html: {class: "form-control"}, label: false %>
           </div>
           <div class="col-sm-6 form-group">
-            <%= label_tag :password_confirmation %>
-            <%= password_field_tag :password_confirmation, params[:password_confirmation], :class => "form-control" %>
+            <%= f.label :password_confirmation, "Confirm Password", style: "padding-left:0px;text-align:left;width:130px;" %>
+            <%= f.input :password_confirmation, input_html: {class: "form-control"}, label: false %>
           </div>
         </div>
         <div class="actions">
-          <%= link_to "Sign Up", new_user_path, :class => "btn register" %>
+          <%= f.submit "Sign Up", :class => 'btn register' %>
         </div>
         <% end %>
       </div>

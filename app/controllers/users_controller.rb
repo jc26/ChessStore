@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_heading, except: [:dashboard, :new, :create]
   authorize_resource
+  # skip_authorize_resource only: [:choose, :new, :create]
+  skip_authorize_resource only: [:choose]
 
   def index
     if params[:search]
@@ -33,8 +35,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @title = "ITEMS"
-    @path_name = "/items"
+    # @title = "ITEMS"
+    # @path_name = "/items"
     if @user.save
       session[:user_id] = @user.id
       if logged_in?
@@ -99,6 +101,8 @@ class UsersController < ApplicationController
   def choose
     @schools = School.all.active.alphabetical.to_a
     @school = School.new
+    @title = "REGISTER"
+    @path_name = "/users/new"
   end
 
   private
