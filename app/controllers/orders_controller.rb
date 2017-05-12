@@ -66,6 +66,18 @@ class OrdersController < ApplicationController
     @path_name = "/checkout"
   end
 
+  def change_quantity
+    change_quantity_of_item(params[:item_id], params[:quantity])
+    respond_to do |format|
+      @items_in_cart = get_list_of_items_in_cart
+      @total_cost = calculate_cart_items_cost
+      @size_of_cart = get_size_of_cart
+      @shipping_cost = calculate_cart_shipping
+      @grand_total = calculate_cart_shipping + calculate_cart_items_cost
+      format.js
+    end
+  end
+
   private
   def set_order
     @order = Order.find(params[:id])

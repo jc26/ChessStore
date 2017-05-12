@@ -9,10 +9,12 @@ class ItemsController < ApplicationController
   def add_item
     add_item_to_cart(params[:id])
     @item = Item.find(params[:id])
-    if params[:from_dashboard]
-      redirect_to dashboard_path, notice: "#{@item.name} was added to your cart."
-    else
-      redirect_to items_path, notice: "#{@item.name} was added to your cart."
+    respond_to do |format|
+      @items_in_cart = get_list_of_items_in_cart
+      @total_cost = calculate_cart_items_cost
+      @size_of_cart = get_size_of_cart
+      flash[:notice] = "#{@item.name} was added to your cart."
+      format.js
     end
   end
 

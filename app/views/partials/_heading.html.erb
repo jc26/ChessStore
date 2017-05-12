@@ -4,7 +4,7 @@
       <%= link_to @title, @path_name, class: "navbar-brand curr-title" %>
       <a href="#" id="cart" class="navbar-right">
         <i class="fa fa-shopping-cart"></i> Cart
-        <span class="badge"><%= @size_of_cart ? @size_of_cart : 0 %></span>
+        <%= render partial: "partials/cart_badge" %>
       </a>
       <% if @title == "ITEMS" || @title == "USERS" || @title == "SCHOOLS" || @title == "ORDERS" %>
         <%= render partial: "partials/search_box", locals: {title: @title, path_name: @path_name} %>

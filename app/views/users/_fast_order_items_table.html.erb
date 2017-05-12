@@ -38,7 +38,7 @@
                     <% end %>
                 <% else %>
                   <% if o.item.active %>
-                    <%= button_to add_item_path(id: o.item.id, from_dashboard: true), method: :post, class: "btn btn-primary order-show-btn" do %>
+                    <%= link_to add_item_path(id: o.item.id, from_dashboard: true), method: :post, class: "btn btn-primary order-show-btn", remote: true do %>
                       <span>ADD TO CART</span>
                     <% end %>
                   <% end %>

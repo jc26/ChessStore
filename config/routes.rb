@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'add_item/:id' => 'items#add_item', :as => :add_item
   post 'remove_item/:id' => 'items#remove_item', :as => :remove_item
   post 'empty_cart' => 'orders#empty_cart', :as => :empty_cart
+  post 'change_quantity' => 'orders#change_quantity', :as => :change_quantity
   get 'cart' => 'orders#cart', :as => :cart
   get 'checkout' => 'orders#checkout', :as => :checkout
 

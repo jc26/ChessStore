@@ -13,7 +13,7 @@
                     <%= link_to image_tag(item.picture, :alt => item.name), item_path(item) %>
                   <% end %>
                   <% if item.active && logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
-                    <%= link_to add_item_path(:id => item.id), method: :post, class: "add-to-cart-btn" do %>
+                    <%= link_to add_item_path(:id => item.id), method: :post, class: "add-to-cart-btn", remote: true do %>
                       <div class="text">ADD TO CART</div>
                     <% end %>
                   <% end %>

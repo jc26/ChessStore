@@ -1,0 +1,7 @@
+$('#cart-badge').replaceWith('<%= j render("partials/cart_badge") %>');
+$('#cart-dropdown').replaceWith('<%= j render("partials/cart_dropdown") %>');
+$('#flash').replaceWith('<%= j render("partials/flash") %>');
+$('.alert-box').fadeIn('normal', function() {
+    $(this).delay(5000).fadeOut();
+});
+$('.alert-box').delay(5000).fadeOut();
