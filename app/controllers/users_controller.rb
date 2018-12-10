@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_heading, except: [:dashboard, :new, :create]
   authorize_resource
   # skip_authorize_resource only: [:choose, :new, :create]
-  skip_authorize_resource only: [:choose]
+  skip_authorize_resource only: [:choose, :new, :create]
 
   def index
     if params[:search]
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    if params[:from]
+      @current_user = User.new
+
+    end
     @user = User.new
     @school = School.new
     if params[:is_employee]

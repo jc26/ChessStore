@@ -7,7 +7,8 @@ module Populator
       colors.each do |color|
         vinyl_board = FactoryGirl.create(:item, 
           name: "Vinyl Chess Board - #{color.capitalize} & White", 
-          color: "#{color}/white")
+          color: "#{color}/white",
+          picture: "vinyl-chess-board-#{color}.jpg")
         vinyl_boards_array << vinyl_board
       end
 
@@ -27,6 +28,7 @@ module Populator
         name: "Mahogany Wood Chess Board", 
         description: "This attractive and affordable chess board features a classic 1-1/2 inch mahogany border. The squares are 2-1/8 inch and the board is 1/2 inch thick. It is made in Poland of quality manufacturing with alternating Mahogany squares.", 
         color: "brown/tan",
+        picture: "mahogany-wood-chess-board.jpg",
         weight: 2.1)
       old_price = 1.55
       5.times do |i|

@@ -11,6 +11,7 @@ module Populator
           description: "The Basic Chess Pieces are our least expensive pieces and are ideal for schools and clubs working on a tight budget. These chess sets meet all chess tournament standards and regulations. They are a standard Staunton design and have a 3 3/4 inch tall King with a 1 1/2 inch felt paper base.", 
           color: "black/white", 
           category: "pieces", 
+          picture: "basic-chess-pieces.jpg",
           weight: 0.85)
         basic_pieces_array << basic_pieces
 
@@ -19,6 +20,7 @@ module Populator
           description: "Our Weighted Tournament Chess Pieces are just that - heavy! The entire set weighs in at just over 2 pounds and has a nice weighted feel. The pieces are easy to play with and their weight makes them perfect for tournaments or blitz play. With a King of 3 3/4 inch tall and a 1 1/2 inch base, these pieces meet all tournament regulations. The set includes extra queens as well.", 
           color: "black/white", 
           category: "pieces", 
+          picture: "basic-chess-pieces.jpg",
           weight: 2.2)
         weighted_pieces_array << weighted_pieces
       end
@@ -62,6 +64,7 @@ module Populator
         description: "These beautiful wooden chess pieces are a great addition to any chess pieces collection or entry-level wood chess sets. The pieces are specifically designed to offer a solid, durable style that can stand up to abuse without breaking. They are designed with a simple but traditional style and are available in two wood finishes for the dark pieces. Light pieces are made from light boxwood, and dark pieces are made from sheesham. Each set features a full 32 pieces. These pieces are lightly weighted.", 
         color: "brown/tan", 
         category: "pieces",
+        picture: "wooden-chess-pieces.jpg",
         inventory_level: 40,
         reorder_level: 10, 
         weight: 2.0)

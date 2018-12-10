@@ -195,8 +195,6 @@ label {
 	position: fixed;
 	min-height: 100%;
 	padding-top: 4px;
-  // background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
-  // background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
 	background-color: #0B1443; /* For browsers that do not support gradients */
   background: -moz-linear-gradient(312deg, #0B1443 0%, #172C75 100%); /* ff3.6+ */
   background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #0B1443), color-stop(100%, #172C75)); /* safari4+,chrome */
@@ -205,23 +203,23 @@ label {
   background: -ms-linear-gradient(312deg, #0B1443 0%, #172C75 100%); /* ie10+ */
   background: linear-gradient(138deg, #0B1443 0%, #172C75 100%); /* w3c */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0B1443', endColorstr='#172C75',GradientType=0 ); /* ie6-9 */
-	// // background: -webkit-linear-gradient(left top, #0B1443, #4B548D); /* For Safari 5.1 to 6.0 */
-	// // background: -o-linear-gradient(bottom right, #0B1443, #4B548D); /* For Opera 11.1 to 12.0 */
-	// // background: -moz-linear-gradient(bottom right, #0B1443, #4B548D); /* For Firefox 3.6 to 15 */
-	// // background: linear-gradient(to bottom right, #0B1443, #4B548D); /* Standard syntax (must be last) */
 }
 
 .sidebar-logo img {
-  max-width: 90%;
-  margin-top: 15px;
-  margin-bottom: 235px;
+  max-width: 70%;
+  margin-top: 15%;
+  margin-bottom: 12%;
+}
+
+#main-sidebar {
+  // height: 80%;
+  position: relative;
 }
 
 #main-sidebar .nav li a {
 	font-family: 'Josefin Sans', sans-serif;
 	color: white;
-  font-size: 1.1em;
-  padding-left: 30px;
+  font-size: 0.9vw;
   -ms-transition:.5s;
   -moz-transition:.5s;
   -webkit-transition:.5s;
@@ -231,25 +229,36 @@ label {
 #main-sidebar .nav > li > a:hover, #main-sidebar .nav > li > a:focus {
   background-color: #2442DC;
   text-decoration: none;
-  padding-left: 40px;
+  padding-left: 25px;
 }
 
 #main-sidebar .nav > li > a {
-  padding-left: 30px;
   padding-top: 13px;
+  text-align: left;
 }
 
 #main-sidebar .nav li {
   width: 100%;
 }
 
-#main-sidebar .nav a.logout-btn {
+#main-sidebar ul.nav {
+  
+}
+
+a.logout-btn {
 	font-family: 'Open Sans', sans-serif;
-	width: 85%;
-  margin-left: 20px;
+  font-weight: 600;
+  font-size: 0.9vw;
   position: absolute;
-  bottom: 2%;
+  bottom: 20px;
+  left: 9%;
+  right: 10%;
+  width: 83%;
+  // margin-bottom: 20px;
+  text-align: center;
 	background-color: transparent;
+  color: white;
+  border: 1.5px solid white;
 	border-color: white;
 	-ms-transition:.5s;
 	-moz-transition:.5s;
@@ -257,10 +266,18 @@ label {
 	transition:.5s;
 }
 
-#main-sidebar .nav a.logout-btn:hover {
+a.logout-btn:hover {
 	background-color: white;
 	border-color: white;
 	color: black;
+}
+
+#flash {
+  position: absolute;
+  // bottom: 20%;
+  margin-top: 30%;
+  width: 126%;
+  left: -5%;
 }
 
 .main-signed-out {
@@ -272,10 +289,6 @@ label {
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-}
-
-.main-signed-in {
-  // background-color: #FFC5DD;
 }
 
 #welcome-text {
@@ -759,6 +772,7 @@ table.items td img {
 
 .item-img img:hover,
 .item-img:hover .item-img img, img ~ .add-to-cart-btn:hover {
+    text-decoration: none;
     -moz-transition: all 0.3s linear;
     -ms-transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
@@ -770,11 +784,13 @@ table.items td img {
 
 .add-to-cart-btn {
   transition: .5s ease;
-  opacity: 0;
+  background-color: #f981b2;
+  border-radius: 25px; 
   position: absolute;
+  text-decoration: none;
   top: 88%;
   left: 50%;
-  width: 90%;
+  width: 60%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%)
 }
@@ -784,27 +800,23 @@ table.items td img {
 }
 
 .item-img:hover .add-to-cart-btn {
-  opacity: 0.8;
+  background-color: #F993B2;
 }
 
 .item-img .text {
-  background-color: #f981b2;
+  // background-color: #f981b2;
   color: white;
-  font-size: 1em;
+  font-size: 0.8em;
   padding: 10px 32px;
   text-align: center;
 }
 
-a.add-to-cart-btn:hover {
+a.add-to-cart-btn:hover,  a.add-to-cart-btn:visited {
   text-decoration: none;
-  .text {
-    background-color: #f981b2;
-    opacity: 0.8;
-  }
 }
 
 a.add-to-cart-btn:focus .text {
-  background-color: #707070;
+  // background-color: #707070;
 }
 
 .sc-item-name a {

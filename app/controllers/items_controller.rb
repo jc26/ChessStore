@@ -61,6 +61,12 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.active = false;
     if @item.save
+      # if @item.picture
+      #   uploaded_io = params[:item][:picture]
+      #   File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      #     file.write(uploaded_io.read)
+      #   end
+      # end
       redirect_to item_path(@item), notice: "Successfully created #{@item.name} (currently inactive)."
     else
       render action: 'new'
@@ -89,7 +95,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :color, :category, :weight, :inventory_level, :reorder_level, :active)
+    params.require(:item).permit(:name, :description, :color, :category, :weight, :inventory_level, :reorder_level, :picture, :active)
   end
 
   def set_heading

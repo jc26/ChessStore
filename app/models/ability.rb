@@ -61,7 +61,9 @@ class Ability
       can :cart, Order
 
     else
-      can :create, User
+      # can :create, User
+      # can :new, User
+      # can :manage, User
       can :read, Domain
       can :choose, User
       can :create, School

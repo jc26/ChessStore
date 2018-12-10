@@ -28,14 +28,14 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user = current_user
     @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
-    if @order.save!
+    if @order.save
       @order.pay
       @order.save
       save_each_item_in_cart(@order)
       clear_cart
       redirect_to @order, notice: "Thanks for ordering from the Chess Store! Your order will arrive very soon!"
     else
-      redirect_to checkout_path
+      redirect_to checkout_path, notice: "Credit card information was invalid. Please make sure your information is correct."
     end
   end
 

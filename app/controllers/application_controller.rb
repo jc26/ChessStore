@@ -12,7 +12,14 @@ class ApplicationController < ActionController::Base
     if logged_in?
       redirect_to dashboard_path
     else
-      redirect_to login_path
+      if params[:from]
+        @current_user = User.new
+        puts "CURRENT USER SET"
+        redirect_to new_user_path
+      else
+        puts "MISSED FROM"
+        redirect_to login_path
+      end
     end
   end
 

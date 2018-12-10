@@ -13,13 +13,13 @@
   </head>
 
   <body>
-
+    <%# debug params[:from] %>
     <div class="container-fluid">
     		<div class="row">
-    			<div class="col-sm-2 sidebar">
+    			<div class="col-sm-1 sidebar">
     				<%= render :partial => "partials/nav" %>
     			</div>
-    			<div class="col-sm-10 col-sm-push-2 main-signed-in">
+    			<div class="col-sm-11 col-sm-push-1 main-signed-in">
             <%= render :partial => "partials/heading" %>
             <div id="under-heading-content">
               <%= yield %>
