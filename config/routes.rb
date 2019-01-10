@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'welcome#index'
+
   # Routes for main resources
   resources :items
   resources :purchases
@@ -41,6 +43,6 @@ Rails.application.routes.draw do
   match "/500", :to => "errors#internal_server_error", :via => :all
 
   # Set the root url
-  root :to => 'home#home'
+  # root :to => 'home#home'
 
 end

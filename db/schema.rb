@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170503013230) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "item_prices", force: :cascade do |t|
     t.integer "item_id"
     t.float   "price"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170503013230) do
     t.date    "end_date"
   end
 
-  add_index "item_prices", ["item_id"], name: "index_item_prices_on_item_id"
+  add_index "item_prices", ["item_id"], name: "index_item_prices_on_item_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string  "name"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20170503013230) do
     t.date    "shipped_on"
   end
 
-  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id"
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["item_id"], name: "index_order_items_on_item_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.date    "date"
@@ -53,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170503013230) do
     t.string  "payment_receipt"
   end
 
-  add_index "orders", ["school_id"], name: "index_orders_on_school_id"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["school_id"], name: "index_orders_on_school_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
     t.integer "item_id"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170503013230) do
     t.date    "date"
   end
 
-  add_index "purchases", ["item_id"], name: "index_purchases_on_item_id"
+  add_index "purchases", ["item_id"], name: "index_purchases_on_item_id", using: :btree
 
   create_table "schools", force: :cascade do |t|
     t.string  "name"
