@@ -94,7 +94,7 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'email_spec'
-  gem 'nokogiri'
+  gem 'nokogiri', '~> 1.10.0'
   gem 'simplecov'
   gem 'single_test'
 end
