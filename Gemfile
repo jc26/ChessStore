@@ -14,6 +14,7 @@ gem 'rails', '4.2.7'
 # end
 
 gem 'pg', '~> 0.18'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -100,5 +101,3 @@ group :test do
 end
 
 gem 'rails_12factor', group: :production
-
-ruby "2.4.4"

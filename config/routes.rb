@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  # root 'welcome#index'
 
   # Routes for main resources
   resources :items
